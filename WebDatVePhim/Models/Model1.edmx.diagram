@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5133fd193ff448b587b823b4eb0cb6f8" Name="Diagram1">
+      <Diagram DiagramId="1e9692124b8c41e8a79089284caa118c" Name="Diagram1">
         <EntityTypeShape EntityType="DatVeXemPhimATModel.BapNuoc" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.BinhLuan" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.Ghe" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
@@ -14,25 +14,24 @@
         <EntityTypeShape EntityType="DatVeXemPhimATModel.Phim" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.PhongChieu" Width="1.5" PointX="3.75" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.Rap" Width="1.5" PointX="1.5" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatVeXemPhimATModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.ThanhToan" Width="1.5" PointX="10.5" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.Ve" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.Ve_BapNuoc" Width="1.5" PointX="13.5" PointY="6.75" IsExpanded="true" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_BapNuoc__3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve_BapNuo__id_Ba__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__BinhLuan__id_Ngu__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__BinhLuan__id_Phi__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ghe__id_PhongChi__29572725" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_Ghe__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_KhuyenMai__403A8C7D" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__LichChieu__id_Ph__2E1BDC42" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__LichChieu__id_Ph__2F10007B" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_LichChieu__3D5E1FD2" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__NguoiDung__phimD__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__NguoiDung__veDaM__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__PhongChie__id_Ra__267ABA7A" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__ThanhToan__id_Ve__46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve_BapNuo__id_Ve__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_BapNuoc__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve_BapNuo__id_Ba__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__BinhLuan__id_Ngu__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__BinhLuan__id_Phi__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ghe__id_PhongChi__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_Ghe__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_KhuyenMai__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__LichChieu__id_Ph__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__LichChieu__id_Ph__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_LichChieu__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__NguoiDung__phimD__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__NguoiDung__veDaM__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__PhongChie__id_Ra__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__ThanhToan__id_Ve__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve_BapNuo__id_Ve__4D94879B" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

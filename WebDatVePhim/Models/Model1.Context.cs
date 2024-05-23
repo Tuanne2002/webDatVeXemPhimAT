@@ -13,10 +13,10 @@ namespace WebDatVePhim.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DatVeXemPhimATEntities : DbContext
+    public partial class DatVeXemPhimATEntities1 : DbContext
     {
-        public DatVeXemPhimATEntities()
-            : base("name=DatVeXemPhimATEntities")
+        public DatVeXemPhimATEntities1()
+            : base("name=DatVeXemPhimATEntities1")
         {
         }
     
@@ -34,7 +34,6 @@ namespace WebDatVePhim.Models
         public virtual DbSet<Phim> Phims { get; set; }
         public virtual DbSet<PhongChieu> PhongChieux { get; set; }
         public virtual DbSet<Rap> Raps { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ThanhToan> ThanhToans { get; set; }
         public virtual DbSet<Ve> Ves { get; set; }
         public virtual DbSet<Ve_BapNuoc> Ve_BapNuoc { get; set; }

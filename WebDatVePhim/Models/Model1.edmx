@@ -111,16 +111,6 @@
           <Property Name="sdtRap" Type="varchar" MaxLength="15" />
           <Property Name="emailRap" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="ThanhToan">
           <Key>
             <PropertyRef Name="id_ThanhToan" />
@@ -154,7 +144,7 @@
           <Property Name="id_BapNuoc" Type="int" Nullable="false" />
           <Property Name="soLuong" Type="int" />
         </EntityType>
-        <Association Name="FK__BinhLuan__id_Ngu__4D94879B">
+        <Association Name="FK__BinhLuan__id_Ngu__5812160E">
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
           <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
           <ReferentialConstraint>
@@ -166,7 +156,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BinhLuan__id_Phi__4E88ABD4">
+        <Association Name="FK__BinhLuan__id_Phi__59063A47">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
           <ReferentialConstraint>
@@ -178,7 +168,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ghe__id_PhongChi__29572725">
+        <Association Name="FK__Ghe__id_PhongChi__3B75D760">
           <End Role="PhongChieu" Type="Self.PhongChieu" Multiplicity="0..1" />
           <End Role="Ghe" Type="Self.Ghe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -190,7 +180,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichChieu__id_Ph__2E1BDC42">
+        <Association Name="FK__LichChieu__id_Ph__403A8C7D">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="LichChieuPhim" Type="Self.LichChieuPhim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -202,7 +192,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichChieu__id_Ph__2F10007B">
+        <Association Name="FK__LichChieu__id_Ph__412EB0B6">
           <End Role="PhongChieu" Type="Self.PhongChieu" Multiplicity="0..1" />
           <End Role="LichChieuPhim" Type="Self.LichChieuPhim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -214,7 +204,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NguoiDung__phimD__4AB81AF0">
+        <Association Name="FK__NguoiDung__phimD__5535A963">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="*" />
           <ReferentialConstraint>
@@ -226,7 +216,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NguoiDung__veDaM__49C3F6B7">
+        <Association Name="FK__NguoiDung__veDaM__5441852A">
           <End Role="Ve" Type="Self.Ve" Multiplicity="0..1" />
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="*" />
           <ReferentialConstraint>
@@ -238,7 +228,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhongChie__id_Ra__267ABA7A">
+        <Association Name="FK__PhongChie__id_Ra__38996AB5">
           <End Role="Rap" Type="Self.Rap" Multiplicity="0..1" />
           <End Role="PhongChieu" Type="Self.PhongChieu" Multiplicity="*" />
           <ReferentialConstraint>
@@ -250,7 +240,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ThanhToan__id_Ve__46E78A0C">
+        <Association Name="FK__ThanhToan__id_Ve__5BE2A6F2">
           <End Role="Ve" Type="Self.Ve" Multiplicity="0..1" />
           <End Role="ThanhToan" Type="Self.ThanhToan" Multiplicity="*" />
           <ReferentialConstraint>
@@ -262,7 +252,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__id_BapNuoc__3F466844">
+        <Association Name="FK__Ve__id_BapNuoc__49C3F6B7">
           <End Role="BapNuoc" Type="Self.BapNuoc" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -274,7 +264,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__id_Ghe__3E52440B">
+        <Association Name="FK__Ve__id_Ghe__48CFD27E">
           <End Role="Ghe" Type="Self.Ghe" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -286,7 +276,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__id_KhuyenMai__403A8C7D">
+        <Association Name="FK__Ve__id_KhuyenMai__4AB81AF0">
           <End Role="KhuyenMai" Type="Self.KhuyenMai" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -298,7 +288,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__id_LichChieu__3D5E1FD2">
+        <Association Name="FK__Ve__id_LichChieu__47DBAE45">
           <End Role="LichChieuPhim" Type="Self.LichChieuPhim" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -310,7 +300,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve_BapNuo__id_Ba__440B1D61">
+        <Association Name="FK__Ve_BapNuo__id_Ba__4E88ABD4">
           <End Role="BapNuoc" Type="Self.BapNuoc" Multiplicity="1" />
           <End Role="Ve_BapNuoc" Type="Self.Ve_BapNuoc" Multiplicity="*" />
           <ReferentialConstraint>
@@ -322,7 +312,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve_BapNuo__id_Ve__4316F928">
+        <Association Name="FK__Ve_BapNuo__id_Ve__4D94879B">
           <End Role="Ve" Type="Self.Ve" Multiplicity="1" />
           <End Role="Ve_BapNuoc" Type="Self.Ve_BapNuoc" Multiplicity="*" />
           <ReferentialConstraint>
@@ -344,67 +334,66 @@
           <EntitySet Name="Phim" EntityType="Self.Phim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhongChieu" EntityType="Self.PhongChieu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rap" EntityType="Self.Rap" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThanhToan" EntityType="Self.ThanhToan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ve" EntityType="Self.Ve" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ve_BapNuoc" EntityType="Self.Ve_BapNuoc" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__BinhLuan__id_Ngu__4D94879B" Association="Self.FK__BinhLuan__id_Ngu__4D94879B">
+          <AssociationSet Name="FK__BinhLuan__id_Ngu__5812160E" Association="Self.FK__BinhLuan__id_Ngu__5812160E">
             <End Role="NguoiDung" EntitySet="NguoiDung" />
             <End Role="BinhLuan" EntitySet="BinhLuan" />
           </AssociationSet>
-          <AssociationSet Name="FK__BinhLuan__id_Phi__4E88ABD4" Association="Self.FK__BinhLuan__id_Phi__4E88ABD4">
+          <AssociationSet Name="FK__BinhLuan__id_Phi__59063A47" Association="Self.FK__BinhLuan__id_Phi__59063A47">
             <End Role="Phim" EntitySet="Phim" />
             <End Role="BinhLuan" EntitySet="BinhLuan" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ghe__id_PhongChi__29572725" Association="Self.FK__Ghe__id_PhongChi__29572725">
+          <AssociationSet Name="FK__Ghe__id_PhongChi__3B75D760" Association="Self.FK__Ghe__id_PhongChi__3B75D760">
             <End Role="PhongChieu" EntitySet="PhongChieu" />
             <End Role="Ghe" EntitySet="Ghe" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichChieu__id_Ph__2E1BDC42" Association="Self.FK__LichChieu__id_Ph__2E1BDC42">
+          <AssociationSet Name="FK__LichChieu__id_Ph__403A8C7D" Association="Self.FK__LichChieu__id_Ph__403A8C7D">
             <End Role="Phim" EntitySet="Phim" />
             <End Role="LichChieuPhim" EntitySet="LichChieuPhim" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichChieu__id_Ph__2F10007B" Association="Self.FK__LichChieu__id_Ph__2F10007B">
+          <AssociationSet Name="FK__LichChieu__id_Ph__412EB0B6" Association="Self.FK__LichChieu__id_Ph__412EB0B6">
             <End Role="PhongChieu" EntitySet="PhongChieu" />
             <End Role="LichChieuPhim" EntitySet="LichChieuPhim" />
           </AssociationSet>
-          <AssociationSet Name="FK__NguoiDung__phimD__4AB81AF0" Association="Self.FK__NguoiDung__phimD__4AB81AF0">
+          <AssociationSet Name="FK__NguoiDung__phimD__5535A963" Association="Self.FK__NguoiDung__phimD__5535A963">
             <End Role="Phim" EntitySet="Phim" />
             <End Role="NguoiDung" EntitySet="NguoiDung" />
           </AssociationSet>
-          <AssociationSet Name="FK__NguoiDung__veDaM__49C3F6B7" Association="Self.FK__NguoiDung__veDaM__49C3F6B7">
+          <AssociationSet Name="FK__NguoiDung__veDaM__5441852A" Association="Self.FK__NguoiDung__veDaM__5441852A">
             <End Role="Ve" EntitySet="Ve" />
             <End Role="NguoiDung" EntitySet="NguoiDung" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhongChie__id_Ra__267ABA7A" Association="Self.FK__PhongChie__id_Ra__267ABA7A">
+          <AssociationSet Name="FK__PhongChie__id_Ra__38996AB5" Association="Self.FK__PhongChie__id_Ra__38996AB5">
             <End Role="Rap" EntitySet="Rap" />
             <End Role="PhongChieu" EntitySet="PhongChieu" />
           </AssociationSet>
-          <AssociationSet Name="FK__ThanhToan__id_Ve__46E78A0C" Association="Self.FK__ThanhToan__id_Ve__46E78A0C">
+          <AssociationSet Name="FK__ThanhToan__id_Ve__5BE2A6F2" Association="Self.FK__ThanhToan__id_Ve__5BE2A6F2">
             <End Role="Ve" EntitySet="Ve" />
             <End Role="ThanhToan" EntitySet="ThanhToan" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__id_BapNuoc__3F466844" Association="Self.FK__Ve__id_BapNuoc__3F466844">
+          <AssociationSet Name="FK__Ve__id_BapNuoc__49C3F6B7" Association="Self.FK__Ve__id_BapNuoc__49C3F6B7">
             <End Role="BapNuoc" EntitySet="BapNuoc" />
             <End Role="Ve" EntitySet="Ve" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__id_Ghe__3E52440B" Association="Self.FK__Ve__id_Ghe__3E52440B">
+          <AssociationSet Name="FK__Ve__id_Ghe__48CFD27E" Association="Self.FK__Ve__id_Ghe__48CFD27E">
             <End Role="Ghe" EntitySet="Ghe" />
             <End Role="Ve" EntitySet="Ve" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__id_KhuyenMai__403A8C7D" Association="Self.FK__Ve__id_KhuyenMai__403A8C7D">
+          <AssociationSet Name="FK__Ve__id_KhuyenMai__4AB81AF0" Association="Self.FK__Ve__id_KhuyenMai__4AB81AF0">
             <End Role="KhuyenMai" EntitySet="KhuyenMai" />
             <End Role="Ve" EntitySet="Ve" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__id_LichChieu__3D5E1FD2" Association="Self.FK__Ve__id_LichChieu__3D5E1FD2">
+          <AssociationSet Name="FK__Ve__id_LichChieu__47DBAE45" Association="Self.FK__Ve__id_LichChieu__47DBAE45">
             <End Role="LichChieuPhim" EntitySet="LichChieuPhim" />
             <End Role="Ve" EntitySet="Ve" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve_BapNuo__id_Ba__440B1D61" Association="Self.FK__Ve_BapNuo__id_Ba__440B1D61">
+          <AssociationSet Name="FK__Ve_BapNuo__id_Ba__4E88ABD4" Association="Self.FK__Ve_BapNuo__id_Ba__4E88ABD4">
             <End Role="BapNuoc" EntitySet="BapNuoc" />
             <End Role="Ve_BapNuoc" EntitySet="Ve_BapNuoc" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve_BapNuo__id_Ve__4316F928" Association="Self.FK__Ve_BapNuo__id_Ve__4316F928">
+          <AssociationSet Name="FK__Ve_BapNuo__id_Ve__4D94879B" Association="Self.FK__Ve_BapNuo__id_Ve__4D94879B">
             <End Role="Ve" EntitySet="Ve" />
             <End Role="Ve_BapNuoc" EntitySet="Ve_BapNuoc" />
           </AssociationSet>
@@ -422,8 +411,8 @@
           <Property Name="tenBapNuoc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="chiTietBapNuoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="giaTien" Type="Double" />
-          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_BapNuoc__3F466844" FromRole="BapNuoc" ToRole="Ve" />
-          <NavigationProperty Name="Ve_BapNuoc" Relationship="Self.FK__Ve_BapNuo__id_Ba__440B1D61" FromRole="BapNuoc" ToRole="Ve_BapNuoc" />
+          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_BapNuoc__49C3F6B7" FromRole="BapNuoc" ToRole="Ve" />
+          <NavigationProperty Name="Ve_BapNuoc" Relationship="Self.FK__Ve_BapNuo__id_Ba__4E88ABD4" FromRole="BapNuoc" ToRole="Ve_BapNuoc" />
         </EntityType>
         <EntityType Name="BinhLuan">
           <Key>
@@ -435,8 +424,8 @@
           <Property Name="noiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="soSao" Type="Int32" />
           <Property Name="tongBinhLuan" Type="Int32" />
-          <NavigationProperty Name="NguoiDung" Relationship="Self.FK__BinhLuan__id_Ngu__4D94879B" FromRole="BinhLuan" ToRole="NguoiDung" />
-          <NavigationProperty Name="Phim" Relationship="Self.FK__BinhLuan__id_Phi__4E88ABD4" FromRole="BinhLuan" ToRole="Phim" />
+          <NavigationProperty Name="NguoiDung" Relationship="Self.FK__BinhLuan__id_Ngu__5812160E" FromRole="BinhLuan" ToRole="NguoiDung" />
+          <NavigationProperty Name="Phim" Relationship="Self.FK__BinhLuan__id_Phi__59063A47" FromRole="BinhLuan" ToRole="Phim" />
         </EntityType>
         <EntityType Name="Ghe">
           <Key>
@@ -447,8 +436,8 @@
           <Property Name="soHangGhe" Type="Int32" />
           <Property Name="soGheTrongHang" Type="Int32" />
           <Property Name="tinhTrang" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PhongChieu" Relationship="Self.FK__Ghe__id_PhongChi__29572725" FromRole="Ghe" ToRole="PhongChieu" />
-          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_Ghe__3E52440B" FromRole="Ghe" ToRole="Ve" />
+          <NavigationProperty Name="PhongChieu" Relationship="Self.FK__Ghe__id_PhongChi__3B75D760" FromRole="Ghe" ToRole="PhongChieu" />
+          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_Ghe__48CFD27E" FromRole="Ghe" ToRole="Ve" />
         </EntityType>
         <EntityType Name="KhuyenMai">
           <Key>
@@ -462,7 +451,7 @@
           <Property Name="thoiGianKetThucKM" Type="DateTime" Precision="3" />
           <Property Name="chiTietKhuyenMai" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="dieuKienApDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_KhuyenMai__403A8C7D" FromRole="KhuyenMai" ToRole="Ve" />
+          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_KhuyenMai__4AB81AF0" FromRole="KhuyenMai" ToRole="Ve" />
         </EntityType>
         <EntityType Name="LichChieuPhim">
           <Key>
@@ -474,9 +463,9 @@
           <Property Name="thoiGianBatDau" Type="Time" Precision="7" />
           <Property Name="thoiGianKetThuc" Type="Time" Precision="7" />
           <Property Name="ngayChieu" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Phim" Relationship="Self.FK__LichChieu__id_Ph__2E1BDC42" FromRole="LichChieuPhim" ToRole="Phim" />
-          <NavigationProperty Name="PhongChieu" Relationship="Self.FK__LichChieu__id_Ph__2F10007B" FromRole="LichChieuPhim" ToRole="PhongChieu" />
-          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_LichChieu__3D5E1FD2" FromRole="LichChieuPhim" ToRole="Ve" />
+          <NavigationProperty Name="Phim" Relationship="Self.FK__LichChieu__id_Ph__403A8C7D" FromRole="LichChieuPhim" ToRole="Phim" />
+          <NavigationProperty Name="PhongChieu" Relationship="Self.FK__LichChieu__id_Ph__412EB0B6" FromRole="LichChieuPhim" ToRole="PhongChieu" />
+          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_LichChieu__47DBAE45" FromRole="LichChieuPhim" ToRole="Ve" />
         </EntityType>
         <EntityType Name="NguoiDung">
           <Key>
@@ -493,9 +482,9 @@
           <Property Name="soBinhLuan" Type="Int32" />
           <Property Name="veDaMua" Type="Int32" />
           <Property Name="phimDaXem" Type="Int32" />
-          <NavigationProperty Name="BinhLuans" Relationship="Self.FK__BinhLuan__id_Ngu__4D94879B" FromRole="NguoiDung" ToRole="BinhLuan" />
-          <NavigationProperty Name="Phim" Relationship="Self.FK__NguoiDung__phimD__4AB81AF0" FromRole="NguoiDung" ToRole="Phim" />
-          <NavigationProperty Name="Ve" Relationship="Self.FK__NguoiDung__veDaM__49C3F6B7" FromRole="NguoiDung" ToRole="Ve" />
+          <NavigationProperty Name="BinhLuans" Relationship="Self.FK__BinhLuan__id_Ngu__5812160E" FromRole="NguoiDung" ToRole="BinhLuan" />
+          <NavigationProperty Name="Phim" Relationship="Self.FK__NguoiDung__phimD__5535A963" FromRole="NguoiDung" ToRole="Phim" />
+          <NavigationProperty Name="Ve" Relationship="Self.FK__NguoiDung__veDaM__5441852A" FromRole="NguoiDung" ToRole="Ve" />
         </EntityType>
         <EntityType Name="Phim">
           <Key>
@@ -513,9 +502,9 @@
           <Property Name="quocGia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="trailer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="dienVien" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="BinhLuans" Relationship="Self.FK__BinhLuan__id_Phi__4E88ABD4" FromRole="Phim" ToRole="BinhLuan" />
-          <NavigationProperty Name="LichChieuPhims" Relationship="Self.FK__LichChieu__id_Ph__2E1BDC42" FromRole="Phim" ToRole="LichChieuPhim" />
-          <NavigationProperty Name="NguoiDungs" Relationship="Self.FK__NguoiDung__phimD__4AB81AF0" FromRole="Phim" ToRole="NguoiDung" />
+          <NavigationProperty Name="BinhLuans" Relationship="Self.FK__BinhLuan__id_Phi__59063A47" FromRole="Phim" ToRole="BinhLuan" />
+          <NavigationProperty Name="LichChieuPhims" Relationship="Self.FK__LichChieu__id_Ph__403A8C7D" FromRole="Phim" ToRole="LichChieuPhim" />
+          <NavigationProperty Name="NguoiDungs" Relationship="Self.FK__NguoiDung__phimD__5535A963" FromRole="Phim" ToRole="NguoiDung" />
         </EntityType>
         <EntityType Name="PhongChieu">
           <Key>
@@ -525,9 +514,9 @@
           <Property Name="id_Rap" Type="Int32" />
           <Property Name="tenPhongChieu" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="soLuongGhe" Type="Int32" />
-          <NavigationProperty Name="Ghes" Relationship="Self.FK__Ghe__id_PhongChi__29572725" FromRole="PhongChieu" ToRole="Ghe" />
-          <NavigationProperty Name="LichChieuPhims" Relationship="Self.FK__LichChieu__id_Ph__2F10007B" FromRole="PhongChieu" ToRole="LichChieuPhim" />
-          <NavigationProperty Name="Rap" Relationship="Self.FK__PhongChie__id_Ra__267ABA7A" FromRole="PhongChieu" ToRole="Rap" />
+          <NavigationProperty Name="Ghes" Relationship="Self.FK__Ghe__id_PhongChi__3B75D760" FromRole="PhongChieu" ToRole="Ghe" />
+          <NavigationProperty Name="LichChieuPhims" Relationship="Self.FK__LichChieu__id_Ph__412EB0B6" FromRole="PhongChieu" ToRole="LichChieuPhim" />
+          <NavigationProperty Name="Rap" Relationship="Self.FK__PhongChie__id_Ra__38996AB5" FromRole="PhongChieu" ToRole="Rap" />
         </EntityType>
         <EntityType Name="Rap">
           <Key>
@@ -538,17 +527,7 @@
           <Property Name="diaChiRap" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="sdtRap" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="emailRap" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PhongChieux" Relationship="Self.FK__PhongChie__id_Ra__267ABA7A" FromRole="Rap" ToRole="PhongChieu" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="PhongChieux" Relationship="Self.FK__PhongChie__id_Ra__38996AB5" FromRole="Rap" ToRole="PhongChieu" />
         </EntityType>
         <EntityType Name="ThanhToan">
           <Key>
@@ -559,7 +538,7 @@
           <Property Name="tongTien" Type="Double" />
           <Property Name="phuongThucThanhToan" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="thoiGianThanhToan" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Ve" Relationship="Self.FK__ThanhToan__id_Ve__46E78A0C" FromRole="ThanhToan" ToRole="Ve" />
+          <NavigationProperty Name="Ve" Relationship="Self.FK__ThanhToan__id_Ve__5BE2A6F2" FromRole="ThanhToan" ToRole="Ve" />
         </EntityType>
         <EntityType Name="Ve">
           <Key>
@@ -574,13 +553,13 @@
           <Property Name="soTien" Type="Double" />
           <Property Name="id_BapNuoc" Type="Int32" />
           <Property Name="id_KhuyenMai" Type="Int32" />
-          <NavigationProperty Name="BapNuoc" Relationship="Self.FK__Ve__id_BapNuoc__3F466844" FromRole="Ve" ToRole="BapNuoc" />
-          <NavigationProperty Name="Ghe" Relationship="Self.FK__Ve__id_Ghe__3E52440B" FromRole="Ve" ToRole="Ghe" />
-          <NavigationProperty Name="KhuyenMai" Relationship="Self.FK__Ve__id_KhuyenMai__403A8C7D" FromRole="Ve" ToRole="KhuyenMai" />
-          <NavigationProperty Name="LichChieuPhim" Relationship="Self.FK__Ve__id_LichChieu__3D5E1FD2" FromRole="Ve" ToRole="LichChieuPhim" />
-          <NavigationProperty Name="NguoiDungs" Relationship="Self.FK__NguoiDung__veDaM__49C3F6B7" FromRole="Ve" ToRole="NguoiDung" />
-          <NavigationProperty Name="ThanhToans" Relationship="Self.FK__ThanhToan__id_Ve__46E78A0C" FromRole="Ve" ToRole="ThanhToan" />
-          <NavigationProperty Name="Ve_BapNuoc" Relationship="Self.FK__Ve_BapNuo__id_Ve__4316F928" FromRole="Ve" ToRole="Ve_BapNuoc" />
+          <NavigationProperty Name="BapNuoc" Relationship="Self.FK__Ve__id_BapNuoc__49C3F6B7" FromRole="Ve" ToRole="BapNuoc" />
+          <NavigationProperty Name="Ghe" Relationship="Self.FK__Ve__id_Ghe__48CFD27E" FromRole="Ve" ToRole="Ghe" />
+          <NavigationProperty Name="KhuyenMai" Relationship="Self.FK__Ve__id_KhuyenMai__4AB81AF0" FromRole="Ve" ToRole="KhuyenMai" />
+          <NavigationProperty Name="LichChieuPhim" Relationship="Self.FK__Ve__id_LichChieu__47DBAE45" FromRole="Ve" ToRole="LichChieuPhim" />
+          <NavigationProperty Name="NguoiDungs" Relationship="Self.FK__NguoiDung__veDaM__5441852A" FromRole="Ve" ToRole="NguoiDung" />
+          <NavigationProperty Name="ThanhToans" Relationship="Self.FK__ThanhToan__id_Ve__5BE2A6F2" FromRole="Ve" ToRole="ThanhToan" />
+          <NavigationProperty Name="Ve_BapNuoc" Relationship="Self.FK__Ve_BapNuo__id_Ve__4D94879B" FromRole="Ve" ToRole="Ve_BapNuoc" />
         </EntityType>
         <EntityType Name="Ve_BapNuoc">
           <Key>
@@ -590,10 +569,10 @@
           <Property Name="id_Ve" Type="Int32" Nullable="false" />
           <Property Name="id_BapNuoc" Type="Int32" Nullable="false" />
           <Property Name="soLuong" Type="Int32" />
-          <NavigationProperty Name="BapNuoc" Relationship="Self.FK__Ve_BapNuo__id_Ba__440B1D61" FromRole="Ve_BapNuoc" ToRole="BapNuoc" />
-          <NavigationProperty Name="Ve" Relationship="Self.FK__Ve_BapNuo__id_Ve__4316F928" FromRole="Ve_BapNuoc" ToRole="Ve" />
+          <NavigationProperty Name="BapNuoc" Relationship="Self.FK__Ve_BapNuo__id_Ba__4E88ABD4" FromRole="Ve_BapNuoc" ToRole="BapNuoc" />
+          <NavigationProperty Name="Ve" Relationship="Self.FK__Ve_BapNuo__id_Ve__4D94879B" FromRole="Ve_BapNuoc" ToRole="Ve" />
         </EntityType>
-        <Association Name="FK__Ve__id_BapNuoc__3F466844">
+        <Association Name="FK__Ve__id_BapNuoc__49C3F6B7">
           <End Role="BapNuoc" Type="Self.BapNuoc" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -605,7 +584,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve_BapNuo__id_Ba__440B1D61">
+        <Association Name="FK__Ve_BapNuo__id_Ba__4E88ABD4">
           <End Role="BapNuoc" Type="Self.BapNuoc" Multiplicity="1" />
           <End Role="Ve_BapNuoc" Type="Self.Ve_BapNuoc" Multiplicity="*" />
           <ReferentialConstraint>
@@ -617,7 +596,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BinhLuan__id_Ngu__4D94879B">
+        <Association Name="FK__BinhLuan__id_Ngu__5812160E">
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
           <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
           <ReferentialConstraint>
@@ -629,7 +608,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BinhLuan__id_Phi__4E88ABD4">
+        <Association Name="FK__BinhLuan__id_Phi__59063A47">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
           <ReferentialConstraint>
@@ -641,7 +620,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ghe__id_PhongChi__29572725">
+        <Association Name="FK__Ghe__id_PhongChi__3B75D760">
           <End Role="PhongChieu" Type="Self.PhongChieu" Multiplicity="0..1" />
           <End Role="Ghe" Type="Self.Ghe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -653,7 +632,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__id_Ghe__3E52440B">
+        <Association Name="FK__Ve__id_Ghe__48CFD27E">
           <End Role="Ghe" Type="Self.Ghe" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -665,7 +644,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__id_KhuyenMai__403A8C7D">
+        <Association Name="FK__Ve__id_KhuyenMai__4AB81AF0">
           <End Role="KhuyenMai" Type="Self.KhuyenMai" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -677,7 +656,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichChieu__id_Ph__2E1BDC42">
+        <Association Name="FK__LichChieu__id_Ph__403A8C7D">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="LichChieuPhim" Type="Self.LichChieuPhim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -689,7 +668,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichChieu__id_Ph__2F10007B">
+        <Association Name="FK__LichChieu__id_Ph__412EB0B6">
           <End Role="PhongChieu" Type="Self.PhongChieu" Multiplicity="0..1" />
           <End Role="LichChieuPhim" Type="Self.LichChieuPhim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -701,7 +680,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__id_LichChieu__3D5E1FD2">
+        <Association Name="FK__Ve__id_LichChieu__47DBAE45">
           <End Role="LichChieuPhim" Type="Self.LichChieuPhim" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -713,7 +692,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NguoiDung__phimD__4AB81AF0">
+        <Association Name="FK__NguoiDung__phimD__5535A963">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="*" />
           <ReferentialConstraint>
@@ -725,7 +704,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NguoiDung__veDaM__49C3F6B7">
+        <Association Name="FK__NguoiDung__veDaM__5441852A">
           <End Role="Ve" Type="Self.Ve" Multiplicity="0..1" />
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="*" />
           <ReferentialConstraint>
@@ -737,7 +716,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PhongChie__id_Ra__267ABA7A">
+        <Association Name="FK__PhongChie__id_Ra__38996AB5">
           <End Role="Rap" Type="Self.Rap" Multiplicity="0..1" />
           <End Role="PhongChieu" Type="Self.PhongChieu" Multiplicity="*" />
           <ReferentialConstraint>
@@ -749,7 +728,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ThanhToan__id_Ve__46E78A0C">
+        <Association Name="FK__ThanhToan__id_Ve__5BE2A6F2">
           <End Role="Ve" Type="Self.Ve" Multiplicity="0..1" />
           <End Role="ThanhToan" Type="Self.ThanhToan" Multiplicity="*" />
           <ReferentialConstraint>
@@ -761,7 +740,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve_BapNuo__id_Ve__4316F928">
+        <Association Name="FK__Ve_BapNuo__id_Ve__4D94879B">
           <End Role="Ve" Type="Self.Ve" Multiplicity="1" />
           <End Role="Ve_BapNuoc" Type="Self.Ve_BapNuoc" Multiplicity="*" />
           <ReferentialConstraint>
@@ -773,7 +752,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DatVeXemPhimATEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DatVeXemPhimATEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BapNuocs" EntityType="Self.BapNuoc" />
           <EntitySet Name="BinhLuans" EntityType="Self.BinhLuan" />
           <EntitySet Name="Ghes" EntityType="Self.Ghe" />
@@ -783,67 +762,66 @@
           <EntitySet Name="Phims" EntityType="Self.Phim" />
           <EntitySet Name="PhongChieux" EntityType="Self.PhongChieu" />
           <EntitySet Name="Raps" EntityType="Self.Rap" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="ThanhToans" EntityType="Self.ThanhToan" />
           <EntitySet Name="Ves" EntityType="Self.Ve" />
           <EntitySet Name="Ve_BapNuoc" EntityType="Self.Ve_BapNuoc" />
-          <AssociationSet Name="FK__Ve__id_BapNuoc__3F466844" Association="Self.FK__Ve__id_BapNuoc__3F466844">
+          <AssociationSet Name="FK__Ve__id_BapNuoc__49C3F6B7" Association="Self.FK__Ve__id_BapNuoc__49C3F6B7">
             <End Role="BapNuoc" EntitySet="BapNuocs" />
             <End Role="Ve" EntitySet="Ves" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve_BapNuo__id_Ba__440B1D61" Association="Self.FK__Ve_BapNuo__id_Ba__440B1D61">
+          <AssociationSet Name="FK__Ve_BapNuo__id_Ba__4E88ABD4" Association="Self.FK__Ve_BapNuo__id_Ba__4E88ABD4">
             <End Role="BapNuoc" EntitySet="BapNuocs" />
             <End Role="Ve_BapNuoc" EntitySet="Ve_BapNuoc" />
           </AssociationSet>
-          <AssociationSet Name="FK__BinhLuan__id_Ngu__4D94879B" Association="Self.FK__BinhLuan__id_Ngu__4D94879B">
+          <AssociationSet Name="FK__BinhLuan__id_Ngu__5812160E" Association="Self.FK__BinhLuan__id_Ngu__5812160E">
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
             <End Role="BinhLuan" EntitySet="BinhLuans" />
           </AssociationSet>
-          <AssociationSet Name="FK__BinhLuan__id_Phi__4E88ABD4" Association="Self.FK__BinhLuan__id_Phi__4E88ABD4">
+          <AssociationSet Name="FK__BinhLuan__id_Phi__59063A47" Association="Self.FK__BinhLuan__id_Phi__59063A47">
             <End Role="Phim" EntitySet="Phims" />
             <End Role="BinhLuan" EntitySet="BinhLuans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ghe__id_PhongChi__29572725" Association="Self.FK__Ghe__id_PhongChi__29572725">
+          <AssociationSet Name="FK__Ghe__id_PhongChi__3B75D760" Association="Self.FK__Ghe__id_PhongChi__3B75D760">
             <End Role="PhongChieu" EntitySet="PhongChieux" />
             <End Role="Ghe" EntitySet="Ghes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__id_Ghe__3E52440B" Association="Self.FK__Ve__id_Ghe__3E52440B">
+          <AssociationSet Name="FK__Ve__id_Ghe__48CFD27E" Association="Self.FK__Ve__id_Ghe__48CFD27E">
             <End Role="Ghe" EntitySet="Ghes" />
             <End Role="Ve" EntitySet="Ves" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__id_KhuyenMai__403A8C7D" Association="Self.FK__Ve__id_KhuyenMai__403A8C7D">
+          <AssociationSet Name="FK__Ve__id_KhuyenMai__4AB81AF0" Association="Self.FK__Ve__id_KhuyenMai__4AB81AF0">
             <End Role="KhuyenMai" EntitySet="KhuyenMais" />
             <End Role="Ve" EntitySet="Ves" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichChieu__id_Ph__2E1BDC42" Association="Self.FK__LichChieu__id_Ph__2E1BDC42">
+          <AssociationSet Name="FK__LichChieu__id_Ph__403A8C7D" Association="Self.FK__LichChieu__id_Ph__403A8C7D">
             <End Role="Phim" EntitySet="Phims" />
             <End Role="LichChieuPhim" EntitySet="LichChieuPhims" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichChieu__id_Ph__2F10007B" Association="Self.FK__LichChieu__id_Ph__2F10007B">
+          <AssociationSet Name="FK__LichChieu__id_Ph__412EB0B6" Association="Self.FK__LichChieu__id_Ph__412EB0B6">
             <End Role="PhongChieu" EntitySet="PhongChieux" />
             <End Role="LichChieuPhim" EntitySet="LichChieuPhims" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__id_LichChieu__3D5E1FD2" Association="Self.FK__Ve__id_LichChieu__3D5E1FD2">
+          <AssociationSet Name="FK__Ve__id_LichChieu__47DBAE45" Association="Self.FK__Ve__id_LichChieu__47DBAE45">
             <End Role="LichChieuPhim" EntitySet="LichChieuPhims" />
             <End Role="Ve" EntitySet="Ves" />
           </AssociationSet>
-          <AssociationSet Name="FK__NguoiDung__phimD__4AB81AF0" Association="Self.FK__NguoiDung__phimD__4AB81AF0">
+          <AssociationSet Name="FK__NguoiDung__phimD__5535A963" Association="Self.FK__NguoiDung__phimD__5535A963">
             <End Role="Phim" EntitySet="Phims" />
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
           </AssociationSet>
-          <AssociationSet Name="FK__NguoiDung__veDaM__49C3F6B7" Association="Self.FK__NguoiDung__veDaM__49C3F6B7">
+          <AssociationSet Name="FK__NguoiDung__veDaM__5441852A" Association="Self.FK__NguoiDung__veDaM__5441852A">
             <End Role="Ve" EntitySet="Ves" />
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
           </AssociationSet>
-          <AssociationSet Name="FK__PhongChie__id_Ra__267ABA7A" Association="Self.FK__PhongChie__id_Ra__267ABA7A">
+          <AssociationSet Name="FK__PhongChie__id_Ra__38996AB5" Association="Self.FK__PhongChie__id_Ra__38996AB5">
             <End Role="Rap" EntitySet="Raps" />
             <End Role="PhongChieu" EntitySet="PhongChieux" />
           </AssociationSet>
-          <AssociationSet Name="FK__ThanhToan__id_Ve__46E78A0C" Association="Self.FK__ThanhToan__id_Ve__46E78A0C">
+          <AssociationSet Name="FK__ThanhToan__id_Ve__5BE2A6F2" Association="Self.FK__ThanhToan__id_Ve__5BE2A6F2">
             <End Role="Ve" EntitySet="Ves" />
             <End Role="ThanhToan" EntitySet="ThanhToans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve_BapNuo__id_Ve__4316F928" Association="Self.FK__Ve_BapNuo__id_Ve__4316F928">
+          <AssociationSet Name="FK__Ve_BapNuo__id_Ve__4D94879B" Association="Self.FK__Ve_BapNuo__id_Ve__4D94879B">
             <End Role="Ve" EntitySet="Ves" />
             <End Role="Ve_BapNuoc" EntitySet="Ve_BapNuoc" />
           </AssociationSet>
@@ -853,7 +831,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DatVeXemPhimATModelStoreContainer" CdmEntityContainer="DatVeXemPhimATEntities">
+        <EntityContainerMapping StorageEntityContainer="DatVeXemPhimATModelStoreContainer" CdmEntityContainer="DatVeXemPhimATEntities1">
           <EntitySetMapping Name="BapNuocs">
             <EntityTypeMapping TypeName="DatVeXemPhimATModel.BapNuoc">
               <MappingFragment StoreEntitySet="BapNuoc">
@@ -966,17 +944,6 @@
                 <ScalarProperty Name="diaChiRap" ColumnName="diaChiRap" />
                 <ScalarProperty Name="sdtRap" ColumnName="sdtRap" />
                 <ScalarProperty Name="emailRap" ColumnName="emailRap" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DatVeXemPhimATModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
