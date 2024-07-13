@@ -70,47 +70,51 @@ Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageC
 </div>
 <script>
     $(document).ready(function() {
-            var selectedSeats = [];
+           var selectedSeats = [];
 
-            $(".ghe").on("click", function() {
-                var gheId = $(this).data("id");
-                var gheDiv = $(this);
-                if ($(this).hasClass("booked")) {
-                    alert("Ghế này đã được đặt rồi!");
-                    return;
-                }
 
-                if ($(this).hasClass("selected")) {
-                    $(this).removeClass("selected");
-                    selectedSeats = selectedSeats.filter(function(id) {
-                        return id !== gheId;
-                    });
-                } else {
-                    $(this).addClass("selected");
-                    selectedSeats.push(gheId);
-                }
-            });
+        $(".ghe").on("click", function() {
+            var gheId = $(this).data("id");
+            var viTri = $(this).data("vitri");
+            var gheDiv = $(this);
 
-            $("#reset-btn").on("click", function() {
-                $.ajax({
-                    url: '@Url.Action("ResetGhe", "ChonGheNgoi")',
-                    type: 'POST',
-                    success: function(response) {
-                        if (response.success) {
-                            $(".ghe").removeClass("booked").css("background-color", "green");
-                            window.location.reload();
-                            alert(response.message);
-                        } else {
-                            alert("Có lỗi xảy ra!");
-                        }
-                    },
-                    error: function() {
-                        alert("Có lỗi xảy ra!");
-                    }
+            if ($(this).hasClass("booked")) {
+                alert("Ghế này đã được đặt rồi!");
+                return;
+            }
+
+            if ($(this).hasClass("selected")) {
+                $(this).removeClass("selected");
+                selectedSeats = selectedSeats.filter(function(item) {
+                    return item.gheId !== gheId;
                 });
-            });
-      });
+            } else {
+                $(this).addClass("selected");
+                selectedSeats.push({ gheId: gheId, viTri: viTri });
+            }
+        });
 
+
+        $("#reset-btn").on("click", function() {
+        $.ajax({
+            url: '@Url.Action("ResetGhe", "QuanLyGheNgoi")',
+            type: 'POST',
+            success: function(response) {
+                if (response.success) {
+                    $(".ghe").removeClass("booked").css("background-color", "green");
+                    alert(response.message);
+                    location.reload();
+                    @**@
+                } else {
+                    alert("Có lỗi xảy ra khi reset ghế!");
+                }
+            },
+            error: function() {
+                alert("Có lỗi xảy ra khi gửi yêu cầu reset ghế!");
+            }
+        });
+    });
+});
 </script>
 
 <style>
