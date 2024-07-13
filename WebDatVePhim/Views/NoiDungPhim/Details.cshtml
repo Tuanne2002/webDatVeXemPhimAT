@@ -38,13 +38,14 @@
             background-color: #0056b3;
         }
 </style>
-
+@*note thu de test*@
+@*note thu de test*@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
             <div class="page-content">
                 <div class="movie-details">
-                    <img src="@Url.Content("~/img/" + Model.anhPhim)" alt="@Model.tenPhim" class="img-fluid mb-3" />
+                    <img src="@Url.Content(" ~ /img/" + Model.anhPhim)" alt="@Model.tenPhim" class="img-fluid mb-3" />
                     <div>
                         <h1>@Model.tenPhim</h1>
                         <p><strong>Ngày khởi chiếu:</strong> @(Convert.ToDateTime(Model.ngayKhoiChieu).ToString("dd/MM/yyyy"))</p>
@@ -57,7 +58,7 @@
                         <p><strong>Diễn viên:</strong> @Model.dienVien</p>
                         <div class="button-group">
                             <a href="@Model.trailer" target="_blank" class="btn btn-primary">Xem trailer</a>
-                            <a href="@Url.Action("Index", "ChonPhim")" class="btn_chonPhim">Mua Vé</a>
+                            <a href="@Url.Action(" Index", "ChonPhim" )" class="btn_chonPhim">Mua Vé</a>
                         </div>
                     </div>
                 </div>
