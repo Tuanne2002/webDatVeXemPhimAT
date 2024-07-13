@@ -123,8 +123,11 @@
                 type: 'POST',
                 success: function(response) {
                     if (response.success) {
-                        $(".ghe").removeClass("booked").css("background-color", "green");
+                        $(".ghe").each(function () {
+                            $(this).removeClass("selected").removeClass("booked").css("background-color", "green");
+                        });
                         alert(response.message);
+                        location.reload();
                     } else {
                         alert("Có lỗi xảy ra!");
                     }
