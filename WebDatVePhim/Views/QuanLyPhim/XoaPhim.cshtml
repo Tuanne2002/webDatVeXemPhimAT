@@ -1,0 +1,121 @@
+﻿@model WebDatVePhim.Models.Phim
+
+@{
+    ViewBag.Title = "XoaPhim";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>XoaPhim</h2>
+
+<h3>Bạn có muốn xóa Phim?</h3>
+<div>
+    <h4>Phim</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_Phim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_Phim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenPhim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenPhim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayKhoiChieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayKhoiChieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thoiLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thoiLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.theLoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.theLoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tomTatPhim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tomTatPhim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anhPhim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anhPhim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.daoDien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.daoDien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.danhGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.danhGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quocGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quocGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trailer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trailer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dienVien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dienVien)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>

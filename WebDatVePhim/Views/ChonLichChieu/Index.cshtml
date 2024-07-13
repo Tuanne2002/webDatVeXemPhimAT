@@ -1,0 +1,215 @@
+﻿@model IEnumerable<WebDatVePhim.Models.LichChieuPhim>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var phim = ViewBag.Phim as WebDatVePhim.Models.Phim;
+    var rapList = ViewBag.RapList as List<WebDatVePhim.Models.Rap>;
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<div>
+    <button class="btnBack" style="border:none" onclick="clearPhimSelectionsAndGoBack()">
+        <img src="~/img/btnBack.jpg" style="width:20px;height:20px" />
+        <span class="Back" style="font-size: 20px; vertical-align: middle;">Chọn phim</span>
+    </button>
+</div>
+
+
+
+<div class="phim-info">
+    <img src="@Url.Content("~/img/" + phim.anhPhim)" alt="@phim.tenPhim" class="phim-image" />
+    <div class="phim-details">
+        <h3>@phim.tenPhim</h3>
+        <p>@phim.tomTatPhim</p>
+    </div>
+</div>
+    @* Dropdown for selecting cinema *@
+    @*@Html.DropDownList("RapId", new SelectList(rapList, "id_Rap", "tenRap"), "Chọn rạp", new { @class = "form-control", onchange = "filterLichChieuByRap()" })*@
+
+<div class="rap-list-container">
+    <button class="arrow-left" onclick="scrollLeft()">&#9664;</button>
+    <div class="rap-list-wrapper">
+        <div class="rap-list">
+            <div class="rap-item" onclick="filterLichChieuByRap(0, this)">
+                <img src="~/img/IconSaoTatCa.png" class="rap-image" />
+                <div class="rap-name">Tất cả</div>
+            </div>
+            @foreach (var rap in rapList)
+            {
+                <div class="rap-item" onclick="filterLichChieuByRap(@rap.id_Rap,this)">
+                    <img src="@Url.Content("~/img/" + rap.LoaiRap.hinhAnh)" alt="@rap.tenRap" class="rap-image" />
+                    <div class="rap-name">@rap.LoaiRap.tenLoaiRap</div>
+                </div>
+            }
+        </div>
+    </div>
+    <button class="arrow-right" onclick="scrollRight()">&#9654;</button>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rạp</th>
+            <th>Địa chỉ</th>
+            <th>Ngày Chiếu</th>
+            <th>Thời Gian</th>
+            <th>Phòng Chiếu</th>
+            <th>Chọn</th>
+        </tr>
+    </thead>
+
+    @*<tbody id="lichChieuBody">
+        @foreach (var item in Model.OrderBy(i => i.ngayChieu))
+        {
+
+            <tr>
+                <td>@item.ngayChieu.GetValueOrDefault().ToString("dd/MM/yyyy")</td>
+                <td>@item.thoiGianBatDau.GetValueOrDefault().ToString("hh\\:mm") ~ @item.thoiGianKetThuc.GetValueOrDefault().ToString("hh\\:mm") </td>
+                <td>@item.PhongChieu.tenPhongChieu</td>
+                <td>
+                    <a href="@Url.Action("Index", "ChonGheNgoi", new { lichChieuId = item.id_LichChieuPhim })" class="btn btn-primary">Chọn</a>
+                </td>
+            </tr>
+        }
+        
+    </tbody>*@
+    <tbody id="lichChieuBody">
+    @Html.Partial("_LichChieuPartial", Model)
+    </tbody>
+</table>
+<script>
+ 
+    function clearPhimSelectionsAndGoBack() {
+         // Make an AJAX call to clear the bap nuoc selections
+        $.ajax({
+            url: '@Url.Action("ClearPhimSelections", "ChonLichChieu")', // Adjust the URL and action as needed
+            type: 'POST',
+            success: function(response) {
+                // After clearing the selections, navigate back
+                window.location.href = '@Url.Action("Index", "ChonPhim")';
+            },
+            error: function() {
+                alert("Có lỗi xảy ra khi xóa lựa chọn lịch chiếu!");
+            }
+        });
+    }
+    function scrollLeft() {
+        var rapListWrapper = document.querySelector('.rap-list-wrapper');
+        rapListWrapper.scrollBy({ left: 200, behavior: 'smooth' });
+    }
+
+    function scrollRight() {
+        var rapListWrapper = document.querySelector('.rap-list-wrapper');
+        rapListWrapper.scrollBy({ left: 200, behavior: 'smooth' });
+    }
+    function filterLichChieuByRap(rapId, element) {
+       
+        var rapItems = document.querySelectorAll('.rap-item');
+        rapItems.forEach(item => {
+            item.classList.remove('selected');
+        });
+        if (element) {
+            element.classList.add('selected');
+        }
+      /*  var rapId = $("#RapId").val();*/
+        $.ajax({
+            url: '@Url.Action("FilterLichChieuByRap", "ChonLichChieu")',
+            type: 'GET',
+            data: { rapId: rapId },
+            success: function (response) {
+                $("#lichChieuBody").html(response);
+                $('.rap-item').removeClass('selected');
+                $(element).addClass('selected');
+            },
+            error: function () {
+                alert("Có lỗi xảy ra khi lấy danh sách lịch chiếu cho rạp này.");
+            }
+        });
+    }
+</script>
+<style>
+    .phim-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .phim-image {
+        width: 150px;
+        height: 225px;
+        margin-right: 20px;
+    }
+
+    .phim-details {
+        flex-grow: 1;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f4f4f4;
+    }
+    .rap-list-container {
+        display: flex;
+        align-items: center;
+       /* width:600px;*/
+    }
+
+    .rap-list {
+        display: flex;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .rap-item {
+        text-align: center;
+        cursor: pointer;
+        display: inline-block;
+        border: 2px solid gray;
+        border-radius: 10px;
+        width: 180px;
+    }
+
+    .rap-image {
+        width: 100px;
+        height: 100px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .rap-name {
+        margin-top: 5px;
+        font-size: 14px;
+    }
+    .rap-item.selected {
+        border-color: #007bff; /* Màu viền khi được chọn */
+    }
+    .arrow-left {
+        background-color: transparent;
+        border: none;
+        font-size: 2em;
+        cursor: pointer;
+        user-select: none;
+    }
+    .arrow-right {
+        background-color: transparent;
+        border: none;
+        font-size: 2em;
+        cursor: pointer;
+        user-select: none;
+    }
+    .rap-list-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        flex: 1;
+    }
+</style>

@@ -1,0 +1,67 @@
+﻿@model WebDatVePhim.Models.LichChieuPhim
+
+@{
+    ViewBag.Title = "HienThi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hiển thị</h2>
+
+<div>
+    <h4>Lịch chiếu phim</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_LichChieuPhim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_LichChieuPhim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_Phim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_Phim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_PhongChieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_PhongChieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thoiGianBatDau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thoiGianBatDau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thoiGianKetThuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thoiGianKetThuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayChieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayChieu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

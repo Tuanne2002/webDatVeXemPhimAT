@@ -25,6 +25,7 @@ namespace WebDatVePhim.Models
         public int id_Ve { get; set; }
         public Nullable<int> id_LichChieuPhim { get; set; }
         public Nullable<int> id_Ghe { get; set; }
+        public string viTriGhe { get; set; }
         public Nullable<System.DateTime> ngayDat { get; set; }
         public Nullable<System.TimeSpan> gioDat { get; set; }
         public string maDat { get; set; }

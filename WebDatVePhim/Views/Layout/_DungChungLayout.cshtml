@@ -1,38 +1,163 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="~/Content/Css/LichChieu.css" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link href="~/Content/Css/at.css" rel="stylesheet" />
+
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+    <!-- Additional CSS Files -->
+
+    <link href="~/Content/Css/fontawesome.css" rel="stylesheet" />
+    <link href="~/Content/Css/templatemo-cyborg-gaming.css" rel="stylesheet" />
+    <link href="~/Content/Css/animate.css" rel="stylesheet" />
+    <link href="~/Content/Css/owl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <!--
+
+    -->
 </head>
+
 <body>
-    <div>
-        @RenderBody()
-    </div>
-    <div class=e50_231>
-        <div class="e50_232"></div><span class="e50_233">Dịch vụ</span><span class="e50_234">Chăm sóc khách hàng</span><span class="e50_235">Kết nối với chúng tôi</span><span class="e50_236">Hợp tác </span>
-    </div><span class="e50_237">Copyright by AT</span>
-    <div class=e52_76>
-        <div class="e52_77"></div>
-        <a href="LichChieu.html"><span class="e52_84">Lịch chiếu</span></a>
-        <a href="RapPhim.html"><span class="e52_78">Rạp phim</span></a>
-        <a href="UuDai.html"><span class="e52_79">Khuyến mãi</span></a>
+    @RenderBody()
 
-        <div class=e52_186>
-            <div class=e52_81>
-                <div class="e52_82">
-                    <img class="e52_82" src="~/img/iconfilm.png">
+    <!-- ***** Preloader Start ***** -->
+    <!-- ***** Preloader End ***** -->
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            <img src="~/img/logo.png" alt="">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Search End ***** -->
+                        <div class="search-input">
+                            <form id="search" action="#">
+                                <input type="text" placeholder="Tìm Kiếm" id='searchText' name="searchKeyword" onkeypress="handle" />
+
+                            </form>
+                        </div>
+                        <!-- ***** Search End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="index.html" class="active">Trang chủ</a></li>
+                            <li><a href="browse.html">Thông tin</a></li>
+                            <li><a href="details.html">Review phim</a></li>
+                            <li><a href="streams.html">Blogs Phim</a></li>
+                            <li><a href="@Url.Action("Login", "TrangAcount")">Tài Khoản</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
                 </div>
-            </div><span class="e52_83">Đặt vé xem phim</span>
-        </div>
-
-        <div class=e52_85>
-            <div class="e52_86">
-                <img class="e52_86" src="~/img/TimKiem.png">
             </div>
         </div>
-        <div class="e52_87"><a href="TrangAcount.html"><img class="e52_87" src="~/img/account.png"></div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-content">
+
+                    <!-- ***** Banner Start ***** -->
+                    <div class="main-banner">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="header-text">
+                                    <h6>Chào bạn đã đến CyBorg</h6>
+                                    <h4><em>Bạn</em> Muốn biết thêm về chúng tôi</h4>
+                                    <div class="main-button">
+                                        <a href="browse.html">Nhấn vào đây</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ***** Banner End ***** -->
+                    <!-- ***** Most Popular Start ***** -->
+                    <div class="most-popular">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="heading-section">
+                                    <h4>PHIM ĐANG CHIẾU</h4>
+                                </div>
+
+
+                            </div>
+                            @Html.Action("PhimMoiPartial", "HomeNguoiDung")
+                        </div>
+                    </div>
+                    <!-- ***** Most Popular End ***** -->
+                    <!-- ***** Gaming Library Start ***** -->
+                    <div class="most-popular">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="heading-section">
+                                    <h4>PHIM SẮP CHIẾU</h4>
+                                </div>
+
+
+                            </div>
+                            @Html.Action("PhimMoiPartial", "HomeNguoiDung")
+                            <div class="col-lg-12">
+                                <div class="main-button">
+                                    <a href="profile.html">Xem thêm</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- ***** Gaming Library End ***** -->
+                </div>
+            </div>
+        </div>
     </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                        Copyright © 2036 <a href="#">Cyborg TuanAnh</a> Company. All rights reserved.
+
+                        <br>Design: TowAT</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+
+    <script src="assets/js/owl-carousel.js"></script>
+
+    
+
 </body>
+
 </html>

@@ -1,0 +1,56 @@
+﻿@model WebDatVePhim.Models.PhongChieu
+
+@{
+    ViewBag.Title = "XoaPhim";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa phòng chiếu</h2>
+
+<div>
+    <h4>Phòng chiếu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_PhongChieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_PhongChieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_Rap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_Rap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenPhongChieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenPhongChieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soLuongGhe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soLuongGhe)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại trang quản lý phòng chiếu", "Index")
+        </div>
+    }
+</div>

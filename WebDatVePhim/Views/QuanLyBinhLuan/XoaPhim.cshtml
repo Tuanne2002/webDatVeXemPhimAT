@@ -1,0 +1,72 @@
+﻿@model WebDatVePhim.Models.BinhLuan
+
+@{
+    ViewBag.Title = "XoaPhim";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa bình luận</h2>
+
+<div>
+    <h4>Bình luận</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_BinhLuan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_BinhLuan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_NguoiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_NguoiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_Phim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_Phim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.noiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soSao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soSao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tongBinhLuan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tongBinhLuan)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại trang quản lý bình luận", "Index")
+        </div>
+    }
+</div>

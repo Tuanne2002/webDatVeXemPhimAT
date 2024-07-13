@@ -1,0 +1,94 @@
+﻿@model WebDatVePhim.Models.KhuyenMai
+
+@{
+    ViewBag.Title = "HienThi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hiển thị</h2>
+
+<div>
+    <h4>Khuyến mãi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_KhuyenMai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_KhuyenMai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenKhuyenMai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenKhuyenMai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.doiTuongApDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.doiTuongApDung)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.giaKhuyenMai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giaKhuyenMai)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.thoiGianBatDauKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thoiGianBatDauKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thoiGianKetThucKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thoiGianKetThucKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chiTietKhuyenMai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chiTietKhuyenMai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dieuKienApDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dieuKienApDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinhAnh)
+        </dd>
+
+
+
+    </dl>
+
+</div>
+
+    <p>
+        @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @IdKhuyenMai = @Model.id_KhuyenMai }) |
+        @Html.ActionLink("Quay lại trang quản lý khuyến mãi", "Index")
+    </p>
+

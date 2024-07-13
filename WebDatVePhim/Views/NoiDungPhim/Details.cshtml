@@ -1,0 +1,67 @@
+﻿@model WebDatVePhim.Models.Phim
+@{
+    Layout = "~/Views/Layout/DungChung.cshtml";
+}
+
+<style>
+    .movie-details {
+        display: flex;
+        align-items: flex-start;
+    }
+
+        .movie-details img {
+            max-width: 250px;
+            max-height: 380px;
+            margin-right: 20px; /* Khoảng cách giữa ảnh và nội dung */
+        }
+
+    .button-group {
+        display: flex;
+        gap: 10px; /* Khoảng cách giữa các nút */
+        margin-top: 20px; /* Khoảng cách từ nội dung đến các nút */
+    }
+
+    .btn_chonPhim {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+
+        .btn_chonPhim:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-content">
+                <div class="movie-details">
+                    <img src="@Url.Content("~/img/" + Model.anhPhim)" alt="@Model.tenPhim" class="img-fluid mb-3" />
+                    <div>
+                        <h1>@Model.tenPhim</h1>
+                        <p><strong>Ngày khởi chiếu:</strong> @(Convert.ToDateTime(Model.ngayKhoiChieu).ToString("dd/MM/yyyy"))</p>
+                        <p><strong>Thời lượng:</strong> @Model.thoiLuong phút</p>
+                        <p><strong>Thể loại:</strong> @Model.theLoai</p>
+                        <p><strong>Tóm tắt phim:</strong> @Model.tomTatPhim</p>
+                        <p><strong>Đạo diễn:</strong> @Model.daoDien</p>
+                        <p><strong>Đánh giá:</strong> @Model.danhGia</p>
+                        <p><strong>Quốc gia:</strong> @Model.quocGia</p>
+                        <p><strong>Diễn viên:</strong> @Model.dienVien</p>
+                        <div class="button-group">
+                            <a href="@Model.trailer" target="_blank" class="btn btn-primary">Xem trailer</a>
+                            <a href="@Url.Action("Index", "ChonPhim")" class="btn_chonPhim">Mua Vé</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

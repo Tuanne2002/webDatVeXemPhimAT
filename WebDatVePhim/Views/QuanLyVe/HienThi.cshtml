@@ -1,0 +1,99 @@
+﻿@model WebDatVePhim.Models.Ve
+
+@{
+    ViewBag.Title = "HienThi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hiển thị</h2>
+
+<div>
+    <h4>Vé</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_Ve)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_Ve)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_LichChieuPhim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_LichChieuPhim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_Ghe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_Ghe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.viTriGhe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.viTriGhe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayDat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayDat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gioDat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gioDat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maDat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maDat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soTien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_BapNuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_BapNuoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_KhuyenMai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_KhuyenMai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @IdVe = Model.id_Ve })  |
+    @Html.ActionLink("Quay lại trang quản lý vé", "Index")
+</p>

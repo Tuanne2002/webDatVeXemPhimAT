@@ -1,0 +1,75 @@
+﻿@model WebDatVePhim.Controllers.ChonGheNgoiController.XemLaiVeViewModel
+@{
+    ViewBag.Title = "XemLaiVe";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<div class="btnBack">
+    <button class="btnBack" style="border:none" onclick="GoBack()">
+        <img src="~/img/icon home.png" style="width:20px;height:20px" />
+        <span class="Back" style="font-size: 20px; vertical-align: middle;">Home</span>
+    </button>
+</div>
+<h2>Thông tin vé</h2>
+<p><b>Tên rạp: </b>@Model.TenRap</p>
+<p><b>Địa chỉ: </b>@Model.DiaChiRap</p>
+<p><b>Phim: </b> @Model.TenPhim</p>
+<p><b>Ngày chiếu: </b> @Model.NgayChieu</p>
+<p><b>Giờ chiếu: </b> @Model.ThoiGianBatDau ~ @Model.ThoiGianKetThuc</p>
+<p><b>Phòng chiếu: </b> @Model.TenPhongChieu</p>
+<p><b>Vị trí ghế: </b> @Model.ViTriGhe</p>
+<p><b>Giá vé: </b> @Model.GiaVe VND</p>
+
+@if (Model.BapNuocSelections != null && Model.BapNuocSelections.Any())
+{
+    <h3>Thông Tin Bắp Nước</h3>
+
+    foreach (var bapNuoc in Model.BapNuocSelections)
+    {
+        var total = @bapNuoc.GiaTien * @bapNuoc.SoLuong;
+        <p>@bapNuoc.TenBapNuoc - Số lượng: @bapNuoc.SoLuong - Giá: @total VND</p>
+    }
+
+}
+
+
+<h3><strong>Tổng số tiền: </strong>@Model.TongSoTien VND</h3>
+
+@*<div>
+        <button id="thanh-toan-btn">Thanh toán</button>
+    </div>*@
+
+<script>
+    @*$(document).ready(function () {
+        $("#thanh-toan-btn").on("click", function () {
+            $.ajax({
+                url: '@Url.Action("ThanhToanVe", "ChonGheNgoi")',
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+                    if (response.success) {
+                        alert("Thanh toán thành công!");
+                        window.location.href = '@Url.Action("XemLaiVe", "ChonGheNgoi")?veId=' + response.veId;
+                    } else {
+                        alert("Có lỗi xảy ra khi thanh toán: " + response.message);
+                    }
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra khi thanh toán!");
+                }
+            });
+        });
+    });*@
+    function GoBack() {
+        window.location.href = '@Url.Action("Index", "ChonPhim")';
+    }
+</script>
+<style>
+    td {
+        width: 150px;
+    }
+
+    .total {
+        margin-top: 10px;
+    }
+</style>

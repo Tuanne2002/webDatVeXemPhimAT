@@ -25,6 +25,7 @@ namespace WebDatVePhim.Models
         public string tenBapNuoc { get; set; }
         public string chiTietBapNuoc { get; set; }
         public Nullable<double> giaTien { get; set; }
+        public string hinhAnh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ve> Ves { get; set; }

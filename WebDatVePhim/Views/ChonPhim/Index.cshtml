@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebDatVePhim.Models.Phim>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chọn Phim</h2>
+<div class="phim-list">
+    @foreach (var phim in Model)
+    {
+        <div class="phim-item">
+            <img src="@Url.Content("~/img/" + phim.anhPhim)" alt="@phim.tenPhim" style="width:200px;height:300px;" />
+            <h3>@phim.tenPhim</h3>
+            
+            <a href="@Url.Action("Index", "ChonLichChieu", new { phimId = phim.id_Phim })" class="btn btn-primary">Chọn Lịch Chiếu</a>
+        </div>}
+</div>
+
+<style>
+    .phim-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .phim-item {
+        width: 250px;
+        text-align: center;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    }
+
+        .phim-item img {
+            margin-bottom: 10px;
+        }
+
+        .phim-item h3 {
+            font-size: 25px;
+            margin: 5px 0px 5px 0px;
+        }
+
+        .phim-item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .phim-item .btn {
+            margin-top: 5px;
+        }
+</style>

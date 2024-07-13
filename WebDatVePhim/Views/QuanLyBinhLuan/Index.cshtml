@@ -1,0 +1,81 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.PagedList<WebDatVePhim.Models.BinhLuan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "ThemMoi")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().id_BinhLuan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().id_NguoiDung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().id_Phim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().noiDung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().soSao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().tongBinhLuan)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_BinhLuan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_NguoiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_Phim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.noiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soSao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tongBinhLuan)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { IdBinhLuan = item.id_BinhLuan }) |
+                @Html.ActionLink("Hiển thị", "HienThi", new { IdBinhLuan = item.id_BinhLuan }) |
+                @Html.ActionLink("Xóa", "Xoa", new { IdBinhLuan = item.id_BinhLuan })
+            </td>
+        </tr>
+    }
+
+</table>
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+        font-size: 20px;
+    }
+
+    ul.pagination {
+        justify-content: center;
+    }
+</style>

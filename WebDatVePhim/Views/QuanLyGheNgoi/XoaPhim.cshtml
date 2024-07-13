@@ -1,0 +1,64 @@
+﻿@model WebDatVePhim.Models.Ghe
+
+@{
+    ViewBag.Title = "XoaPhim";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa ghế ngồi</h2>
+
+<div>
+    <h4>Ghế</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_Ghe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_Ghe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_PhongChieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_PhongChieu)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.soHangGhe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soHangGhe)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.soGheTrongHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soGheTrongHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tinhTrang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tinhTrang)
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại trang quản lý ghế ngồi", "Index")
+        </div>
+    }
+</div>

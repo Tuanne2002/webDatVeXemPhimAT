@@ -1,0 +1,35 @@
+﻿@using WebDatVePhim.Models;
+@model List<Phim>
+
+@{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="item">
+                    <a href="@Url.Action("Details", "NoiDungPhim", new { id = item.id_Phim })">
+                        <img src="@Url.Content("~/img/" + item.anhPhim)" alt="">
+                        <h4>@item.tenPhim</h4>
+                    </a>
+                    <span>@item.theLoai</span>
+                </div>
+            </div>
+
+        }
+    </div>
+}
+
+
+
+
+
+
+@*<div class="row">
+        <!-- Nội dung phim đang chiếu-->
+    </div>
+
+
+    <div class="product-carousel owl-carousel">
+        <!-- Nội dung phim sắp chiếu-->
+    </div>*@

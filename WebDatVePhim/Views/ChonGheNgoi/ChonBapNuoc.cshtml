@@ -1,0 +1,166 @@
+﻿@model WebDatVePhim.Controllers.ChonGheNgoiController.ChonBapNuocViewModel
+@{
+    ViewBag.Title = "ChonBapNuoc";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+   
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div class="btnBack">
+    <button class="btnBack" style="border:none" onclick="clearGheNgoiSelectionsAndGoBack()">
+        <img src="~/img/btnBack.png" style="width:20px;height:20px" />
+        <span class="Back" style="font-size: 20px; vertical-align: middle;">Chọn ghế ngồi</span>
+    </button>
+</div>
+<h2>Chọn Bắp Nước</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Tên Bắp Nước</th>
+            <th>Chi tiết</th>
+            <th>Giá Tiền</th>
+            <th>Số Lượng</th>
+            <th>Thành Tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BapNuocSelections)
+        {
+            <tr>
+                <td> <img src="@Url.Content("~/img/" + item.hinhAnh)" alt="@item.TenBapNuoc" style="width:100px;height:100px;" /></td>
+                <td>@item.TenBapNuoc</td>
+                <td>@item.chiTietBapNuoc</td>
+                <td>@item.GiaTien VND</td>
+                <td>
+                    <button type="button" class="btn-minus" data-id="@item.Id">-</button>
+                    <span id="quantity-@item.Id">0</span>
+                    <button type="button" class="btn-plus" data-id="@item.Id">+</button>
+                </td>
+                <td id="total-@item.Id">0</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button type="button" id="confirm">Xác nhận</button>
+<script>
+    // Khai báo biến global cart để lưu các bắp nước đã chọn
+    var cart = [];
+
+    // Hàm cập nhật tổng tiền khi thay đổi số lượng
+    function updateTotal(id, quantity, price) {
+    var total = quantity * price;
+        document.getElementById('total-' + id).innerText = total;
+    }
+
+// Xử lý khi click nút +
+    document.querySelectorAll('.btn-plus').forEach(button => {
+        button.addEventListener('click', function() {
+            var id = this.getAttribute('data-id');
+            var quantityElement = document.getElementById('quantity-' + id);
+            var quantity = parseInt(quantityElement.innerText) + 1;
+            quantityElement.innerText = quantity;
+            var tenBapNuoc = this.parentElement.parentElement.querySelector('td:nth-child(2)').innerText.trim();
+            var price = parseFloat(this.parentElement.previousElementSibling.innerText);
+
+
+            // Tìm kiếm bắp nước có Id trong cart
+            var itemIndex = cart.findIndex(i => i.Id === id);
+
+            if (itemIndex !== -1) {
+                // Nếu đã tồn tại trong cart, cập nhật số lượng
+                cart[itemIndex].SoLuong = quantity;
+            } else {
+
+                // Nếu chưa tồn tại, thêm mới vào cart
+                cart.push({ Id: id, SoLuong: quantity, TenBapNuoc: tenBapNuoc, GiaTien: price  });
+            }
+
+            // Lấy giá của bắp nước
+            var price = parseFloat(this.parentElement.previousElementSibling.innerText);
+
+            updateTotal(id, quantity, price);
+        });
+    });
+
+// Xử lý khi click nút -
+    document.querySelectorAll('.btn-minus').forEach(button => {
+        button.addEventListener('click', function() {
+            var id = this.getAttribute('data-id');
+            var quantityElement = document.getElementById('quantity-' + id);
+            var quantity = Math.max(0, parseInt(quantityElement.innerText) - 1);
+            quantityElement.innerText = quantity;
+
+            // Tìm kiếm bắp nước có Id trong cart
+            var itemIndex = cart.findIndex(i => i.Id === id);
+
+            if (itemIndex !== -1) {
+                // Nếu đã tồn tại trong cart, cập nhật số lượng
+                cart[itemIndex].SoLuong = quantity;
+
+                // Nếu số lượng bằng 0, loại bỏ khỏi cart
+                if (quantity === 0) {
+                    cart.splice(itemIndex, 1);
+                }
+            }
+
+            // Lấy giá của bắp nước
+            var price = parseFloat(this.parentElement.previousElementSibling.innerText);
+
+
+            updateTotal(id, quantity, price);
+        });
+    });
+
+    // Xử lý khi click nút Xác nhận
+    document.getElementById('confirm').addEventListener('click', function() {
+        // Gửi yêu cầu lưu bắp nước
+        $.ajax({
+            url: '@Url.Action("LuuBapNuoc", "ChonGheNgoi")',
+            type: 'POST',
+            data: JSON.stringify({ bapNuocSelections: cart }),
+            contentType: 'application/json; charset=utf-8',
+            success: function(response) {
+                if (response.success) {
+                    window.location.href = '@Url.Action("ThongTinVe", "ChonGheNgoi")';
+                } else {
+                    alert("Có lỗi xảy ra khi lưu thông tin bắp nước: " + response.message);
+                }
+            },
+            error: function() {
+                alert("Có lỗi xảy ra khi lưu thông tin bắp nước!");
+            }
+        });
+    });
+     function clearGheNgoiSelectionsAndGoBack() {
+    // Make an AJAX call to clear the bap nuoc selections
+        $.ajax({
+            url: '@Url.Action("ClearGheNgoiSelections", "ChonGheNgoi")', // Adjust the URL and action as needed
+            type: 'POST',
+            success: function(response) {
+                // After clearing the selections, navigate back
+                window.history.back();
+
+            },
+            error: function() {
+                alert("Có lỗi xảy ra khi xóa lựa chọn ghế ngồi!");
+            }
+        });
+    }
+</script>
+<style>
+    td {
+        width: 150px;
+        text-align: center;
+    }
+    th {
+        text-align: center;
+    }
+    button#confirm {
+        margin: 20px;
+        text-align: center;
+        width: 100px;
+    }
+</style>
+

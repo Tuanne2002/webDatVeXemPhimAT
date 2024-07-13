@@ -22,7 +22,7 @@ namespace WebDatVePhim.Models
     
         public int id_Ghe { get; set; }
         public Nullable<int> id_PhongChieu { get; set; }
-        public Nullable<int> soHangGhe { get; set; }
+        public string soHangGhe { get; set; }
         public Nullable<int> soGheTrongHang { get; set; }
         public string tinhTrang { get; set; }
     

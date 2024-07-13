@@ -1,0 +1,70 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.PagedList<WebDatVePhim.Models.PhongChieu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Quản lý phòng chiếu</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "ThemMoi")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().id_PhongChieu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().id_Rap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().tenPhongChieu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().soLuongGhe)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_PhongChieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_Rap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenPhongChieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soLuongGhe)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { IdPhongChieu = item.id_PhongChieu }) |
+                @Html.ActionLink("Hiển thị", "HienThi", new { IdPhongChieu = item.id_PhongChieu }) |
+                @Html.ActionLink("Xóa", "XoaPhim", new { IdPhongChieu = item.id_PhongChieu })
+            </td>
+        </tr>
+    }
+
+</table>
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+
+<style>
+    .MenuTrang li {
+        display: inline;
+        font-size: 20px;
+    }
+
+    ul.pagination {
+        justify-content: center;
+    }
+</style>

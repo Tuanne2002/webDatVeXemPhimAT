@@ -1,0 +1,183 @@
+﻿@model IEnumerable<WebDatVePhim.Models.Ghe>
+
+@{
+    ViewBag.Title = "GiaoDienGhe";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<h2>Giao diện Chọn ghế ngồi </h2>
+<div class="screen">MÀN HÌNH</div>
+<div id="gheList">
+    @foreach (var ghe in Model)
+    {
+        <div class="ghe @(ghe.tinhTrang == "DaDat" ? "booked" : "")" data-id="@ghe.id_Ghe" style="background-color:@(ghe.tinhTrang == "DaDat" ? "red" : "green")">
+            @ghe.soHangGhe@ghe.soGheTrongHang
+
+        </div>
+    }
+</div>
+<button id="reset-btn">Reset Ghế</button>
+<button id="dat-ve-btn">Đặt Vé</button>
+
+<script>
+    $(document).ready(function() {
+        var selectedSeats = [];
+
+        $(".ghe").on("click", function() {
+            var gheId = $(this).data("id");
+            var viTri = $(this).data("vitri");
+            var gheDiv = $(this);
+            if ($(this).hasClass("booked")) {
+                alert("Ghế này đã được đặt rồi!");
+                return;
+            }
+
+            if ($(this).hasClass("selected")) {
+                $(this).removeClass("selected");
+                selectedSeats = selectedSeats.filter(function(item) {
+                    return item.gheId !== gheId;
+                });
+            } else {
+                $(this).addClass("selected");
+                selectedSeats.push({ gheId: gheId, viTri: viTri });
+            }
+        });
+
+        $("#dat-ve-btn").on("click", function() {
+            if (selectedSeats.length === 0) {
+                alert("Vui lòng chọn ít nhất một ghế!");
+                return;
+            }
+
+            var gheIds = selectedSeats.map(function(item) {
+                return item.gheId;
+            });
+
+            $.ajax({
+                url: '@Url.Action("DatGhe", "ChonGheNgoi")',
+                type: 'POST',
+                data: JSON.stringify({ gheIds: gheIds }),
+                contentType: 'application/json; charset=utf-8',
+                success: function(response) {
+                    var successfulBookings = [];
+                    var failedBookings = [];
+                    var alreadyBooked = [];
+
+                    response.forEach(function(result) {
+                        if (result.success) {
+                            successfulBookings.push({ GheId: result.gheId, ViTri: result.viTriGhe });
+                            $(".ghe[data-id='" + result.gheId + "']").addClass("booked").removeClass("selected").css("background-color", "red");
+                        } else {
+                            if (result.message === "Ghế này đã được đặt rồi!") {
+                                alreadyBooked.push(result.gheId);
+                            } else {
+                                failedBookings.push(result.gheId);
+                            }
+                        }
+                    });
+
+                    if (alreadyBooked.length > 0) {
+                        alert("Các ghế sau đã được đặt rồi: " + alreadyBooked.join(", "));
+                    }
+
+                    if (failedBookings.length > 0) {
+                        alert("Có lỗi xảy ra với các ghế: " + failedBookings.join(", "));
+                    }
+
+                    if (successfulBookings.length > 0) {
+                        alert("Đặt ghế thành công!");
+                        $.ajax({
+                            url: '@Url.Action("LuuThongTinVe", "ChonGheNgoi")',
+                            type: 'POST',
+                            data: JSON.stringify({ gheViTriList: successfulBookings }),
+                            contentType: 'application/json; charset=utf-8',
+                            success: function(response) {
+                                if (response.success) {
+                                    var gheIds = successfulBookings.map(function(item) {
+                                        return item.GheId;
+                                    }).join(',');
+                                    window.location.href = '@Url.Action("ThongTinVe", "ChonGheNgoi")?gheIds=' + gheIds;
+                                } else {
+                                    alert("Có lỗi xảy ra khi lưu thông tin vé: " + response.message);
+                                }
+                            },
+                            error: function() {
+                                alert("Có lỗi xảy ra khi lưu thông tin vé!");
+                            }
+                        });
+                    }
+
+                    selectedSeats = [];
+                },
+                error: function() {
+                    alert("Có lỗi xảy ra!");
+                }
+            });
+        });
+
+        $("#reset-btn").on("click", function() {
+            $.ajax({
+                url: '@Url.Action("ResetGhe", "ChonGheNgoi")',
+                type: 'POST',
+                success: function(response) {
+                    if (response.success) {
+                        $(".ghe").removeClass("booked").css("background-color", "green");
+                        alert(response.message);
+                    } else {
+                        alert("Có lỗi xảy ra!");
+                    }
+                },
+                error: function() {
+                    alert("Có lỗi xảy ra!");
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    .ghe.booked {
+        background-color: red;
+        cursor: not-allowed;
+    }
+
+    .ghe.selected {
+        background-color: red;
+        border: 3px solid blue;
+        margin-block: auto;
+    }
+
+    button#dat-ve-btn {
+        margin-right: auto;
+        margin-top: 20px;
+        margin-left: auto;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        /* margin: auto; */
+        width: 150px;
+        height: 30px;
+        background-color: antiquewhite;
+    }
+
+    .ghe {
+        width: 60px;
+        height: 60px;
+        display: inline-block;
+        text-align: center;
+        margin-top: 10px;
+        margin-right: 2px;
+        line-height: 60px;
+        background-color: green;
+        cursor: pointer;
+    }
+
+    .screen {
+        text-align: center;
+        margin: 20px;
+        font-weight: bold;
+    }
+</style>
+

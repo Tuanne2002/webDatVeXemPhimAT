@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DatVeXemPhimATModelStoreContainer" CdmEntityContainer="DatVeXemPhimATEntities1">
+  <EntityContainerMapping StorageEntityContainer="DatVeXemPhimATModelStoreContainer" CdmEntityContainer="DatVeXemPhimATEntities">
     <EntitySetMapping Name="BapNuocs">
       <EntityTypeMapping TypeName="DatVeXemPhimATModel.BapNuoc">
         <MappingFragment StoreEntitySet="BapNuoc">
@@ -8,6 +8,7 @@
           <ScalarProperty Name="tenBapNuoc" ColumnName="tenBapNuoc" />
           <ScalarProperty Name="chiTietBapNuoc" ColumnName="chiTietBapNuoc" />
           <ScalarProperty Name="giaTien" ColumnName="giaTien" />
+          <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -45,6 +46,7 @@
           <ScalarProperty Name="thoiGianKetThucKM" ColumnName="thoiGianKetThucKM" />
           <ScalarProperty Name="chiTietKhuyenMai" ColumnName="chiTietKhuyenMai" />
           <ScalarProperty Name="dieuKienApDung" ColumnName="dieuKienApDung" />
+          <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -57,6 +59,15 @@
           <ScalarProperty Name="thoiGianBatDau" ColumnName="thoiGianBatDau" />
           <ScalarProperty Name="thoiGianKetThuc" ColumnName="thoiGianKetThuc" />
           <ScalarProperty Name="ngayChieu" ColumnName="ngayChieu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoaiRaps">
+      <EntityTypeMapping TypeName="DatVeXemPhimATModel.LoaiRap">
+        <MappingFragment StoreEntitySet="LoaiRap">
+          <ScalarProperty Name="id_loaiRap" ColumnName="id_loaiRap" />
+          <ScalarProperty Name="tenLoaiRap" ColumnName="tenLoaiRap" />
+          <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -113,6 +124,7 @@
           <ScalarProperty Name="diaChiRap" ColumnName="diaChiRap" />
           <ScalarProperty Name="sdtRap" ColumnName="sdtRap" />
           <ScalarProperty Name="emailRap" ColumnName="emailRap" />
+          <ScalarProperty Name="id_loaiRap" ColumnName="id_loaiRap" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -133,6 +145,7 @@
           <ScalarProperty Name="id_Ve" ColumnName="id_Ve" />
           <ScalarProperty Name="id_LichChieuPhim" ColumnName="id_LichChieuPhim" />
           <ScalarProperty Name="id_Ghe" ColumnName="id_Ghe" />
+          <ScalarProperty Name="viTriGhe" ColumnName="viTriGhe" />
           <ScalarProperty Name="ngayDat" ColumnName="ngayDat" />
           <ScalarProperty Name="gioDat" ColumnName="gioDat" />
           <ScalarProperty Name="maDat" ColumnName="maDat" />

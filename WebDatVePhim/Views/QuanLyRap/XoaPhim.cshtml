@@ -1,0 +1,77 @@
+﻿@model WebDatVePhim.Models.Rap
+
+@{
+    ViewBag.Title = "XoaPhim";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa rạp</h2>
+
+<div>
+    <h4>Rạp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_Rap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_Rap)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.id_loaiRap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_loaiRap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenRap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenRap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diaChiRap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diaChiRap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sdtRap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sdtRap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emailRap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emailRap)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.hinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinhAnh)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại trang quản lý rạp", "Index")
+        </div>
+    }
+</div>

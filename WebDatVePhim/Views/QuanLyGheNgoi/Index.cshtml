@@ -1,0 +1,125 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.PagedList<WebDatVePhim.Models.Ghe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<h2>Quản lý ghế ngồi</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "ThemMoi")
+</p>
+<p>
+    <a href="~/QuanLyGheNgoi/GiaoDienGhe">Giao diện ghế</a>
+</p>
+<button id="reset-btn">Reset Ghế</button>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().id_Ghe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().id_PhongChieu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().soHangGhe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().soGheTrongHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().tinhTrang)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_Ghe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_PhongChieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soHangGhe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soGheTrongHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tinhTrang)
+            </td>
+
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { IdGhe = item.id_Ghe }) |
+                @Html.ActionLink("Hiển thị", "HienThi", new { IdGhe = item.id_Ghe }) |
+                @Html.ActionLink("Xóa", "XoaPhim", new { IdGhe = item.id_Ghe })
+            </td>
+        </tr>
+    }
+
+</table>
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<script>
+    $(document).ready(function() {
+            var selectedSeats = [];
+
+            $(".ghe").on("click", function() {
+                var gheId = $(this).data("id");
+                var gheDiv = $(this);
+                if ($(this).hasClass("booked")) {
+                    alert("Ghế này đã được đặt rồi!");
+                    return;
+                }
+
+                if ($(this).hasClass("selected")) {
+                    $(this).removeClass("selected");
+                    selectedSeats = selectedSeats.filter(function(id) {
+                        return id !== gheId;
+                    });
+                } else {
+                    $(this).addClass("selected");
+                    selectedSeats.push(gheId);
+                }
+            });
+
+            $("#reset-btn").on("click", function() {
+                $.ajax({
+                    url: '@Url.Action("ResetGhe", "ChonGheNgoi")',
+                    type: 'POST',
+                    success: function(response) {
+                        if (response.success) {
+                            $(".ghe").removeClass("booked").css("background-color", "green");
+                            window.location.reload();
+                            alert(response.message);
+                        } else {
+                            alert("Có lỗi xảy ra!");
+                        }
+                    },
+                    error: function() {
+                        alert("Có lỗi xảy ra!");
+                    }
+                });
+            });
+      });
+
+</script>
+
+<style>
+    .MenuTrang li {
+        display: inline;
+        font-size: 20px;
+    }
+
+    ul.pagination {
+        justify-content: center;
+    }
+</style>

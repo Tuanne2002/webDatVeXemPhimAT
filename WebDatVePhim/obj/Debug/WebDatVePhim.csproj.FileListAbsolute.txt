@@ -160,3 +160,7 @@ D:\2023\HK3\HKIII\LuanAn\WebDatVePhim\WebDatVePhim\obj\Debug\WebDatVePhim.csproj
 D:\2023\HK3\HKIII\LuanAn\WebDatVePhim\WebDatVePhim\obj\Debug\WebDatVePhim.csproj.CopyComplete
 D:\2023\HK3\HKIII\LuanAn\WebDatVePhim\WebDatVePhim\obj\Debug\WebDatVePhim.dll
 D:\2023\HK3\HKIII\LuanAn\WebDatVePhim\WebDatVePhim\obj\Debug\WebDatVePhim.pdb
+D:\2023\HK3\HKIII\LuanAn\WebDatVePhim\WebDatVePhim\bin\PagedList.dll
+D:\2023\HK3\HKIII\LuanAn\WebDatVePhim\WebDatVePhim\bin\PagedList.Mvc.dll
+D:\2023\HK3\HKIII\LuanAn\WebDatVePhim\WebDatVePhim\bin\PagedList.xml
+D:\2023\HK3\HKIII\LuanAn\WebDatVePhim\WebDatVePhim\bin\PagedList.Mvc.xml

@@ -25,7 +25,9 @@ namespace WebDatVePhim.Models
         public string diaChiRap { get; set; }
         public string sdtRap { get; set; }
         public string emailRap { get; set; }
+        public Nullable<int> id_loaiRap { get; set; }
     
+        public virtual LoaiRap LoaiRap { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhongChieu> PhongChieux { get; set; }
     }

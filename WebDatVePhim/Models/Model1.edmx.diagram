@@ -4,34 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1e9692124b8c41e8a79089284caa118c" Name="Diagram1">
-        <EntityTypeShape EntityType="DatVeXemPhimATModel.BapNuoc" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+      <Diagram DiagramId="746989e0984c4f08b919e20fa5596ea1" Name="Diagram1">
+        <EntityTypeShape EntityType="DatVeXemPhimATModel.BapNuoc" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.BinhLuan" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.Ghe" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.KhuyenMai" Width="1.5" PointX="6" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.LichChieuPhim" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatVeXemPhimATModel.LoaiRap" Width="1.5" PointX="1.5" PointY="14.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.NguoiDung" Width="1.5" PointX="10.5" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.Phim" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.PhongChieu" Width="1.5" PointX="3.75" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatVeXemPhimATModel.Rap" Width="1.5" PointX="1.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatVeXemPhimATModel.Rap" Width="1.5" PointX="1.5" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.ThanhToan" Width="1.5" PointX="10.5" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatVeXemPhimATModel.Ve" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatVeXemPhimATModel.Ve" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.Ve_BapNuoc" Width="1.5" PointX="13.5" PointY="6.75" IsExpanded="true" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_BapNuoc__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve_BapNuo__id_Ba__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__BinhLuan__id_Ngu__5812160E" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__BinhLuan__id_Phi__59063A47" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ghe__id_PhongChi__3B75D760" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_Ghe__48CFD27E" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_KhuyenMai__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__LichChieu__id_Ph__403A8C7D" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__LichChieu__id_Ph__412EB0B6" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_LichChieu__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__NguoiDung__phimD__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__NguoiDung__veDaM__5441852A" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__PhongChie__id_Ra__38996AB5" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__ThanhToan__id_Ve__5BE2A6F2" ManuallyRouted="false" />
-        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve_BapNuo__id_Ve__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_BapNuoc__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve_BapNuo__id_Ba__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__BinhLuan__id_Ngu__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__BinhLuan__id_Phi__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ghe__id_PhongChi__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_Ghe__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_KhuyenMai__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__LichChieu__id_Ph__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__LichChieu__id_Ph__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_LichChieu__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK_Rap_LoaiRap" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__NguoiDung__phimD__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__NguoiDung__veDaM__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__PhongChie__id_Ra__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__ThanhToan__id_Ve__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve_BapNuo__id_Ve__3E52440B" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

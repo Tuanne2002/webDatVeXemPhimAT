@@ -1,0 +1,16 @@
+﻿@model IEnumerable<WebDatVePhim.Models.LichChieuPhim>
+
+@foreach (var item in Model.OrderBy(i => i.ngayChieu).ThenBy(l => l.thoiGianBatDau))
+{
+
+    <tr>
+        <td>@item.PhongChieu.Rap.tenRap</td>
+        <td>@item.PhongChieu.Rap.diaChiRap</td>
+        <td>@item.ngayChieu.GetValueOrDefault().ToString("dd/MM/yyyy")</td>
+        <td>@item.thoiGianBatDau.GetValueOrDefault().ToString("hh\\:mm") ~ @item.thoiGianKetThuc.GetValueOrDefault().ToString("hh\\:mm") </td>
+        <td>@item.PhongChieu.tenPhongChieu</td>
+        <td>
+            <a href="@Url.Action("Index", "ChonGheNgoi", new { lichChieuId = item.id_LichChieuPhim })" class="btn btn-primary">Chọn</a>
+        </td>
+    </tr>
+}

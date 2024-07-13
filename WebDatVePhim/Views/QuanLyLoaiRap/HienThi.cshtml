@@ -1,0 +1,43 @@
+﻿@model WebDatVePhim.Models.LoaiRap
+
+@{
+    ViewBag.Title = "HienThi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hiển thị</h2>
+
+<div>
+    <h4>Loại rạp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_loaiRap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_loaiRap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenLoaiRap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenLoaiRap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinhAnh)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @IdLoaiRap = Model.id_loaiRap }) |
+    @Html.ActionLink("Quay lại trang quản lý loại rạp", "Index")
+</p>

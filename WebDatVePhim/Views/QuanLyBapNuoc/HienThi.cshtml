@@ -1,0 +1,59 @@
+﻿@model WebDatVePhim.Models.BapNuoc
+
+@{
+    ViewBag.Title = "HienThi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hiển thị</h2>
+
+<div>
+    <h4>Bắp nước</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_BapNuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_BapNuoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenBapNuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenBapNuoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chiTietBapNuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chiTietBapNuoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.giaTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giaTien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinhAnh)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @IdBapNuoc = Model.id_BapNuoc }) |
+    @Html.ActionLink("Quay lại trang quản lý bắp nước", "Index")
+</p>
