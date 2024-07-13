@@ -103,7 +103,7 @@ Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageC
                 if (response.success) {
                     $(".ghe").removeClass("booked").css("background-color", "green");
                     alert(response.message);
-                    location.reload();
+                    //location.reload();
                 } else {
                     alert("Có lỗi xảy ra khi reset ghế!");
                 }
