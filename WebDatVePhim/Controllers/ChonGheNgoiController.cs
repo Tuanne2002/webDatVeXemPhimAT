@@ -206,7 +206,7 @@ namespace WebDatVePhim.Controllers
                 ViTriGhe = string.Join(", ", selectedSeats.Select(s => s.ViTri)),
                 GiaVe = 75000 * selectedSeats.Count,
                 BapNuocSelections = bapNuocSelections,
-                TongSoTien = (double)(75000 * selectedSeats.Count + bapNuocSelections.Sum(bn => bn.GiaTien * bn.SoLuong)),
+                TongSoTien = (double)(75000 * selectedSeats.Count + bapNuocSelections.Sum(bn => bn.GiaTien* bn.SoLuong)),
                 TenPhim = lichChieu.Phim.tenPhim,
                 TenPhongChieu = lichChieu.PhongChieu.tenPhongChieu,
                 ThoiGianBatDau = lichChieu.thoiGianBatDau.GetValueOrDefault().ToString("hh\\:mm"),
@@ -245,6 +245,7 @@ namespace WebDatVePhim.Controllers
                     soTien = 75000 * selectedSeats.Count,
                     viTriGhe = string.Join(",", selectedSeats.Select(s => s.ViTri)),
                     id_LichChieuPhim = lichChieuId,
+                    
                   
                 };
 

@@ -15,16 +15,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_PhongChieu)
+            ID phòng chiếu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_Rap)
+            Rạp
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().tenPhongChieu)
+            Phòng chiếu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().soLuongGhe)
+            Số lượng ghế
         </th>
         <th></th>
     </tr>
@@ -36,7 +36,7 @@
                 @Html.DisplayFor(modelItem => item.id_PhongChieu)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_Rap)
+                @Html.DisplayFor(modelItem => item.Rap.tenRap)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.tenPhongChieu)

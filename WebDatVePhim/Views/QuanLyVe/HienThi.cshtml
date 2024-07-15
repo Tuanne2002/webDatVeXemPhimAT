@@ -12,31 +12,31 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.id_Ve)
+            ID vé
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.id_Ve)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.id_LichChieuPhim)
+            Tên phim
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.id_LichChieuPhim)
+            @Html.DisplayFor(model => model.LichChieuPhim.Phim.tenPhim)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.id_Ghe)
+            Suất chiếu
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.id_Ghe)
+            @(Model.LichChieuPhim?.ngayChieu?.ToString("dd/MM/yyyy") ?? "N/A") <br />
+            @(Model.LichChieuPhim?.thoiGianBatDau?.ToString(@"hh\:mm") ?? "N/A") ~ @(Model.LichChieuPhim?.thoiGianKetThuc?.ToString(@"hh\:mm") ?? "N/A")
         </dd>
 
+
         <dt>
-            @Html.DisplayNameFor(model => model.viTriGhe)
+            Vị trí ghế
         </dt>
 
         <dd>
@@ -44,23 +44,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ngayDat)
+            Ngày đặt
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ngayDat)
+            @Model.ngayDat.GetValueOrDefault().ToString("dd/MM/yyyy")
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.gioDat)
+            Giờ đặt
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.gioDat)
+            @Model.gioDat.GetValueOrDefault().ToString(@"hh\:mm")
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.maDat)
+            Mã đặt
         </dt>
 
         <dd>
@@ -68,15 +68,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.soTien)
+            Số tiền
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.soTien)
+            @Model.soTien.GetValueOrDefault().ToString("#,###")
+
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.id_BapNuoc)
+            Bắp nước
         </dt>
 
         <dd>
@@ -84,7 +85,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.id_KhuyenMai)
+            Khuyến mãi
         </dt>
 
         <dd>

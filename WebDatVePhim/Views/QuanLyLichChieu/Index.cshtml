@@ -15,22 +15,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_LichChieuPhim)
+            ID lịch chiếu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_Phim)
+            Tên phim
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_PhongChieu)
+            Phòng chiếu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().thoiGianBatDau)
+            Rạp
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().thoiGianKetThuc)
+            Thời gian bắt đầu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().ngayChieu)
+            Thời gian kết thúc
+        </th>
+        <th>
+            Ngày chiếu
         </th>
         <th></th>
     </tr>
@@ -42,10 +45,13 @@
                 @Html.DisplayFor(modelItem => item.id_LichChieuPhim)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_Phim)
+                @Html.DisplayFor(modelItem => item.Phim.tenPhim)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_PhongChieu)
+                @Html.DisplayFor(modelItem => item.PhongChieu.tenPhongChieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhongChieu.Rap.tenRap)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.thoiGianBatDau)

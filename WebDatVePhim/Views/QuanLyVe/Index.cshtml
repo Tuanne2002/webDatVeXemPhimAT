@@ -14,34 +14,34 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_Ve)
+            ID vé
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_LichChieuPhim)
+            Tên phim
+        </th>
+        <th style="width:120px">
+            Suất chiếu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_Ghe)
+            Vị trí ghế
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().viTriGhe)
+            Ngày đặt
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().ngayDat)
+            Giờ đặt
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().gioDat)
+            Mã đặt
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().maDat)
+            Số tiền
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().soTien)
+            Bắp nước
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_BapNuoc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().id_KhuyenMai)
+            Khuyến mãi
         </th>
         <th></th>
     </tr>
@@ -53,25 +53,28 @@
                 @Html.DisplayFor(modelItem => item.id_Ve)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_LichChieuPhim)
+                @Html.DisplayFor(modelItem => item.LichChieuPhim.Phim.tenPhim)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_Ghe)
+                @(item.LichChieuPhim?.ngayChieu?.ToString("dd/MM/yyyy") ?? "N/A") <br />
+                @(item.LichChieuPhim?.thoiGianBatDau?.ToString(@"hh\:mm") ?? "N/A") ~ @(item.LichChieuPhim?.thoiGianKetThuc?.ToString(@"hh\:mm") ?? "N/A")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.viTriGhe)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ngayDat)
+                @item.ngayDat.GetValueOrDefault().ToString("dd/MM/yyyy")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.gioDat)
+              
+                @item.gioDat.GetValueOrDefault().ToString(@"hh\:mm")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.maDat)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.soTien)
+           
+                @item.soTien.GetValueOrDefault().ToString("#,###") 
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.id_BapNuoc)

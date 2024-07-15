@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.id_LichChieuPhim)
+            ID lịch chiếu
         </dt>
 
         <dd>
@@ -20,23 +20,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.id_Phim)
+            Tên phim
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.id_Phim)
+            @Html.DisplayFor(model => model.Phim.tenPhim)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.id_PhongChieu)
+            Phòng chiếu
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.id_PhongChieu)
+            @Html.DisplayFor(model => model.PhongChieu.tenPhongChieu)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.thoiGianBatDau)
+             Thời gian bắt đầu
         </dt>
 
         <dd>
@@ -44,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.thoiGianKetThuc)
+            Thời gian kết thúc
         </dt>
 
         <dd>
@@ -52,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ngayChieu)
+            Ngày chiếu
         </dt>
 
         <dd>
@@ -62,6 +62,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @IdLichChieuPhim = Model.id_LichChieuPhim }) |
+    @Html.ActionLink("Quay lại trang quản lý lịch chiếu", "Index")
 </p>

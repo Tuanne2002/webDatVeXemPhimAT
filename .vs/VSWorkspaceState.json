@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WebDatVePhim",
+    "\\WebDatVePhim\\Views",
+    "\\WebDatVePhim\\Views\\HomeNguoiDung",
+    "\\WebDatVePhim\\Views\\QuanLyGheNgoi"
   ],
-  "SelectedNode": "\\WebDatVePhim.sln",
+  "SelectedNode": "\\WebDatVePhim\\Views\\QuanLyGheNgoi\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

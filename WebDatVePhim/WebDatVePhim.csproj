@@ -2182,6 +2182,7 @@
     <Content Include="img\banner-bg.jpg" />
     <Content Include="img\BHD.png" />
     <Content Include="img\btnBack.jpg" />
+    <Content Include="img\btnBack.png" />
     <Content Include="img\cgv.png" />
     <Content Include="img\ChonRap.png" />
     <Content Include="img\ChonViTri.png" />

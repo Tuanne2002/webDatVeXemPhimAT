@@ -19,7 +19,7 @@
 <p><b>Giờ chiếu: </b> @Model.ThoiGianBatDau ~ @Model.ThoiGianKetThuc</p>
 <p><b>Phòng chiếu: </b> @Model.TenPhongChieu</p>
 <p><b>Vị trí ghế: </b> @Model.ViTriGhe</p>
-<p><b>Giá vé: </b> @Model.GiaVe VND</p>
+<p><b>Giá vé: </b> @Model.GiaVe.ToString("#,###.##") VND</p>
 
 @if (Model.BapNuocSelections != null && Model.BapNuocSelections.Any())
 {
@@ -27,14 +27,14 @@
 
     foreach (var bapNuoc in Model.BapNuocSelections)
     {
-        var total = @bapNuoc.GiaTien * @bapNuoc.SoLuong;
-        <p>@bapNuoc.TenBapNuoc - Số lượng: @bapNuoc.SoLuong - Giá: @total VND</p>
+        var total = bapNuoc.GiaTien* bapNuoc.SoLuong;
+        <p>@bapNuoc.TenBapNuoc - Số lượng: @bapNuoc.SoLuong - Giá: @total.ToString("#,###.##") VND</p>
     }
 
 }
 
 
-<h3><strong>Tổng số tiền: </strong>@Model.TongSoTien VND</h3>
+<h3><strong>Tổng số tiền: </strong>@Model.TongSoTien.ToString("#,###.##") VND</h3>
 
 <div>
     <button id="thanh-toan-btn">Thanh toán</button>

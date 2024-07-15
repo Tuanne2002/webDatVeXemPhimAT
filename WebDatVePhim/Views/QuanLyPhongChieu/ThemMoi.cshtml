@@ -16,7 +16,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.id_PhongChieu, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.id_PhongChieu,"ID phòng chiếu", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.id_PhongChieu, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.id_PhongChieu, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.id_Rap, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.id_Rap,"Rạp", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("id_Rap")
                 @Html.ValidationMessageFor(model => model.id_Rap, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tenPhongChieu, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tenPhongChieu,"Phòng chiếu", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.tenPhongChieu, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.tenPhongChieu, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.soLuongGhe, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.soLuongGhe,"Số lượng ghế", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.soLuongGhe, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.soLuongGhe, "", new { @class = "text-danger" })
@@ -49,7 +49,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Thêm mới" class="btn btn-default" />
             </div>
         </div>
     </div>

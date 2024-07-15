@@ -11,7 +11,8 @@ namespace WebDatVePhim.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class LichChieuPhim
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,8 +24,11 @@ namespace WebDatVePhim.Models
         public int id_LichChieuPhim { get; set; }
         public Nullable<int> id_Phim { get; set; }
         public Nullable<int> id_PhongChieu { get; set; }
+        [DisplayFormat(DataFormatString = @"{0:hh\:mm}", ApplyFormatInEditMode = true)]
         public Nullable<System.TimeSpan> thoiGianBatDau { get; set; }
+        [DisplayFormat(DataFormatString = @"{0:hh\:mm}", ApplyFormatInEditMode = true)]
         public Nullable<System.TimeSpan> thoiGianKetThuc { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> ngayChieu { get; set; }
     
         public virtual Phim Phim { get; set; }

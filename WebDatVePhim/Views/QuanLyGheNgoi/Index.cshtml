@@ -19,19 +19,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_Ghe)
+            ID ghế
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_PhongChieu)
+            Phòng chiếu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().soHangGhe)
+            Rạp
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().soGheTrongHang)
+            Hàng ghế
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().tinhTrang)
+            Số ghế 
+        </th>
+        <th>
+            Tình trạng
         </th>
         <th></th>
     </tr>
@@ -43,7 +46,10 @@
                 @Html.DisplayFor(modelItem => item.id_Ghe)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_PhongChieu)
+                @Html.DisplayFor(modelItem => item.PhongChieu.tenPhongChieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhongChieu.Rap.tenRap)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.soHangGhe)
