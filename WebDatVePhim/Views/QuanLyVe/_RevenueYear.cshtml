@@ -1,0 +1,14 @@
+﻿@model WebDatVePhim.Controllers.QuanLyVeController.RevenueViewModel
+<div>
+    <h3>Thống kê doanh thu năm @Model.SelectedYear</h3>
+    <p style="font-size:20px">
+
+        Tổng số ghế đã đặt: @Model.TotalGheCount <br />
+        Tổng số lượng bắp nước đã bán: @Model.TotalBapNuocCount <br />
+        Tổng số tiền từ bắp nước: @Model.TotalPopcornRevenue.ToString("#,###") VND <br />
+        Tổng số khuyến mãi đã áp dụng: @Model.TotalKhuyenMaiCount <br />
+        Tổng doanh thu : @Model.TotalRevenue.ToString("#,###") VND
+    </p>
+</div>
+
+

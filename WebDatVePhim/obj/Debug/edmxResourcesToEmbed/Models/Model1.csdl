@@ -36,6 +36,7 @@
     <Property Name="tinhTrang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="PhongChieu" Relationship="Self.FK__Ghe__id_PhongChi__29572725" FromRole="Ghe" ToRole="PhongChieu" />
     <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_Ghe__36B12243" FromRole="Ghe" ToRole="Ve" />
+    <NavigationProperty Name="LichChieuPhims" Relationship="Self.FK_LichChieuPhim_Ghe" FromRole="Ghe" ToRole="LichChieuPhim" />
   </EntityType>
   <EntityType Name="KhuyenMai">
     <Key>
@@ -44,12 +45,12 @@
     <Property Name="id_KhuyenMai" Type="Int32" Nullable="false" />
     <Property Name="tenKhuyenMai" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="doiTuongApDung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="giaKhuyenMai" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="thoiGianBatDauKM" Type="DateTime" Precision="3" />
     <Property Name="thoiGianKetThucKM" Type="DateTime" Precision="3" />
     <Property Name="chiTietKhuyenMai" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="dieuKienApDung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="hinhAnh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="giaKhuyenMai" Type="Double" />
     <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_KhuyenMai__38996AB5" FromRole="KhuyenMai" ToRole="Ve" />
   </EntityType>
   <EntityType Name="LichChieuPhim">
@@ -62,6 +63,8 @@
     <Property Name="thoiGianBatDau" Type="Time" Precision="7" />
     <Property Name="thoiGianKetThuc" Type="Time" Precision="7" />
     <Property Name="ngayChieu" Type="DateTime" Precision="0" />
+    <Property Name="id_Ghe" Type="Int32" />
+    <NavigationProperty Name="Ghe" Relationship="Self.FK_LichChieuPhim_Ghe" FromRole="LichChieuPhim" ToRole="Ghe" />
     <NavigationProperty Name="Phim" Relationship="Self.FK__LichChieu__id_Ph__2E1BDC42" FromRole="LichChieuPhim" ToRole="Phim" />
     <NavigationProperty Name="PhongChieu" Relationship="Self.FK__LichChieu__id_Ph__2F10007B" FromRole="LichChieuPhim" ToRole="PhongChieu" />
     <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_LichChieu__35BCFE0A" FromRole="LichChieuPhim" ToRole="Ve" />
@@ -174,6 +177,8 @@
     <Property Name="soTien" Type="Double" />
     <Property Name="id_BapNuoc" Type="Int32" />
     <Property Name="id_KhuyenMai" Type="Int32" />
+    <Property Name="chiTietBapNuoc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="tongTienBapNuoc" Type="Int32" />
     <NavigationProperty Name="BapNuoc" Relationship="Self.FK__Ve__id_BapNuoc__37A5467C" FromRole="Ve" ToRole="BapNuoc" />
     <NavigationProperty Name="Ghe" Relationship="Self.FK__Ve__id_Ghe__36B12243" FromRole="Ve" ToRole="Ghe" />
     <NavigationProperty Name="KhuyenMai" Relationship="Self.FK__Ve__id_KhuyenMai__38996AB5" FromRole="Ve" ToRole="KhuyenMai" />
@@ -261,6 +266,18 @@
         <PropertyRef Name="id_Ghe" />
       </Principal>
       <Dependent Role="Ve">
+        <PropertyRef Name="id_Ghe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LichChieuPhim_Ghe">
+    <End Role="Ghe" Type="Self.Ghe" Multiplicity="0..1" />
+    <End Role="LichChieuPhim" Type="Self.LichChieuPhim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ghe">
+        <PropertyRef Name="id_Ghe" />
+      </Principal>
+      <Dependent Role="LichChieuPhim">
         <PropertyRef Name="id_Ghe" />
       </Dependent>
     </ReferentialConstraint>
@@ -423,6 +440,10 @@
     <AssociationSet Name="FK__Ve__id_Ghe__36B12243" Association="Self.FK__Ve__id_Ghe__36B12243">
       <End Role="Ghe" EntitySet="Ghes" />
       <End Role="Ve" EntitySet="Ves" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LichChieuPhim_Ghe" Association="Self.FK_LichChieuPhim_Ghe">
+      <End Role="Ghe" EntitySet="Ghes" />
+      <End Role="LichChieuPhim" EntitySet="LichChieuPhims" />
     </AssociationSet>
     <AssociationSet Name="FK__Ve__id_KhuyenMai__38996AB5" Association="Self.FK__Ve__id_KhuyenMai__38996AB5">
       <End Role="KhuyenMai" EntitySet="KhuyenMais" />

@@ -11,8 +11,7 @@ namespace WebDatVePhim.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class BapNuoc
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,7 +24,6 @@ namespace WebDatVePhim.Models
         public int id_BapNuoc { get; set; }
         public string tenBapNuoc { get; set; }
         public string chiTietBapNuoc { get; set; }
-        [DisplayFormat(DataFormatString = "{0:#,##0}", ApplyFormatInEditMode = true)]
         public Nullable<double> giaTien { get; set; }
         public string hinhAnh { get; set; }
     

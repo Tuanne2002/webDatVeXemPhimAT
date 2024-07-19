@@ -31,7 +31,7 @@
                 <td> <img src="@Url.Content("~/img/" + item.hinhAnh)" alt="@item.TenBapNuoc" style="width:100px;height:100px;" /></td>
                 <td>@item.TenBapNuoc</td>
                 <td>@item.chiTietBapNuoc</td>
-                <td>@item.GiaTien.ToString("#,##0") VND</td>
+                <td>@item.GiaTien.ToString("#,###") VND</td>
                 <td>
                     <button type="button" class="btn-minus" data-id="@item.Id">-</button>
                     <span id="quantity-@item.Id">0</span>
@@ -48,11 +48,15 @@
     // Khai báo biến global cart để lưu các bắp nước đã chọn
     var cart = [];
     function formatCurrency(amount) {
-        return amount.toLocaleString('vi-VN', { /*style: 'currency', currency: 'VND',*/ minimumFractionDigits: 3, maximumFractionDigits: 3 });
+        if (amount === 0) {
+            return "0";
+        }
+        return amount.toLocaleString('vi-VN', { /*style: 'currency', currency: 'VND',*/ minimumFractionDigits: 3, maximumFractionDigits:3  });
     
     }
     // Hàm cập nhật tổng tiền khi thay đổi số lượng
     function updateTotal(id, quantity, price) {
+
     var total = quantity * price;
         document.getElementById('total-' + id).innerText = /*total*/ formatCurrency(total) +" VND" ;
     }
@@ -66,7 +70,7 @@
             quantityElement.innerText = quantity;
             var tenBapNuoc = this.parentElement.parentElement.querySelector('td:nth-child(2)').innerText.trim();
            /* var price = parseFloat(this.parentElement.previousElementSibling.innerText);*/
-            var priceString = this.parentElement.previousElementSibling.innerText.replace(/,/g, '');
+            var priceString = this.parentElement.previousElementSibling.innerText.replace(/[^0-9.-]+/g, '');
             var price = parseFloat(priceString);
 
             // Tìm kiếm bắp nước có Id trong cart
@@ -95,6 +99,8 @@
             var quantityElement = document.getElementById('quantity-' + id);
             var quantity = Math.max(0, parseInt(quantityElement.innerText) - 1);
             quantityElement.innerText = quantity;
+            var priceString = this.parentElement.previousElementSibling.innerText.replace(/[^0-9.-]+/g, '');
+            var price = parseFloat(priceString);
 
             // Tìm kiếm bắp nước có Id trong cart
             var itemIndex = cart.findIndex(i => i.Id === id);
@@ -110,10 +116,8 @@
             }
 
             // Lấy giá của bắp nước
-           /* var price = parseFloat(this.parentElement.previousElementSibling.innerText);*/
-            var priceString = this.parentElement.previousElementSibling.innerText.replace(/,/g, '');
-            var price = parseFloat(priceString);
-
+            var price = parseFloat(this.parentElement.previousElementSibling.innerText);
+           
             updateTotal(id, quantity, price);
         });
     });

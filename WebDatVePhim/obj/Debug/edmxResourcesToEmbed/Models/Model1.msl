@@ -41,12 +41,12 @@
           <ScalarProperty Name="id_KhuyenMai" ColumnName="id_KhuyenMai" />
           <ScalarProperty Name="tenKhuyenMai" ColumnName="tenKhuyenMai" />
           <ScalarProperty Name="doiTuongApDung" ColumnName="doiTuongApDung" />
-          <ScalarProperty Name="giaKhuyenMai" ColumnName="giaKhuyenMai" />
           <ScalarProperty Name="thoiGianBatDauKM" ColumnName="thoiGianBatDauKM" />
           <ScalarProperty Name="thoiGianKetThucKM" ColumnName="thoiGianKetThucKM" />
           <ScalarProperty Name="chiTietKhuyenMai" ColumnName="chiTietKhuyenMai" />
           <ScalarProperty Name="dieuKienApDung" ColumnName="dieuKienApDung" />
           <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
+          <ScalarProperty Name="giaKhuyenMai" ColumnName="giaKhuyenMai" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -59,6 +59,7 @@
           <ScalarProperty Name="thoiGianBatDau" ColumnName="thoiGianBatDau" />
           <ScalarProperty Name="thoiGianKetThuc" ColumnName="thoiGianKetThuc" />
           <ScalarProperty Name="ngayChieu" ColumnName="ngayChieu" />
+          <ScalarProperty Name="id_Ghe" ColumnName="id_Ghe" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -163,6 +164,8 @@
           <ScalarProperty Name="soTien" ColumnName="soTien" />
           <ScalarProperty Name="id_BapNuoc" ColumnName="id_BapNuoc" />
           <ScalarProperty Name="id_KhuyenMai" ColumnName="id_KhuyenMai" />
+          <ScalarProperty Name="chiTietBapNuoc" ColumnName="chiTietBapNuoc" />
+          <ScalarProperty Name="tongTienBapNuoc" ColumnName="tongTienBapNuoc" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

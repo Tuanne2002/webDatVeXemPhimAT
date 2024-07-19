@@ -109,76 +109,12 @@ namespace WebDatVePhim.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        //[HttpPost]
-        //public JsonResult DatGhe(List<int> gheIds)
-        //{
-        //    var result = new List<object>();
-
-        //    foreach (var gheId in gheIds)
-        //    {
-        //        var ghe = db.Ghes.Find(gheId);
-
-        //        if (ghe != null && ghe.tinhTrang != "DaDat")
-        //        {
-        //            ghe.tinhTrang = "DaDat";
-        //            db.SaveChanges();
-        //            result.Add(new { success = true, gheId = gheId, viTriGhe = ghe.soHangGhe + ghe.soGheTrongHang });
-        //        }
-        //        else
-        //        {
-        //            result.Add(new { success = false, gheId = gheId, message = "Ghế này đã được đặt rồi!" });
-        //        }
-        //    }
-
-        //    return Json(result);
-        //}
-
-        //[HttpPost]
-        //public JsonResult LuuThongTinVe(List<GheViTri> gheViTriList)
-        //{
-        //    try
-        //    {
-        //        foreach (var gheViTri in gheViTriList)
-        //        {
-        //            var ve = new Ve()
-        //            {
-        //                id_Ghe = gheViTri.GheId,
-        //                viTriGhe = gheViTri.ViTri,
-        //                ngayDat = DateTime.Now,
-        //                gioDat = DateTime.Now.TimeOfDay,
-        //                maDat = Guid.NewGuid().ToString()
-        //                // thêm các thuộc tính khác nếu cần
-        //            };
-        //            db.Ves.Add(ve);
-        //        }
-        //        db.SaveChanges();
-
-        //        return Json(new { success = true });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new { success = false, message = ex.Message });
-        //    }
-        //}
-
-        //public ActionResult ThongTinVe(string gheIds)
-        //{
-        //    var gheIdList = gheIds.Split(',').Select(int.Parse).ToList();
-        //    var gheList = db.Ghes.Where(g => gheIdList.Contains(g.id_Ghe)).ToList();
-        //    return View(gheList);
-        //}
-        //public class GheViTri
-        //{
-        //    public int GheId { get; set; }
-        //    public string ViTri { get; set; }
-        //}
         public JsonResult ResetGhe()
         {
             var allSeats = db.Ghes.ToList();
             foreach (var ghe in allSeats)
             {
-                ghe.tinhTrang = "chua";
+                ghe.tinhTrang = "Chua";
             }
             db.SaveChanges();
             return Json(new { success = true, message = "Đã reset tất cả ghế!" });

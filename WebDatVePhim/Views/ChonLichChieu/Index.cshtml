@@ -54,6 +54,7 @@
             <th>Ngày Chiếu</th>
             <th>Thời Gian</th>
             <th>Phòng Chiếu</th>
+            <th>Số lượng ghế</th>
             <th>Chọn</th>
         </tr>
     </thead>
@@ -78,7 +79,7 @@
     </tbody>
 </table>
 <script>
- 
+
     function clearPhimSelectionsAndGoBack() {
          // Make an AJAX call to clear the bap nuoc selections
         $.ajax({
@@ -103,7 +104,8 @@
         rapListWrapper.scrollBy({ left: 200, behavior: 'smooth' });
     }
     function filterLichChieuByRap(rapId, element) {
-       
+        var selectedMovieId = '@ViewBag.SelectedMovieId';
+        var today = new Date().toISOString().split('T')[0];
         var rapItems = document.querySelectorAll('.rap-item');
         rapItems.forEach(item => {
             item.classList.remove('selected');
@@ -115,7 +117,7 @@
         $.ajax({
             url: '@Url.Action("FilterLichChieuByRap", "ChonLichChieu")',
             type: 'GET',
-            data: { rapId: rapId },
+            data: { rapId: rapId, movieId: selectedMovieId, currentDate: today  },
             success: function (response) {
                 $("#lichChieuBody").html(response);
                 $('.rap-item').removeClass('selected');

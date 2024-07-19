@@ -1,16 +1,23 @@
 ﻿@model IEnumerable<WebDatVePhim.Models.LichChieuPhim>
 
-@foreach (var item in Model.OrderBy(i => i.ngayChieu).ThenBy(l => l.thoiGianBatDau))
+@{ var seatInfo = ViewBag.SeatInfo as Dictionary<int, string>; }
+
+
+@foreach (var item in Model.Where(l => l.ngayChieu >= DateTime.Now).OrderBy(i => i.ngayChieu).ThenBy(l => l.thoiGianBatDau))
 {
 
-    <tr>
-        <td>@item.PhongChieu.Rap.tenRap</td>
-        <td>@item.PhongChieu.Rap.diaChiRap</td>
-        <td>@item.ngayChieu.GetValueOrDefault().ToString("dd/MM/yyyy")</td>
-        <td>@item.thoiGianBatDau.GetValueOrDefault().ToString("hh\\:mm") ~ @item.thoiGianKetThuc.GetValueOrDefault().ToString("hh\\:mm") </td>
-        <td>@item.PhongChieu.tenPhongChieu</td>
-        <td>
+<tr>
+    <td>@item.PhongChieu.Rap.tenRap</td>
+    <td>@item.PhongChieu.Rap.diaChiRap</td>
+    <td>@item.ngayChieu.GetValueOrDefault().ToString("dd/MM/yyyy")</td>
+    <td>@item.thoiGianBatDau.GetValueOrDefault().ToString("hh\\:mm") ~ @item.thoiGianKetThuc.GetValueOrDefault().ToString("hh\\:mm") </td>
+    <td>@item.PhongChieu.tenPhongChieu</td>
+    <td>@(seatInfo.ContainsKey(item.PhongChieu.id_PhongChieu) ? seatInfo[item.PhongChieu.id_PhongChieu] : "N/A")</td>
+    @*<td>
             <a href="@Url.Action("Index", "ChonGheNgoi", new { lichChieuId = item.id_LichChieuPhim })" class="btn btn-primary">Chọn</a>
-        </td>
-    </tr>
+        </td>*@
+    <td>
+        <a href="@Url.Action("Index", "ChonGheNgoi", new { phongChieuId = item.PhongChieu.id_PhongChieu,lichChieuId = item.id_LichChieuPhim })" class="btn btn-primary">Chọn</a>
+    </td>
+</tr>
 }

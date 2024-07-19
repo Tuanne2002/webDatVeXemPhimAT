@@ -31,25 +31,27 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_PhongChieu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rap.tenRap)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tenPhongChieu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.soLuongGhe)
-            </td>
-            <td>
-                @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { IdPhongChieu = item.id_PhongChieu }) |
-                @Html.ActionLink("Hiển thị", "HienThi", new { IdPhongChieu = item.id_PhongChieu }) |
-                @Html.ActionLink("Xóa", "XoaPhim", new { IdPhongChieu = item.id_PhongChieu })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id_PhongChieu)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Rap.tenRap)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tenPhongChieu)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.soLuongGhe) 
+    </td>
+   
+    
+    <td>
+        @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { IdPhongChieu = item.id_PhongChieu }) |
+        @Html.ActionLink("Hiển thị", "HienThi", new { IdPhongChieu = item.id_PhongChieu }) |
+        @Html.ActionLink("Xóa", "XoaPhim", new { IdPhongChieu = item.id_PhongChieu })
+    </td>
+</tr>
     }
 
 </table>

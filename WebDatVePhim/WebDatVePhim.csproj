@@ -2413,6 +2413,11 @@
     <Content Include="Views\QuanLyRap\HienThi.cshtml" />
     <Content Include="Views\QuanLyRap\ThemMoi.cshtml" />
     <Content Include="Views\QuanLyRap\XoaPhim.cshtml" />
+    <Content Include="Views\ChonGheNgoi\ChonKhuyenMai.cshtml" />
+    <Content Include="Views\QuanLyVe\_RevenueSummary.cshtml" />
+    <Content Include="Views\QuanLyVe\ThongKeDoanhThu.cshtml" />
+    <Content Include="Views\QuanLyVe\_RevenueMonth.cshtml" />
+    <Content Include="Views\QuanLyVe\_RevenueYear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,11 +6,17 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Quản lý vé</h2>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+</head>
 
-@*<p>
-        @Html.ActionLink("", "Create")
-    </p>*@
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
+<h2>Quản lý vé</h2>
+<button><a href="~/QuanLyVe/ThongKeDoanhThu"> Thống kê doanh thu</a></button>
+
 <table class="table">
     <tr>
         <th>
@@ -21,6 +27,12 @@
         </th>
         <th style="width:120px">
             Suất chiếu
+        </th>
+        <th>
+            Rạp
+        </th>
+        <th>
+            Phòng chiếu
         </th>
         <th>
             Vị trí ghế
@@ -37,7 +49,7 @@
         <th>
             Số tiền
         </th>
-        <th>
+        <th width="200px">
             Bắp nước
         </th>
         <th>
@@ -60,27 +72,33 @@
                 @(item.LichChieuPhim?.thoiGianBatDau?.ToString(@"hh\:mm") ?? "N/A") ~ @(item.LichChieuPhim?.thoiGianKetThuc?.ToString(@"hh\:mm") ?? "N/A")
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.LichChieuPhim.PhongChieu.Rap.tenRap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LichChieuPhim.PhongChieu.tenPhongChieu)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.viTriGhe)
             </td>
             <td>
                 @item.ngayDat.GetValueOrDefault().ToString("dd/MM/yyyy")
             </td>
             <td>
-              
+
                 @item.gioDat.GetValueOrDefault().ToString(@"hh\:mm")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.maDat)
             </td>
             <td>
-           
-                @item.soTien.GetValueOrDefault().ToString("#,###") 
+
+                @item.soTien.GetValueOrDefault().ToString("#,###")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_BapNuoc)
+                @Html.DisplayFor(modelItem => item.chiTietBapNuoc)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_KhuyenMai)
+                @Html.DisplayFor(modelItem => item.KhuyenMai.tenKhuyenMai)
             </td>
             <td>
                 @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { IdVe = item.id_Ve }) |

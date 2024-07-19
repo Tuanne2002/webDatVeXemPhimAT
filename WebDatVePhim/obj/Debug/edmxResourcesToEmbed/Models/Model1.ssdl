@@ -38,12 +38,12 @@
     <Property Name="id_KhuyenMai" Type="int" Nullable="false" />
     <Property Name="tenKhuyenMai" Type="nvarchar" MaxLength="255" />
     <Property Name="doiTuongApDung" Type="nvarchar" MaxLength="255" />
-    <Property Name="giaKhuyenMai" Type="nvarchar" MaxLength="255" />
     <Property Name="thoiGianBatDauKM" Type="datetime" />
     <Property Name="thoiGianKetThucKM" Type="datetime" />
     <Property Name="chiTietKhuyenMai" Type="nvarchar" MaxLength="255" />
     <Property Name="dieuKienApDung" Type="nvarchar" MaxLength="255" />
     <Property Name="hinhAnh" Type="nvarchar" MaxLength="255" />
+    <Property Name="giaKhuyenMai" Type="float" />
   </EntityType>
   <EntityType Name="LichChieuPhim">
     <Key>
@@ -55,6 +55,7 @@
     <Property Name="thoiGianBatDau" Type="time" Precision="7" />
     <Property Name="thoiGianKetThuc" Type="time" Precision="7" />
     <Property Name="ngayChieu" Type="date" />
+    <Property Name="id_Ghe" Type="int" />
   </EntityType>
   <EntityType Name="LoaiRap">
     <Key>
@@ -151,6 +152,8 @@
     <Property Name="soTien" Type="float" />
     <Property Name="id_BapNuoc" Type="int" />
     <Property Name="id_KhuyenMai" Type="int" />
+    <Property Name="chiTietBapNuoc" Type="nvarchar" MaxLength="255" />
+    <Property Name="tongTienBapNuoc" Type="int" />
   </EntityType>
   <EntityType Name="Ve_BapNuoc">
     <Key>
@@ -341,6 +344,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_LichChieuPhim_Ghe">
+    <End Role="Ghe" Type="Self.Ghe" Multiplicity="0..1" />
+    <End Role="LichChieuPhim" Type="Self.LichChieuPhim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ghe">
+        <PropertyRef Name="id_Ghe" />
+      </Principal>
+      <Dependent Role="LichChieuPhim">
+        <PropertyRef Name="id_Ghe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Rap_LoaiRap">
     <End Role="LoaiRap" Type="Self.LoaiRap" Multiplicity="0..1" />
     <End Role="Rap" Type="Self.Rap" Multiplicity="*" />
@@ -427,6 +442,10 @@
     <AssociationSet Name="FK__Ve_BapNuo__id_Ve__3B75D760" Association="Self.FK__Ve_BapNuo__id_Ve__3B75D760">
       <End Role="Ve" EntitySet="Ve" />
       <End Role="Ve_BapNuoc" EntitySet="Ve_BapNuoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LichChieuPhim_Ghe" Association="Self.FK_LichChieuPhim_Ghe">
+      <End Role="Ghe" EntitySet="Ghe" />
+      <End Role="LichChieuPhim" EntitySet="LichChieuPhim" />
     </AssociationSet>
     <AssociationSet Name="FK_Rap_LoaiRap" Association="Self.FK_Rap_LoaiRap">
       <End Role="LoaiRap" EntitySet="LoaiRap" />
