@@ -26,7 +26,9 @@ namespace WebDatVePhim.Models
         public Nullable<System.TimeSpan> thoiGianBatDau { get; set; }
         public Nullable<System.TimeSpan> thoiGianKetThuc { get; set; }
         public Nullable<System.DateTime> ngayChieu { get; set; }
+        public Nullable<int> id_Ghe { get; set; }
     
+        public virtual Ghe Ghe { get; set; }
         public virtual Phim Phim { get; set; }
         public virtual PhongChieu PhongChieu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

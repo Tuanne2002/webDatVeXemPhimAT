@@ -6,42 +6,54 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Quản lý vé</h2>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+</head>
 
-@*<p>
-        @Html.ActionLink("", "Create")
-    </p>*@
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
+<h2>Quản lý vé</h2>
+<button><a href="~/QuanLyVe/ThongKeDoanhThu"> Thống kê doanh thu</a></button>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_Ve)
+            ID vé
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_LichChieuPhim)
+            Tên phim
+        </th>
+        <th style="width:120px">
+            Suất chiếu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_Ghe)
+            Rạp
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().viTriGhe)
+            Phòng chiếu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().ngayDat)
+            Vị trí ghế
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().gioDat)
+            Ngày đặt
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().maDat)
+            Giờ đặt
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().soTien)
+            Mã đặt
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_BapNuoc)
+            Số tiền
+        </th>
+        <th width="200px">
+            Bắp nước
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_KhuyenMai)
+            Khuyến mãi
         </th>
         <th></th>
     </tr>
@@ -53,31 +65,40 @@
                 @Html.DisplayFor(modelItem => item.id_Ve)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_LichChieuPhim)
+                @Html.DisplayFor(modelItem => item.LichChieuPhim.Phim.tenPhim)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_Ghe)
+                @(item.LichChieuPhim?.ngayChieu?.ToString("dd/MM/yyyy") ?? "N/A") <br />
+                @(item.LichChieuPhim?.thoiGianBatDau?.ToString(@"hh\:mm") ?? "N/A") ~ @(item.LichChieuPhim?.thoiGianKetThuc?.ToString(@"hh\:mm") ?? "N/A")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LichChieuPhim.PhongChieu.Rap.tenRap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LichChieuPhim.PhongChieu.tenPhongChieu)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.viTriGhe)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ngayDat)
+                @item.ngayDat.GetValueOrDefault().ToString("dd/MM/yyyy")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.gioDat)
+
+                @item.gioDat.GetValueOrDefault().ToString(@"hh\:mm")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.maDat)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.soTien)
+
+                @item.soTien.GetValueOrDefault().ToString("#,###")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_BapNuoc)
+                @Html.DisplayFor(modelItem => item.chiTietBapNuoc)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_KhuyenMai)
+                @Html.DisplayFor(modelItem => item.KhuyenMai.tenKhuyenMai)
             </td>
             <td>
                 @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { IdVe = item.id_Ve }) |

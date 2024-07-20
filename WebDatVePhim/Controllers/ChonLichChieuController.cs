@@ -17,58 +17,70 @@ namespace WebDatVePhim.Controllers
         {
 
             var phim = db.Phims.Find(phimId);
-            var lichChieuList = db.LichChieuPhims.Where(l => l.id_Phim == phimId).ToList();
+            //var lichChieuList = db.LichChieuPhims.Where(l => l.id_Phim == phimId).ToList();
+            var lichChieuList = db.LichChieuPhims
+                .Include(l => l.PhongChieu)
+                .Include(l => l.PhongChieu.Ghes)
+                .Where(l => l.id_Phim == phimId)
+                .ToList();
             ViewBag.Phim = phim;
             var rapList = db.Raps.ToList();
             ViewBag.RapList = rapList;
-
-
+            ViewBag.SelectedMovieId = phimId;
+            var seatInfo = new Dictionary<int, string>();
+            foreach (var lichChieu in lichChieuList)
+            {
+                var phongChieu = lichChieu.PhongChieu;
+                var totalSeats = phongChieu.Ghes.Count();
+                var availableSeats = phongChieu.Ghes.Count(g => g.tinhTrang == "Chua");
+                seatInfo[phongChieu.id_PhongChieu] = $"{availableSeats}/{totalSeats}";
+            }
+            ViewBag.SeatInfo = seatInfo;
             return View(lichChieuList);
         }
        
         [HttpGet]
-        public ActionResult FilterLichChieuByRap(int rapId)
+        public ActionResult FilterLichChieuByRap(int rapId, int movieId, string currentDate)
         {
-
+            DateTime today = DateTime.Parse(currentDate);
             List<LichChieuPhim> lichChieuList;
-            
+            //var idPhongChieu = (int?)Session["idPhongChieu"];
             if (rapId == 0)
             {
-                // Lấy lịch chiếu của ngày gần nhất so với ngày hiện tại
-                var today = DateTime.Today;
                 lichChieuList = db.LichChieuPhims
-                                  .Include(l => l.PhongChieu)
-                                  .Where(l => l.ngayChieu >= today)
-                                  .OrderBy(l => l.ngayChieu)
-                                  .ThenBy(l => l.thoiGianBatDau)
-                                  .ToList();
+                    .Include(l => l.PhongChieu)
+                    .Include(l => l.PhongChieu.Ghes)
+                    .Where(l => l.ngayChieu >= today && l.id_Phim == movieId)
+                    .OrderBy(l => l.ngayChieu)
+                    .ThenBy(l => l.thoiGianBatDau)
+                    .ToList();
             }
             else
             {
-                // Lấy danh sách các PhongChieu có id_Rap trùng với rapId
-                var phongChieuList = db.PhongChieux.Where(pc => pc.id_Rap == rapId).ToList();
-
-                // Lấy danh sách các LichChieuPhim thuộc các PhongChieu này
-                lichChieuList = new List<LichChieuPhim>();
-                foreach (var phongChieu in phongChieuList)
-                {
-                    var lichChieuCuaPhong = db.LichChieuPhims
-                                              .Where(l => l.id_PhongChieu == phongChieu.id_PhongChieu)
-                                              .ToList();
-                    lichChieuList.AddRange(lichChieuCuaPhong);
-                }
+                lichChieuList = db.LichChieuPhims
+                    .Include(l => l.PhongChieu)
+                    .Include(l => l.PhongChieu.Ghes)
+                    .Where(l => l.PhongChieu.id_Rap == rapId && l.ngayChieu >= today && l.id_Phim == movieId)
+                    .OrderBy(l => l.ngayChieu)
+                    .ThenBy(l => l.thoiGianBatDau)
+                    .ToList();
             }
-
-
-            return PartialView("_LichChieuPartial", lichChieuList);
-         
+            var seatInfo = new Dictionary<int, string>();
+            foreach (var lichChieu in lichChieuList)
+            {
+                var phongChieu = lichChieu.PhongChieu;
+                var totalSeats = phongChieu.Ghes.Count();
+                var availableSeats = phongChieu.Ghes.Count(g => g.tinhTrang == "Chua");
+                seatInfo[phongChieu.id_PhongChieu] = $"{availableSeats}/{totalSeats}";
+            }
+            ViewBag.SeatInfo = seatInfo;
+            return PartialView("_LichChieuPartial", lichChieuList);        
         }
         [HttpPost]
         public ActionResult ClearPhimSelections()
         {
             // Clear the session variables for selected popcorn and drinks
             Session.Remove("PhimId");
-
             return Json(new { success = true });
         }
 

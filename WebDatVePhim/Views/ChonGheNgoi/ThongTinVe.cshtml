@@ -19,28 +19,48 @@
 <p><b>Giờ chiếu: </b> @Model.ThoiGianBatDau ~ @Model.ThoiGianKetThuc</p>
 <p><b>Phòng chiếu: </b> @Model.TenPhongChieu</p>
 <p><b>Vị trí ghế: </b> @Model.ViTriGhe</p>
-<p><b>Giá vé: </b> @Model.GiaVe VND</p>
+<p><b>Giá vé: </b> @Model.GiaVe.ToString("#,###.##") VND</p>
 
 @if (Model.BapNuocSelections != null && Model.BapNuocSelections.Any())
 {
-    <h3>Thông Tin Bắp Nước</h3>
+    <h4>Thông Tin Bắp Nước</h4>
 
     foreach (var bapNuoc in Model.BapNuocSelections)
     {
-        var total = @bapNuoc.GiaTien * @bapNuoc.SoLuong;
-        <p>@bapNuoc.TenBapNuoc - Số lượng: @bapNuoc.SoLuong - Giá: @total VND</p>
+        var total = bapNuoc.GiaTien * bapNuoc.SoLuong;
+        <p><b>@bapNuoc.TenBapNuoc</b>  - <b>Số lượng:</b> @bapNuoc.SoLuong - <b>Giá:</b>  @total.ToString("#,###.##") VND</p>
     }
 
 }
 
+@if (Model.KhuyenMaiSelections != null && Model.KhuyenMaiSelections.Any())
+{
+    <h4>Khuyến Mãi</h4>
+    <div id="khuyenMaiList">
+        @foreach (var khuyenMai in Model.KhuyenMaiSelections)
+        {
+            <div>
+                <p>
+                    <input type="checkbox" class="khuyenMaiCheckbox" data-discount="@khuyenMai.giaKhuyenMai" checked="checked" />
+                    @khuyenMai.tenKhuyenMai
+                    <button class="removeKhuyenMai" data-id="@khuyenMai.id_KhuyenMai">Xóa</button>
+                </p>
+            </div>
+        }
+    </div>
+}
+<h3><strong>Tổng số tiền: </strong><span id="tongSoTien">@Model.TongSoTien.ToString("#,###")</span> VND</h3>
 
-<h3><strong>Tổng số tiền: </strong>@Model.TongSoTien VND</h3>
+<div>
+    <button id="chon-khuyen-mai-btn">Chọn khuyến mãi</button>
+</div>
 
 <div>
     <button id="thanh-toan-btn">Thanh toán</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+
     $(document).ready(function () {
         $("#thanh-toan-btn").on("click", function () {
             $.ajax({
@@ -60,6 +80,61 @@
                 }
             });
         });
+
+    });
+    $(document).ready(function () {
+        updateTotalPrice();
+
+        $(".khuyenMaiCheckbox").on("change", function () {
+            updateTotalPrice();
+        });
+    });
+    function formatNumber(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    function updateTotalPrice() {
+        var originalPrice = @Model.GiaVe;
+        var bapNuocPrice = @Model.BapNuocSelections.Sum(bn => bn.GiaTien * bn.SoLuong);
+        var totalPrice = originalPrice + bapNuocPrice;
+
+        var totalDiscountPercentage = 0;
+        $(".khuyenMaiCheckbox:checked").each(function () {
+            var discount = parseFloat($(this).data("discount")) || 0;
+            totalDiscountPercentage += discount;
+        });
+
+        var discountAmount = totalPrice * (totalDiscountPercentage / 100);
+        var finalPrice = totalPrice - discountAmount;
+
+        /*  $("#tongSoTien").text(finalPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));*/
+        var formattedPrice = finalPrice.toFixed(2).replace(/(\.00$|(\.\d)0$)/, '');
+        formattedPrice = formatNumber(formattedPrice);
+
+        $("#tongSoTien").text(formattedPrice);
+    }
+    $(document).ready(function () {
+        // Xóa khuyến mãi đã chọn
+        $("#khuyenMaiList").on("click", ".removeKhuyenMai", function () {
+            var khuyenMaiId = $(this).data("id");
+
+            $.ajax({
+                url: '@Url.Action("XoaKhuyenMai", "ChonGheNgoi")',
+                type: 'POST',
+                data: { id: khuyenMaiId },
+                success: function (response) {
+                    if (response.success) {
+                        alert("Đã xóa khuyến mãi thành công!");
+                        // Refresh lại trang để cập nhật lại thông tin
+                        window.location.reload();
+                    } else {
+                        alert("Có lỗi xảy ra khi xóa khuyến mãi: " + response.message);
+                    }
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra khi xóa khuyến mãi!");
+                }
+            });
+        });
     });
     function clearBapNuocSelectionsAndGoBack() {
     // Make an AJAX call to clear the bap nuoc selections
@@ -75,6 +150,24 @@
             }
         });
     }
+    function clearKhuyenMaiSelectionsAndGoBack() {
+        $.ajax({
+            url: '@Url.Action("ClearKhuyenMaiSelections", "ChonGheNgoi")',
+            type: 'POST',
+            success: function (response) {
+                window.history.back();
+            },
+            error: function () {
+                alert("Có lỗi xảy ra khi xóa lựa chọn khuyến mãi!");
+            }
+        });
+    }
+    $(document).ready(function () {
+        $("#chon-khuyen-mai-btn").on("click", function () {
+            window.location.href = '@Url.Action("ChonKhuyenMai", "ChonGheNgoi")';
+        });
+    });
+
 </script>
 <style>
     td {
@@ -83,5 +176,11 @@
 
     .total {
         margin-top: 10px;
+    }
+
+    input.khuyenMaiCheckbox {
+        width: 17px;
+        height: 17px;
+        vertical-align: middle;
     }
 </style>

@@ -12,22 +12,22 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.id_Rap)
+            ID rạp
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.id_Rap)
         </dd>
+
         <dt>
-            @Html.DisplayNameFor(model => model.id_loaiRap)
+            Loại rạp
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.id_loaiRap)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.tenRap)
+            Tên rạp
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.diaChiRap)
+            Địa chỉ
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.sdtRap)
+            Số điện thoại
         </dt>
 
         <dd>
@@ -51,18 +51,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.emailRap)
+            Email
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.emailRap)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.hinhAnh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.hinhAnh)
         </dd>
     </dl>
 
@@ -70,7 +63,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
             @Html.ActionLink("Quay lại trang quản lý rạp", "Index")
         </div>
     }

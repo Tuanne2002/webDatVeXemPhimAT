@@ -13,7 +13,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.id_BapNuoc)
+            ID bắp nước
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tenBapNuoc)
+            Tên bắp nước
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.chiTietBapNuoc)
+            Chi tiết
         </dt>
 
         <dd>
@@ -37,19 +37,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.giaTien)
+            Giá
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.giaTien)
+            @Model.giaTien.GetValueOrDefault().ToString("#,###")
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.hinhAnh)
+            Hình ảnh
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.hinhAnh)
+            <div id="hinhAnh"><img src="@Url.Content("~/img/"+Model.hinhAnh)" width="150" height="150" /></div>
         </dd>
 
     </dl>
@@ -58,7 +58,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
             @Html.ActionLink("Quay lại trang quản lý bắp nước", "Index")
         </div>
     }

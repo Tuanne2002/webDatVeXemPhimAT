@@ -15,47 +15,49 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_BapNuoc)
+            ID bắp nước
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().tenBapNuoc)
+            Hình ảnh
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().chiTietBapNuoc)
+            Tên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().giaTien)
+            Chi tiết
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().hinhAnh)
+            Giá
         </th>
+
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_BapNuoc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tenBapNuoc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.chiTietBapNuoc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.giaTien)
-            </td>
-            <td>
-                <div id="hinhAnh"><img src="@Url.Content("~/img/"+item.hinhAnh)" width="150" height="150" /></div>
-            </td>
-            <td>
-                @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @IdBapNuoc = item.id_BapNuoc }) |
-                @Html.ActionLink("Hiển thị", "HienThi", new { @IdBapNuoc = item.id_BapNuoc }) |
-                @Html.ActionLink("Xóa", "XoaPhim", new { @IdBapNuoc = item.id_BapNuoc })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id_BapNuoc)
+    </td>
+    <td>
+        <div id="hinhAnh"><img src="@Url.Content("~/img/"+item.hinhAnh)" width="150" height="150" /></div>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tenBapNuoc)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.chiTietBapNuoc)
+    </td>
+    <td>
+        @item.giaTien.GetValueOrDefault().ToString("#,###")
+    </td>
+
+    <td>
+        @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @IdBapNuoc = item.id_BapNuoc }) |
+        @Html.ActionLink("Hiển thị", "HienThi", new { @IdBapNuoc = item.id_BapNuoc }) |
+        @Html.ActionLink("Xóa", "XoaPhim", new { @IdBapNuoc = item.id_BapNuoc })
+    </td>
+</tr>
     }
 
 </table>

@@ -19,19 +19,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_Ghe)
+            ID ghế
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_PhongChieu)
+            Phòng chiếu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().soHangGhe)
+            Rạp
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().soGheTrongHang)
+            Hàng ghế
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().tinhTrang)
+            Số ghế 
+        </th>
+        <th>
+            Tình trạng
         </th>
         <th></th>
     </tr>
@@ -43,7 +46,10 @@
                 @Html.DisplayFor(modelItem => item.id_Ghe)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_PhongChieu)
+                @Html.DisplayFor(modelItem => item.PhongChieu.tenPhongChieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhongChieu.Rap.tenRap)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.soHangGhe)
@@ -96,25 +102,26 @@ Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageC
 
 
         $("#reset-btn").on("click", function() {
-        $.ajax({
-            url: '@Url.Action("ResetGhe", "QuanLyGheNgoi")',
-            type: 'POST',
-            success: function(response) {
-                if (response.success) {
-                    $(".ghe").removeClass("booked").css("background-color", "green");
-                    alert(response.message);
-                    location.reload();
-                    @**@
-                } else {
-                    alert("Có lỗi xảy ra khi reset ghế!");
+            $.ajax({
+                url: '@Url.Action("ResetGhe", "QuanLyGheNgoi")',
+                type: 'POST',
+                success: function(response) {
+                    if (response.success) {
+                        $(".ghe").removeClass("booked").css("background-color", "green");
+                        alert(response.message);
+                        location.reload();
+                        @**@
+                    } else {
+                        alert("Có lỗi xảy ra khi reset ghế!");
+                    }
+                },
+                error: function() {
+                    alert("Có lỗi xảy ra khi gửi yêu cầu reset ghế!");
                 }
-            },
-            error: function() {
-                alert("Có lỗi xảy ra khi gửi yêu cầu reset ghế!");
-            }
+            });
         });
     });
-});
+ 
 </script>
 
 <style>

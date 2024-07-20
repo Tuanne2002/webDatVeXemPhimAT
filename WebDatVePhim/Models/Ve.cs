@@ -32,6 +32,8 @@ namespace WebDatVePhim.Models
         public Nullable<double> soTien { get; set; }
         public Nullable<int> id_BapNuoc { get; set; }
         public Nullable<int> id_KhuyenMai { get; set; }
+        public string chiTietBapNuoc { get; set; }
+        public Nullable<int> tongTienBapNuoc { get; set; }
     
         public virtual BapNuoc BapNuoc { get; set; }
         public virtual Ghe Ghe { get; set; }

@@ -246,8 +246,8 @@ D:\HK3\DoAn_WebDatVePhim\DoAn\WebDatVePhim\bin\System.Web.WebPages.Razor.xml
 D:\HK3\DoAn_WebDatVePhim\DoAn\WebDatVePhim\bin\Newtonsoft.Json.xml
 D:\HK3\DoAn_WebDatVePhim\DoAn\WebDatVePhim\bin\Antlr3.Runtime.pdb
 D:\HK3\DoAn_WebDatVePhim\DoAn\WebDatVePhim\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\HK3\DoAn_WebDatVePhim\DoAn\WebDatVePhim\obj\Debug\WebDatVePhim.csproj.AssemblyReference.cache
 D:\HK3\DoAn_WebDatVePhim\DoAn\WebDatVePhim\obj\Debug\WebDatVePhim.csproj.CoreCompileInputs.cache
 D:\HK3\DoAn_WebDatVePhim\DoAn\WebDatVePhim\obj\Debug\WebDatVePhim.csproj.CopyComplete
 D:\HK3\DoAn_WebDatVePhim\DoAn\WebDatVePhim\obj\Debug\WebDatVePhim.dll
 D:\HK3\DoAn_WebDatVePhim\DoAn\WebDatVePhim\obj\Debug\WebDatVePhim.pdb
+D:\HK3\DoAn_WebDatVePhim\DoAn\WebDatVePhim\obj\Debug\WebDatVePhim.csproj.AssemblyReference.cache

@@ -18,6 +18,7 @@ namespace WebDatVePhim.Models
         public Ghe()
         {
             this.Ves = new HashSet<Ve>();
+            this.LichChieuPhims = new HashSet<LichChieuPhim>();
         }
     
         public int id_Ghe { get; set; }
@@ -29,5 +30,7 @@ namespace WebDatVePhim.Models
         public virtual PhongChieu PhongChieu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ve> Ves { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LichChieuPhim> LichChieuPhims { get; set; }
     }
 }

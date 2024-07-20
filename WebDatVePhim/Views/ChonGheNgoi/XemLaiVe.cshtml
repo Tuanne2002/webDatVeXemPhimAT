@@ -18,48 +18,33 @@
 <p><b>Giờ chiếu: </b> @Model.ThoiGianBatDau ~ @Model.ThoiGianKetThuc</p>
 <p><b>Phòng chiếu: </b> @Model.TenPhongChieu</p>
 <p><b>Vị trí ghế: </b> @Model.ViTriGhe</p>
-<p><b>Giá vé: </b> @Model.GiaVe VND</p>
+<p><b>Giá vé: </b> @Model.GiaVe.ToString("#,###.##") VND</p>
+
 
 @if (Model.BapNuocSelections != null && Model.BapNuocSelections.Any())
 {
-    <h3>Thông Tin Bắp Nước</h3>
+    <h4>Thông Tin Bắp Nước</h4>
 
     foreach (var bapNuoc in Model.BapNuocSelections)
     {
         var total = @bapNuoc.GiaTien * @bapNuoc.SoLuong;
-        <p>@bapNuoc.TenBapNuoc - Số lượng: @bapNuoc.SoLuong - Giá: @total VND</p>
+        <p><b>@bapNuoc.TenBapNuoc</b>  - <b>Số lượng:</b> @bapNuoc.SoLuong - <b>Giá:</b>  @total.ToString("#,###.##") VND</p>
     }
 
 }
+@if (Model.KhuyenMaiSelections != null && Model.KhuyenMaiSelections.Any())
+{
+    <h4>Khuyến Mãi</h4>
+    foreach (var khuyenMai in Model.KhuyenMaiSelections)
+    {
+        <p>@khuyenMai.tenKhuyenMai </p>
+    }
+}
 
-
-<h3><strong>Tổng số tiền: </strong>@Model.TongSoTien VND</h3>
-
-@*<div>
-        <button id="thanh-toan-btn">Thanh toán</button>
-    </div>*@
-
+<h3><strong>Tổng số tiền: </strong>@Model.TongSoTien.ToString("#,###.##") VND</h3>
+@*<p><b>Mã vé: </b> @Model.maDat</p>*@
+<p><b>Mã vé: </b><span class="ticket-code-container"><span class="ticket-code">@Model.maDat</span></span></p>
 <script>
-    @*$(document).ready(function () {
-        $("#thanh-toan-btn").on("click", function () {
-            $.ajax({
-                url: '@Url.Action("ThanhToanVe", "ChonGheNgoi")',
-                type: 'POST',
-                contentType: 'application/json; charset=utf-8',
-                success: function (response) {
-                    if (response.success) {
-                        alert("Thanh toán thành công!");
-                        window.location.href = '@Url.Action("XemLaiVe", "ChonGheNgoi")?veId=' + response.veId;
-                    } else {
-                        alert("Có lỗi xảy ra khi thanh toán: " + response.message);
-                    }
-                },
-                error: function () {
-                    alert("Có lỗi xảy ra khi thanh toán!");
-                }
-            });
-        });
-    });*@
     function GoBack() {
         window.location.href = '@Url.Action("Index", "ChonPhim")';
     }
@@ -71,5 +56,20 @@
 
     .total {
         margin-top: 10px;
+    }
+
+    .ticket-code-container {
+        border: 2px solid #333; /* Đường viền của khung */
+        border-radius: 8px; /* Bo góc khung */
+        padding: 10px; /* Khoảng cách giữa đường viền và nội dung */
+        background-color: #f9f9f9; /* Màu nền của khung */
+        display: inline-block; /* Để khung không chiếm toàn bộ chiều ngang */
+        font-family: Arial, sans-serif; /* Font chữ của nội dung */
+    }
+
+    .ticket-code {
+        font-size: 30px; /* Kích thước chữ của mã vé */
+        font-weight: bold; /* Đậm chữ */
+        color: #333; /* Màu chữ */
     }
 </style>

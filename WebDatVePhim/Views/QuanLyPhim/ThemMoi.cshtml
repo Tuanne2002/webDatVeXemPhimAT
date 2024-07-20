@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ThemMoi</h2>
+<h2>Thêm mới</h2>
 @*Thêm thuộc tính cho form để upload ảnh*@
 @using (Html.BeginForm("ThemMoi", "QuanLyPhim", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
@@ -16,7 +16,7 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(model => model.id_Phim, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.id_Phim,"ID phim", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.id_Phim, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.id_Phim, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.tenPhim, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.tenPhim,"Tên phim", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.tenPhim, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.tenPhim, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ngayKhoiChieu, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ngayKhoiChieu,"Ngày khởi chiếu", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.ngayKhoiChieu, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.ngayKhoiChieu, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.thoiLuong, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.thoiLuong,"Thời lượng", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.thoiLuong, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.thoiLuong, "", new { @class = "text-danger" })
@@ -48,7 +48,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.theLoai, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.theLoai,"Thể loại", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.theLoai, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.theLoai, "", new { @class = "text-danger" })
@@ -57,7 +57,7 @@
 
 
     <div class="form-group">
-        @Html.LabelFor(model => model.anhPhim, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.anhPhim,"Hình ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <input type="file" name="fileUpLoad" />
             @ViewBag.ThongBao
@@ -65,7 +65,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.daoDien, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.daoDien,"Đạo diễn", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.daoDien, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.daoDien, "", new { @class = "text-danger" })
@@ -73,7 +73,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.danhGia, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.danhGia,"Đánh giá", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.danhGia, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.danhGia, "", new { @class = "text-danger" })
@@ -81,7 +81,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.quocGia, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.quocGia,"Quốc gia", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.quocGia, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.quocGia, "", new { @class = "text-danger" })
@@ -89,7 +89,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.trailer, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.trailer,"Trailer", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.trailer, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.trailer, "", new { @class = "text-danger" })
@@ -97,14 +97,14 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.dienVien, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.dienVien,"Diễn viên", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.dienVien, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.dienVien, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.tomTatPhim, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.tomTatPhim,"Tóm tắt phim", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <textarea name="tomTatPhim"></textarea>
         </div>
@@ -113,7 +113,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Thêm mới" class="btn btn-default" />
             
         </div>
     </div>

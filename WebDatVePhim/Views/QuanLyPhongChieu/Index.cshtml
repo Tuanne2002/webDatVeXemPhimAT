@@ -15,41 +15,43 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_PhongChieu)
+            ID phòng chiếu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_Rap)
+            Rạp
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().tenPhongChieu)
+            Phòng chiếu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().soLuongGhe)
+            Số lượng ghế
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_PhongChieu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_Rap)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tenPhongChieu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.soLuongGhe)
-            </td>
-            <td>
-                @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { IdPhongChieu = item.id_PhongChieu }) |
-                @Html.ActionLink("Hiển thị", "HienThi", new { IdPhongChieu = item.id_PhongChieu }) |
-                @Html.ActionLink("Xóa", "XoaPhim", new { IdPhongChieu = item.id_PhongChieu })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id_PhongChieu)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Rap.tenRap)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tenPhongChieu)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.soLuongGhe) 
+    </td>
+   
+    
+    <td>
+        @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { IdPhongChieu = item.id_PhongChieu }) |
+        @Html.ActionLink("Hiển thị", "HienThi", new { IdPhongChieu = item.id_PhongChieu }) |
+        @Html.ActionLink("Xóa", "XoaPhim", new { IdPhongChieu = item.id_PhongChieu })
+    </td>
+</tr>
     }
 
 </table>

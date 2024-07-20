@@ -23,12 +23,12 @@ namespace WebDatVePhim.Models
         public int id_KhuyenMai { get; set; }
         public string tenKhuyenMai { get; set; }
         public string doiTuongApDung { get; set; }
-        public string giaKhuyenMai { get; set; }
         public Nullable<System.DateTime> thoiGianBatDauKM { get; set; }
         public Nullable<System.DateTime> thoiGianKetThucKM { get; set; }
         public string chiTietKhuyenMai { get; set; }
         public string dieuKienApDung { get; set; }
         public string hinhAnh { get; set; }
+        public Nullable<double> giaKhuyenMai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ve> Ves { get; set; }

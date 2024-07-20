@@ -15,71 +15,73 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().id_KhuyenMai)
+            ID khuyến mãi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().tenKhuyenMai)
+            Hình ảnh
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().doiTuongApDung)
+            Tên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().giaKhuyenMai)
+            Đối tượng áp dụng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().thoiGianBatDauKM)
+            Giá khuyến mãi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().thoiGianKetThucKM)
+            Thời gian bắt đầu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().chiTietKhuyenMai)
+            Thời gian kết thúc
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().dieuKienApDung)
+            Chi tiết
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().hinhAnh)
+            Điều kiện áp dụng
         </th>
+
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_KhuyenMai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tenKhuyenMai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.doiTuongApDung)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.giaKhuyenMai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.thoiGianBatDauKM)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.thoiGianKetThucKM)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.chiTietKhuyenMai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dieuKienApDung)
-            </td>
-            <td>
-                <div id=" hinhAnh"><img src="@Url.Content("~/img/"+item.hinhAnh)" width="150" height="150" /></div>
-            </td>
-            <td>
-                @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @IdKhuyenMai = item.id_KhuyenMai }) |
-                @Html.ActionLink("Hiển thị", "HienThi", new { @IdKhuyenMai = item.id_KhuyenMai }) |
-                @Html.ActionLink("Xóa", "XoaPhim", new { @IdKhuyenMai = item.id_KhuyenMai })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id_KhuyenMai)
+    </td>
+    <td>
+        <div id=" hinhAnh"><img src="@Url.Content("~/img/"+item.hinhAnh)" width="150" height="150" /></div>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tenKhuyenMai)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.doiTuongApDung)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.giaKhuyenMai)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.thoiGianBatDauKM)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.thoiGianKetThucKM)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.chiTietKhuyenMai)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.dieuKienApDung)
+    </td>
+
+    <td>
+        @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @IdKhuyenMai = item.id_KhuyenMai }) |
+        @Html.ActionLink("Hiển thị", "HienThi", new { @IdKhuyenMai = item.id_KhuyenMai }) |
+        @Html.ActionLink("Xóa", "XoaPhim", new { @IdKhuyenMai = item.id_KhuyenMai })
+    </td>
+</tr>
     }
 
 </table>

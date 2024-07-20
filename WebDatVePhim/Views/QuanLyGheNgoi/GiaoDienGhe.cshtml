@@ -119,25 +119,26 @@
 
         $("#reset-btn").on("click", function() {
             $.ajax({
-                url: '@Url.Action("ResetGhe", "ChonGheNgoi")',
+                url: '@Url.Action("ResetGhe", "QuanLyGheNgoi")',
                 type: 'POST',
                 success: function(response) {
                     if (response.success) {
-                        $(".ghe").each(function () {
-                            $(this).removeClass("selected").removeClass("booked").css("background-color", "green");
-                        });
+                        $(".ghe").removeClass("booked").css("background-color", "green");
                         alert(response.message);
                         location.reload();
+                        @**@
                     } else {
-                        alert("Có lỗi xảy ra!");
+                        alert("Có lỗi xảy ra khi reset ghế!");
                     }
                 },
                 error: function() {
-                    alert("Có lỗi xảy ra!");
+                    alert("Có lỗi xảy ra khi gửi yêu cầu reset ghế!");
                 }
             });
         });
     });
+    
+
 </script>
 
 <style>

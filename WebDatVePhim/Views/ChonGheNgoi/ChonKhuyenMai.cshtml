@@ -1,0 +1,55 @@
+﻿@model WebDatVePhim.Controllers.ChonGheNgoiController.ChonKhuyenMaiViewModel
+
+@{
+    ViewBag.Title = "Chọn Khuyến Mãi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chọn Khuyến Mãi</h2>
+<form id="khuyenMaiForm">
+    @foreach (var khuyenMai in Model.KhuyenMaiSelections)
+    {
+        <div>
+            <input type="checkbox" name="khuyenMaiIds" value="@khuyenMai.id_KhuyenMai" />
+            @khuyenMai.tenKhuyenMai 
+        </div>
+    }
+    <button type="button" id="saveKhuyenMai">Lưu Khuyến Mãi</button>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#saveKhuyenMai").on("click", function () {
+            var selectedKhuyenMai = [];
+            $("input[name='khuyenMaiIds']:checked").each(function () {
+                selectedKhuyenMai.push($(this).val());
+            });
+
+            $.ajax({
+                url: '@Url.Action("LuuKhuyenMai", "ChonGheNgoi")',
+                type: 'POST',
+                data: JSON.stringify(selectedKhuyenMai),
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+                    if (response.success) {
+                        alert("Lưu khuyến mãi thành công!");
+                        window.location.href = '@Url.Action("ThongTinVe", "ChonGheNgoi")';
+                    } else {
+                        alert("Có lỗi xảy ra khi lưu khuyến mãi: " + response.message);
+                    }
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra khi lưu khuyến mãi!");
+                }
+            });
+        });
+        $("input[name='khuyenMaiIds']").on("change", function () {
+            if ($(this).prop("checked")) {
+                $("input[name='khuyenMaiIds']").not(this).prop("disabled", true);
+            } else {
+                $("input[name='khuyenMaiIds']").prop("disabled", false);
+            }
+        });
+    });
+</script>

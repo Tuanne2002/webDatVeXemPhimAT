@@ -14,20 +14,38 @@
 </div>
 <h2>Chọn ghế ngồi </h2>
 <div class="screen">MÀN HÌNH</div>
+
 <div id="gheList">
     @foreach (var ghe in Model)
-    {
-
+    {        
         <div class="ghe @(ghe.tinhTrang == "DaDat" ? "booked" : "")" data-id="@ghe.id_Ghe" style="background-color:@(ghe.tinhTrang == "DaDat" ? "red" : "green")">
             @ghe.soHangGhe@ghe.soGheTrongHang
-        </div>
-
+        </div>       
     }
 </div>
+<div class="legend">
+    @*<div>
+            <span class="ghe available" style="background-color: green; display: inline-block; width: 40px; height: 40px;"></span>
+            Ghế trống
+        </div>*@
+    <div class="legend-item">
+        <span style="background-color: green; display: inline-block; width: 40px; height: 40px; border-radius:10px;" ></span>
+        Ghế trống
+    </div>
+    <div class="legend-item">
+        <span style="background-color: red; display: inline-block; width: 40px; height: 40px;  border-radius: 10px; "></span>
+        Ghế đã đặt
+    </div>
+    <div class="legend-item">
+        <span style="background-color: green; border: 2px solid blue; display: inline-block; width: 40px; height: 40px;border-radius: 10px; "></span>
+        Ghế bạn chọn
+    </div>
+</div>
+
 @*<button id="reset-btn">Reset Ghế</button>*@
 <button id="dat-ve-btn">Đặt Vé</button>
 
-<script>
+<script>  
     $(document).ready(function() {
         var selectedSeats = [];
         var lichChieuId = @ViewBag.LichChieuId;
@@ -39,7 +57,6 @@
                 alert("Ghế này đã được đặt rồi!");
                 return;
             }
-
             if ($(this).hasClass("selected")) {
                 $(this).removeClass("selected");
                 selectedSeats = selectedSeats.filter(function(item) {
@@ -67,10 +84,7 @@
                 contentType: 'application/json; charset=utf-8',
                 success: function(response) {
                     var successfulBookings = [];
-
                     var failedBookings = [];
-
-
                     response.forEach(function(result) {
                         if (result.success) {
                             successfulBookings.push({ GheId: result.gheId, ViTri: result.viTriGhe });
@@ -84,9 +98,6 @@
                             }
                         }
                     });
-
-
-
                     if (failedBookings.length > 0) {
                         alert("Có lỗi xảy ra với các ghế: " + failedBookings.map(r => r.gheId).join(", "));
                     }
@@ -94,7 +105,6 @@
                         window.location.href = '@Url.Action("ChonBapNuoc", "ChonGheNgoi")';
                     }
                     selectedSeats = [];
-                    
                 },
                 error: function() {
                     alert("Có lỗi xảy ra!");
@@ -102,7 +112,7 @@
             });
         });
     });
-      function clearLichChieuSelectionsAndGoBack() {
+    function clearLichChieuSelectionsAndGoBack() {
          // Make an AJAX call to clear the bap nuoc selections
         $.ajax({
             url: '@Url.Action("ClearLichChieuSelections", "ChonGheNgoi")', // Adjust the URL and action as needed
@@ -117,8 +127,19 @@
         });
     }
 </script>
-<style>   
-    
+<style>
+    .legend {
+        display: flex;
+        align-items: flex-end;
+        text-align: center;
+        justify-content: center;
+    }
+    .legend-item {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        margin-top: 20px;
+    }
     .ghe.booked {
         background-color: red;
         cursor: not-allowed;
@@ -144,6 +165,7 @@
     }
 
     .ghe {
+        border-radius: 10px;
         width: 60px;
         height: 60px;
         display: inline-block;
@@ -160,4 +182,6 @@
         margin: 20px;
         font-weight: bold;
     }
+   
+
 </style>

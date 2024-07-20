@@ -13,63 +13,43 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.id_Phim)
+            ID phim
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.id_Phim)
         </dd>
+        <dt>
+            Hình ảnh
+        </dt>
+
+        <dd>
+            <div id=" AnhBia"><img src="@Url.Content("~/img/"+Model.anhPhim)" width="150" height="150" /></div>
+        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tenPhim)
+            Tên phim
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.tenPhim)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.ngayKhoiChieu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ngayKhoiChieu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.thoiLuong)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.thoiLuong)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.theLoai)
+            Thể loại
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.theLoai)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.tomTatPhim)
+            Diễn viên
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tomTatPhim)
+            @Html.DisplayFor(model => model.dienVien)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.anhPhim)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.anhPhim)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.daoDien)
+            Đạo diễn
         </dt>
 
         <dd>
@@ -77,7 +57,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.danhGia)
+            Tóm tắt phim
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tomTatPhim)
+        </dd>
+
+        <dt>
+            Thời lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thoiLuong)
+        </dd>
+
+        <dt>
+            Đánh giá
         </dt>
 
         <dd>
@@ -85,7 +81,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.quocGia)
+            Ngày khởi chiếu
+        </dt>
+
+        <dd>
+            @Model.ngayKhoiChieu.GetValueOrDefault().ToString("dd/MM/yyyy")
+        </dd>
+
+        <dt>
+            Quốc gia
         </dt>
 
         <dd>
@@ -93,20 +97,13 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.trailer)
+            Trailer
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.trailer)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dienVien)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.dienVien)
-        </dd>
 
     </dl>
 

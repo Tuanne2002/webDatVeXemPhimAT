@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.id_loaiRap)
+            ID loại rạp
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tenLoaiRap)
+            Tên loại rạp
         </dt>
 
         <dd>
@@ -28,11 +28,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.hinhAnh)
+            Hình ảnh
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.hinhAnh)
+            <div id="hinhAnh"><img src="@Url.Content("~/img/"+Model.hinhAnh)" width="150" height="150" /></div>
         </dd>
 
     </dl>
@@ -41,7 +41,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
             @Html.ActionLink("Quay lại trang quản lý loại rạp", "Index")
         </div>
     }
