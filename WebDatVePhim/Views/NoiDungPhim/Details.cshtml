@@ -11,7 +11,7 @@
 
         .movie-details img {
             max-width: 250px;
-            max-height: 380px;
+            max-height: 400px;
             margin-right: 20px; /* Khoảng cách giữa ảnh và nội dung */
         }
 
@@ -39,14 +39,12 @@
         }
 </style>
 
-@*note thu de test*@
-@*note thu de test*@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
             <div class="page-content">
                 <div class="movie-details">
-                    <img src="@Url.Content(" ~ /img/" + Model.anhPhim)" alt="@Model.tenPhim" class="img-fluid mb-3" />
+                    <img src="@Url.Content("~/img/" + @Model.anhPhim)" alt="@Model.tenPhim" class="img-fluid mb-3" />
                     <div>
                         <h1>@Model.tenPhim</h1>
                         <p><strong>Ngày khởi chiếu:</strong> @(Convert.ToDateTime(Model.ngayKhoiChieu).ToString("dd/MM/yyyy"))</p>
@@ -59,10 +57,51 @@
                         <p><strong>Diễn viên:</strong> @Model.dienVien</p>
                         <div class="button-group">
                             <a href="@Model.trailer" target="_blank" class="btn btn-primary">Xem trailer</a>
-                            <a href="@Url.Action(" Index", "ChonPhim" )" class="btn_chonPhim">Mua Vé</a>
+                            <a href="@Url.Action("Index", "ChonLichChieu", new { phimId = Model.id_Phim })" class="btn_chonPhim">Mua Vé</a>
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <h3>Bình luận và Đánh giá</h3>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form asp-action="AddComment" method="post">
+                            <input type="hidden" name="id_Phim" value="@Model.id_Phim" />
+                            <div>
+                                <label>Nội dung:</label>
+                                <textarea name="noiDung" required></textarea>
+                            </div>
+                            <div>
+                                <label>Đánh giá (sao):</label>
+                                <input type="number" name="soSao" min="1" max="5" required />
+                            </div>
+                            <button type="submit">Thêm Bình Luận và Đánh Giá</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <p>Bạn cần <a href="~/TrangAcount/Login">đăng nhập</a> để thêm bình luận và đánh giá.</p>
+                    }
+                </div>
+
+                <div>
+                    <h3>Các Bình Luận và Đánh Giá</h3>
+                    @foreach (var bl in Model.BinhLuans)
+                    {
+                        <div>
+                            @if (bl.NguoiDung != null)
+                            {
+                                <p><strong>@bl.NguoiDung.taiKhoan</strong>: @bl.noiDung (Đánh giá: @bl.soSao sao)</p>
+                            }
+                            else
+                            {
+                                <p>@bl.noiDung (Đánh giá: @bl.soSao sao)</p>
+                            }
+                        </div>
+                    }
+                </div>
+
             </div>
         </div>
     </div>

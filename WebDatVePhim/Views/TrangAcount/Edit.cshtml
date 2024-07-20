@@ -1,0 +1,104 @@
+﻿@model WebDatVePhim.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Layout/DungChung.cshtml";
+}
+
+<div class="container profile-container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-custom text-white">
+                    <h2 class="mb-0">Chỉnh sửa thông tin</h2>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Edit", "TrangAcount", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            @Html.TextBoxFor(model => model.emailND, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="form-group">
+                            <label for="hoVaTen">Họ và tên:</label>
+                            @Html.TextBoxFor(model => model.hoVaTen, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="dienThoai">Số điện thoại:</label>
+                            @Html.TextBoxFor(model => model.dienThoai, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="diaChi">Địa chỉ:</label>
+                            @Html.TextBoxFor(model => model.diaChi, new { @class = "form-control" })
+                        </div>
+                       
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn custom-btn btn-small">Lưu Thay Đổi</button>
+                            <a href="@Url.Action("Profile", "TrangAcount")" class="btn custom-btn btn-small">Quay lại</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .profile-container {
+        padding-top: 10px;
+    }
+
+    .bg-custom {
+        background-color: #1f2122;
+    }
+
+    .card-header {
+        text-align: center;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+    }
+
+    .custom-btn {
+        background-color: #e75e8d !important;
+        border-color: #e75e8d !important;
+        color: #fff !important;
+        padding: 5px 10px; /* Adjust padding to fit the content */
+        font-size: 14px; /* Adjust font size if needed */
+        line-height: 1.5; /* Adjust line height */
+        border-radius: 4px; /* Adjust border radius */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .custom-btn:hover {
+            background-color: darken(#e75e8d, 10%) !important;
+            border-color: darken(#e75e8d, 10%) !important;
+            color: #fff !important;
+        }
+
+    .d-flex {
+        margin-top: 20px;
+    }
+
+        
+
+            .d-flex .btn:first-child {
+                text-align: left;
+            }
+
+            .d-flex .btn:last-child {
+                text-align: right;
+            }
+
+    .btn-small {
+        padding: 5px 10px; /* Adjust padding to fit the content */
+    }
+</style>

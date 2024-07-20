@@ -1,0 +1,86 @@
+﻿@model WebDatVePhim.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Layout/DungChung.cshtml";
+}
+
+<div class="container profile-container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-custom text-white">
+                    <h2 class="mb-0">Trang Cá Nhân</h2>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center mb-4">Xin chào, @Model.taiKhoan</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Email:</strong> @Model.emailND
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Họ và tên:</strong> @Model.hoVaTen
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Số điện thoại:</strong> @Model.dienThoai
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Địa chỉ:</strong> @Model.diaChi
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Số bình luận:</strong> @Model.soBinhLuan
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Vé đã mua:</strong> @Model.veDaMua
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Phim đã xem:</strong> @Model.phimDaXem
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="@Url.Action("Logout", "TrangAcount")" class="btn custom-btn">Đăng Xuất</a>
+                    <a href="@Url.Action("Edit", "TrangAcount")" class="btn custom-btn">Chỉnh sửa thông tin</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+   
+
+    .bg-custom {
+        background-color: #1f2122;
+    }
+
+    .card-header {
+        text-align: center;
+    }
+
+    .card-body ul {
+        padding-left: 0;
+    }
+
+    .list-group-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .list-group-item strong {
+            font-weight: 600;
+        }
+
+    .custom-btn {
+        background-color: #e75e8d !important;
+        border-color: #e75e8d !important;
+        color: #fff !important;
+    }
+
+        .custom-btn:hover {
+            background-color: darken(#e75e8d, 10%) !important;
+            border-color: darken(#e75e8d, 10%) !important;
+            color: #fff !important;
+        }
+</style>

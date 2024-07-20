@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebDatVePhim.Models.NguoiDung>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách người dùng</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.Label("Tìm kiếm theo tên đăng nhập:")
+        @Html.TextBox("searchString", null, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+}
+
+<table class="table">
+    <tr>
+        <th>Tên đăng nhập</th>
+        <th>Email</th>
+        <th>Mật Khẩu</th>
+        <th>Hành động</th>
+    </tr>
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.taiKhoan</td>
+            <td>@user.emailND</td>
+            <td>@user.matKhau</td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = user.id_NguoiDung }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = user.id_NguoiDung })
+            </td>
+        </tr>
+    }
+</table>

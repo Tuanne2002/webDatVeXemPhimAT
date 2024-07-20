@@ -1,0 +1,31 @@
+﻿@model IEnumerable<WebDatVePhim.Models.BinhLuan>
+
+@{
+    ViewBag.Title = "Danh sách bình luận";
+    Layout = "~/Views/Layout/DungChung.cshtml";
+
+}
+
+<h2>Danh sách bình luận</h2>
+
+<table class="table">
+    <tr>
+        <th>Người dùng</th>
+        <th>Phim</th>
+        <th>Nội dung</th>
+        <th>Số sao</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            
+            <td>@item.Phim.tenPhim</td>
+            <td>@item.noiDung</td>
+            <td>@item.soSao</td>
+        </tr>
+    }
+</table>
+
+<a href="@Url.Action("Create")" class="btn btn-primary">Thêm bình luận mới</a>

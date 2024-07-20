@@ -122,11 +122,13 @@ img {
 Global Styles
 --------------------------------------------- 
 */
+
+
 html,
 body {
     background: #1f2122;
     font-family: 'Poppins', sans-serif;
-}
+    }
 
     body .page-content {
         margin-top: 110px;
@@ -1680,6 +1682,7 @@ Responsive Style
 
 body {
     overflow-x: hidden;
+    
 }
 
 @media (max-width: 767px) {

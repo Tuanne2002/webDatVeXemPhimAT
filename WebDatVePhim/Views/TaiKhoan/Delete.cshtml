@@ -1,0 +1,51 @@
+﻿@model WebDatVePhim.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h3>Bạn có chắc là muốn xóa tài khoản này?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.taiKhoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.taiKhoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emailND)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emailND)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.matKhau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.matKhau)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Quay về", "Index")
+        </div>
+    }
+</div>

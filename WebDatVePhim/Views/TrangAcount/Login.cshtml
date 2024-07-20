@@ -1,151 +1,88 @@
-﻿@model WebDatVePhim.Models.Phim
-@{ ViewBag.Title = "TrangAcount";
-               
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+﻿@model WebDatVePhim.Models.NguoiDung
 
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Layout/DungChung.cshtml";
 }
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: white;
-    }
-
-    .form-container {
-        display: flex;
-        justify-content: space-between;
-        width: 900px;
-        box-shadow: 0 4px 10px 0 rgba(0,0,0,0.1);
-    }
-
-    .sign-in-section, .sign-up-section {
-        padding: 20px;
-        border-radius: 10px;
-    }
-
-    .sign-in-section {
-        background-color: #fff;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .sign-up-section {
-        background-color: #e75e8d;
-        color: #fff;
-        flex: 1;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        border-bottom-left-radius: 100px;
-        border-top-left-radius: 100px;
-    }
-
-    input[type="email"], input[type="password"] {
-        width: calc(100% - 20px);
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    button {
-        color: #e75e8d;
-        width: calc(100% - 20px);
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-    }
-
-    .sign-in-btn {
-        background-color: #e75e8d;
-        color: #1f2122;
-    }
-
-    .sign-up-btn {
-        background-color: #6c5ce7;
+    .form-horizontal .form-group label {
         color: white;
-        border: 1px solid #fff;
     }
 
-    .social-icons {
-        display: flex;
-        justify-content: space-around;
+
+
+    .form-horizontal .form-group {
+        margin-left: 500px;
+        margin-right: 500px;
+    }
+
+    .btn-default {
+        background-color: #e75e8d;
+        color: white;
+        border: none;
+    }
+
+    .text-danger {
+        color: #ff0000 !important;
+    }
+
+    .form-title {
+        text-align: center;
+        margin-top: 50px;
+        color: white;
         margin-bottom: 20px;
     }
 
-    .social-icon {
-        color: #e75e8d;
-        margin: 0 10px;
-        text-decoration: none;
-        font-size: 24px;
-    }
-
-        .social-icon img {
-            width: 20px;
-            height: 20px;
-        }
-
-    h2 {
-        text-align: center;
-        
-        color: #e75e8d;
-    }
-
-    h1 {
-        text-align: center;
+    .login-link {
+        margin-left: 550px;
         color: white;
     }
-    element.style {
-        color: white;
-    }
-
-    a {
-        color: #e75e8d;
-        
-        text-decoration: none;
-    }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    /* Add additional styles here to match the design */
 </style>
 
-<div class="container">
-    <div class="form-container">
-        <div class="sign-in-section">
-            <h2>Đăng Nhập</h2>
-            <div class="social-icons">
-                <!-- Social icons here -->
-                <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
-                <div class="social-icon"><i class="fab fa-google"></i></div>
-                <div class="social-icon"><i class="fab fa-linkedin-in"></i></div>
-                <div class="social-icon"><i class="fab fa-instagram"></i></div>
+<h2 class="form-title">Đăng nhập</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+       
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.taiKhoan, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.taiKhoan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.taiKhoan, "", new { @class = "text-danger" })
             </div>
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <a href="#">Quên mật khẩu?</a>
-            <button class="sign-in-btn">Đăng Nhập</button>
         </div>
-        <div class="sign-up-section">
-            <h1>Xin Chào, Bạn!</h1>
-            <p>Đăng ký tài khoản để có thể dễ dàng sử dụng nhé!!!</p>
-            <form action="/TrangAcount/Register" method="get">
-                <button type="submit" class="sign-up-button">Đăng Ký</button>
-            </form>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.matKhau, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.matKhau, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.matKhau, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Đăng Nhập" class="btn btn-default" />
+            </div>
         </div>
     </div>
+}
+
+<div class="login-link">
+    <h8>Bạn chưa có tài khoản?</h8>
+    @Html.ActionLink("Đăng Ký", "Register")
 </div>
+
+

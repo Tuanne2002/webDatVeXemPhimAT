@@ -1,0 +1,21 @@
+﻿@model List<WebDatVePhim.Models.Phim>
+
+@{
+    ViewBag.Title = "Kết quả tìm kiếm";
+}
+
+<h2>Kết quả tìm kiếm</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <ul>
+        @foreach (var phim in Model)
+        {
+            <li>@phim.tenPhim</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Không có kết quả phù hợp.</p>
+}

@@ -1,0 +1,59 @@
+﻿@model List<WebDatVePhim.Models.Phim>
+
+@if (Model != null && Model.Count > 0)
+{
+    <p>Kết quả tìm kiếm: <span style="color:red;">@ViewBag.SearchKeyword</span></p>
+    <div class="search-results">
+        @foreach (var phim in Model)
+        {
+            <div class="search-result-item">
+                <img src="@Url.Content("~/img/" + phim.anhPhim)" alt="Hình ảnh phim" class="search-result-img" />
+                <div class="search-result-info">
+                    <h5>@phim.tenPhim</h5>
+                    
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>Không có kết quả phù hợp.</p>
+}
+
+<style>
+    .search-results {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .search-result-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #1a1a1a;
+        border-radius: 5px;
+    }
+
+    .search-result-img {
+        width: 100px;
+        height: 100px;
+        margin-right: 15px;
+    }
+
+    .search-result-info {
+        color: white;
+    }
+
+        .search-result-info h5 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .search-result-info p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            color: #aaa;
+        }
+</style>
