@@ -1,49 +1,51 @@
 ﻿@model WebDatVePhim.Controllers.ChonGheNgoiController.ChonBapNuocViewModel
 @{
     ViewBag.Title = "ChonBapNuoc";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-   
+    Layout = "~/Views/Layout/DungChung.cshtml";
 }
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<div class="btnBack">
-    <button class="btnBack" style="border:none" onclick="clearGheNgoiSelectionsAndGoBack()">
-        <img src="~/img/btnBack.png" style="width:20px;height:20px" />
-        <span class="Back" style="font-size: 20px; vertical-align: middle;">Chọn ghế ngồi</span>
-    </button>
-</div>
-<h2>Chọn Bắp Nước</h2>
+<div class="container">
+    <div class="btnBack">
+        <button class="btnBack" onclick="clearGheNgoiSelectionsAndGoBack()">
+            <img src="~/img/btnBack.png" alt="Back" />
+            <span class="Back">Chọn ghế ngồi</span>
+        </button>
+    </div>
+    <h2>Chọn Bắp Nước</h2>
 
-<table>
-    <thead>
-        <tr>
-            <th></th>
-            <th>Tên Bắp Nước</th>
-            <th>Chi tiết</th>
-            <th>Giá Tiền</th>
-            <th>Số Lượng</th>
-            <th>Thành Tiền</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.BapNuocSelections)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td> <img src="@Url.Content("~/img/" + item.hinhAnh)" alt="@item.TenBapNuoc" style="width:100px;height:100px;" /></td>
-                <td>@item.TenBapNuoc</td>
-                <td>@item.chiTietBapNuoc</td>
-                <td>@item.GiaTien.ToString("#,###") VND</td>
-                <td>
-                    <button type="button" class="btn-minus" data-id="@item.Id">-</button>
-                    <span id="quantity-@item.Id">0</span>
-                    <button type="button" class="btn-plus" data-id="@item.Id">+</button>
-                </td>
-                <td id="total-@item.Id">0</td>
+                <th></th>
+                <th>Tên Bắp Nước</th>
+                <th>Chi tiết</th>
+                <th>Giá Tiền</th>
+                <th>Số Lượng</th>
+                <th>Thành Tiền</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.BapNuocSelections)
+            {
+                <tr>
+                    <td><img src="@Url.Content("~/img/" + item.hinhAnh)" alt="@item.TenBapNuoc" class="product-image" /></td>
+                    <td>@item.TenBapNuoc</td>
+                    <td>@item.chiTietBapNuoc</td>
+                    <td>@item.GiaTien.ToString("#,###") VND</td>
+                    <td>
+                        <button type="button" class="btn-minus" data-id="@item.Id">-</button>
+                        <span id="quantity-@item.Id">0</span>
+                        <button type="button" class="btn-plus" data-id="@item.Id">+</button>
+                    </td>
+                    <td id="total-@item.Id">0</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<button type="button" id="confirm">Xác nhận</button>
+    <button type="button" id="confirm">Xác nhận</button>
+</div>
+
 <script>
     // Khai báo biến global cart để lưu các bắp nước đã chọn
     var cart = [];
@@ -51,48 +53,40 @@
         if (amount === 0) {
             return "0";
         }
-        return amount.toLocaleString('vi-VN', { /*style: 'currency', currency: 'VND',*/ minimumFractionDigits: 3, maximumFractionDigits:3  });
-    
+        return amount.toLocaleString('vi-VN', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + " VND";
     }
+
     // Hàm cập nhật tổng tiền khi thay đổi số lượng
     function updateTotal(id, quantity, price) {
-
-    var total = quantity * price;
-        document.getElementById('total-' + id).innerText = /*total*/ formatCurrency(total) +" VND" ;
+        var total = quantity * price;
+        document.getElementById('total-' + id).innerText = formatCurrency(total);
     }
 
-// Xử lý khi click nút +
+    // Xử lý khi click nút +
     document.querySelectorAll('.btn-plus').forEach(button => {
         button.addEventListener('click', function() {
             var id = this.getAttribute('data-id');
             var quantityElement = document.getElementById('quantity-' + id);
             var quantity = parseInt(quantityElement.innerText) + 1;
             quantityElement.innerText = quantity;
-            var tenBapNuoc = this.parentElement.parentElement.querySelector('td:nth-child(2)').innerText.trim();
-           /* var price = parseFloat(this.parentElement.previousElementSibling.innerText);*/
             var priceString = this.parentElement.previousElementSibling.innerText.replace(/[^0-9.-]+/g, '');
             var price = parseFloat(priceString);
 
             // Tìm kiếm bắp nước có Id trong cart
             var itemIndex = cart.findIndex(i => i.Id === id);
-
             if (itemIndex !== -1) {
                 // Nếu đã tồn tại trong cart, cập nhật số lượng
                 cart[itemIndex].SoLuong = quantity;
             } else {
-
                 // Nếu chưa tồn tại, thêm mới vào cart
-                cart.push({ Id: id, SoLuong: quantity, TenBapNuoc: tenBapNuoc, GiaTien: price  });
+                cart.push({ Id: id, SoLuong: quantity, GiaTien: price });
             }
-
-            // Lấy giá của bắp nước
-            var price = parseFloat(this.parentElement.previousElementSibling.innerText);
 
             updateTotal(id, quantity, price);
         });
     });
 
-// Xử lý khi click nút -
+    // Xử lý khi click nút -
     document.querySelectorAll('.btn-minus').forEach(button => {
         button.addEventListener('click', function() {
             var id = this.getAttribute('data-id');
@@ -104,7 +98,6 @@
 
             // Tìm kiếm bắp nước có Id trong cart
             var itemIndex = cart.findIndex(i => i.Id === id);
-
             if (itemIndex !== -1) {
                 // Nếu đã tồn tại trong cart, cập nhật số lượng
                 cart[itemIndex].SoLuong = quantity;
@@ -115,9 +108,6 @@
                 }
             }
 
-            // Lấy giá của bắp nước
-            var price = parseFloat(this.parentElement.previousElementSibling.innerText);
-           
             updateTotal(id, quantity, price);
         });
     });
@@ -142,15 +132,15 @@
             }
         });
     });
-     function clearGheNgoiSelectionsAndGoBack() {
-    // Make an AJAX call to clear the bap nuoc selections
+
+    function clearGheNgoiSelectionsAndGoBack() {
+        // Make an AJAX call to clear the bap nuoc selections
         $.ajax({
-            url: '@Url.Action("ClearGheNgoiSelections", "ChonGheNgoi")', // Adjust the URL and action as needed
+            url: '@Url.Action("ClearGheNgoiSelections", "ChonGheNgoi")',
             type: 'POST',
             success: function(response) {
                 // After clearing the selections, navigate back
                 window.history.back();
-
             },
             error: function() {
                 alert("Có lỗi xảy ra khi xóa lựa chọn ghế ngồi!");
@@ -158,18 +148,90 @@
         });
     }
 </script>
-<style>
-    td {
-        width: 150px;
-        text-align: center;
-    }
-    th {
-        text-align: center;
-    }
-    button#confirm {
-        margin: 20px;
-        text-align: center;
-        width: 100px;
-    }
-</style>
 
+<style>
+    .container {
+        padding: 20px;
+        color: white; /* Màu chữ trắng cho toàn bộ container */
+    }
+
+    .btnBack {
+        margin-bottom: 20px;
+    }
+
+        .btnBack button {
+            display: flex;
+            align-items: center;
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: white; /* Màu chữ trắng cho nút quay lại */
+        }
+
+        .btnBack img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .btnBack .Back {
+            font-size: 20px;
+            vertical-align: middle;
+        }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: white; /* Màu chữ trắng cho tiêu đề */
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            color: white; /* Màu chữ trắng cho bảng */
+        }
+
+        .table th {
+            background-color: #333;
+        }
+
+    .product-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    button {
+        padding: 5px 10px;
+        margin: 0 2px;
+        font-size: 16px;
+        color: white; /* Màu chữ trắng cho các nút */
+        background-color: #555;
+        border: none;
+        border-radius: 5px;
+    }
+
+        button:hover {
+            background-color: #777;
+        }
+
+    #confirm {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white; /* Màu chữ trắng cho nút xác nhận */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        #confirm:hover {
+            background-color: #0056b3;
+        }
+</style>

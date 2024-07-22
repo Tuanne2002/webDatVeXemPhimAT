@@ -43,12 +43,12 @@
           <Property Name="id_KhuyenMai" Type="int" Nullable="false" />
           <Property Name="tenKhuyenMai" Type="nvarchar" MaxLength="255" />
           <Property Name="doiTuongApDung" Type="nvarchar" MaxLength="255" />
-          <Property Name="giaKhuyenMai" Type="nvarchar" MaxLength="255" />
           <Property Name="thoiGianBatDauKM" Type="datetime" />
           <Property Name="thoiGianKetThucKM" Type="datetime" />
           <Property Name="chiTietKhuyenMai" Type="nvarchar" MaxLength="255" />
           <Property Name="dieuKienApDung" Type="nvarchar" MaxLength="255" />
           <Property Name="hinhAnh" Type="nvarchar" MaxLength="255" />
+          <Property Name="giaKhuyenMai" Type="float" />
         </EntityType>
         <EntityType Name="LichChieuPhim">
           <Key>
@@ -60,6 +60,7 @@
           <Property Name="thoiGianBatDau" Type="time" Precision="7" />
           <Property Name="thoiGianKetThuc" Type="time" Precision="7" />
           <Property Name="ngayChieu" Type="date" />
+          <Property Name="id_Ghe" Type="int" />
         </EntityType>
         <EntityType Name="LoaiRap">
           <Key>
@@ -146,6 +147,8 @@
           <Property Name="soTien" Type="float" />
           <Property Name="id_BapNuoc" Type="int" />
           <Property Name="id_KhuyenMai" Type="int" />
+          <Property Name="chiTietBapNuoc" Type="nvarchar" MaxLength="255" />
+          <Property Name="tongTienBapNuoc" Type="int" />
         </EntityType>
         <EntityType Name="Ve_BapNuoc">
           <Key>
@@ -336,6 +339,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LichChieuPhim_Ghe">
+          <End Role="Ghe" Type="Self.Ghe" Multiplicity="0..1" />
+          <End Role="LichChieuPhim" Type="Self.LichChieuPhim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ghe">
+              <PropertyRef Name="id_Ghe" />
+            </Principal>
+            <Dependent Role="LichChieuPhim">
+              <PropertyRef Name="id_Ghe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Rap_LoaiRap">
           <End Role="LoaiRap" Type="Self.LoaiRap" Multiplicity="0..1" />
           <End Role="Rap" Type="Self.Rap" Multiplicity="*" />
@@ -422,6 +437,10 @@
             <End Role="Ve" EntitySet="Ve" />
             <End Role="Ve_BapNuoc" EntitySet="Ve_BapNuoc" />
           </AssociationSet>
+          <AssociationSet Name="FK_LichChieuPhim_Ghe" Association="Self.FK_LichChieuPhim_Ghe">
+            <End Role="Ghe" EntitySet="Ghe" />
+            <End Role="LichChieuPhim" EntitySet="LichChieuPhim" />
+          </AssociationSet>
           <AssociationSet Name="FK_Rap_LoaiRap" Association="Self.FK_Rap_LoaiRap">
             <End Role="LoaiRap" EntitySet="LoaiRap" />
             <End Role="Rap" EntitySet="Rap" />
@@ -468,6 +487,7 @@
           <Property Name="tinhTrang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PhongChieu" Relationship="Self.FK__Ghe__id_PhongChi__2C3393D0" FromRole="Ghe" ToRole="PhongChieu" />
           <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_Ghe__398D8EEE" FromRole="Ghe" ToRole="Ve" />
+          <NavigationProperty Name="LichChieuPhims" Relationship="Self.FK_LichChieuPhim_Ghe" FromRole="Ghe" ToRole="LichChieuPhim" />
         </EntityType>
         <EntityType Name="KhuyenMai">
           <Key>
@@ -476,12 +496,12 @@
           <Property Name="id_KhuyenMai" Type="Int32" Nullable="false" />
           <Property Name="tenKhuyenMai" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="doiTuongApDung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="giaKhuyenMai" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="thoiGianBatDauKM" Type="DateTime" Precision="3" />
           <Property Name="thoiGianKetThucKM" Type="DateTime" Precision="3" />
           <Property Name="chiTietKhuyenMai" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="dieuKienApDung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="hinhAnh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="giaKhuyenMai" Type="Double" />
           <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_KhuyenMai__3B75D760" FromRole="KhuyenMai" ToRole="Ve" />
         </EntityType>
         <EntityType Name="LichChieuPhim">
@@ -494,6 +514,8 @@
           <Property Name="thoiGianBatDau" Type="Time" Precision="7" />
           <Property Name="thoiGianKetThuc" Type="Time" Precision="7" />
           <Property Name="ngayChieu" Type="DateTime" Precision="0" />
+          <Property Name="id_Ghe" Type="Int32" />
+          <NavigationProperty Name="Ghe" Relationship="Self.FK_LichChieuPhim_Ghe" FromRole="LichChieuPhim" ToRole="Ghe" />
           <NavigationProperty Name="Phim" Relationship="Self.FK__LichChieu__id_Ph__30F848ED" FromRole="LichChieuPhim" ToRole="Phim" />
           <NavigationProperty Name="PhongChieu" Relationship="Self.FK__LichChieu__id_Ph__31EC6D26" FromRole="LichChieuPhim" ToRole="PhongChieu" />
           <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__id_LichChieu__38996AB5" FromRole="LichChieuPhim" ToRole="Ve" />
@@ -596,6 +618,8 @@
           <Property Name="soTien" Type="Double" />
           <Property Name="id_BapNuoc" Type="Int32" />
           <Property Name="id_KhuyenMai" Type="Int32" />
+          <Property Name="chiTietBapNuoc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="tongTienBapNuoc" Type="Int32" />
           <NavigationProperty Name="BapNuoc" Relationship="Self.FK__Ve__id_BapNuoc__3A81B327" FromRole="Ve" ToRole="BapNuoc" />
           <NavigationProperty Name="Ghe" Relationship="Self.FK__Ve__id_Ghe__398D8EEE" FromRole="Ve" ToRole="Ghe" />
           <NavigationProperty Name="KhuyenMai" Relationship="Self.FK__Ve__id_KhuyenMai__3B75D760" FromRole="Ve" ToRole="KhuyenMai" />
@@ -683,6 +707,18 @@
               <PropertyRef Name="id_Ghe" />
             </Principal>
             <Dependent Role="Ve">
+              <PropertyRef Name="id_Ghe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LichChieuPhim_Ghe">
+          <End Role="Ghe" Type="Self.Ghe" Multiplicity="0..1" />
+          <End Role="LichChieuPhim" Type="Self.LichChieuPhim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ghe">
+              <PropertyRef Name="id_Ghe" />
+            </Principal>
+            <Dependent Role="LichChieuPhim">
               <PropertyRef Name="id_Ghe" />
             </Dependent>
           </ReferentialConstraint>
@@ -845,6 +881,10 @@
             <End Role="Ghe" EntitySet="Ghes" />
             <End Role="Ve" EntitySet="Ves" />
           </AssociationSet>
+          <AssociationSet Name="FK_LichChieuPhim_Ghe" Association="Self.FK_LichChieuPhim_Ghe">
+            <End Role="Ghe" EntitySet="Ghes" />
+            <End Role="LichChieuPhim" EntitySet="LichChieuPhims" />
+          </AssociationSet>
           <AssociationSet Name="FK__Ve__id_KhuyenMai__3B75D760" Association="Self.FK__Ve__id_KhuyenMai__3B75D760">
             <End Role="KhuyenMai" EntitySet="KhuyenMais" />
             <End Role="Ve" EntitySet="Ves" />
@@ -932,12 +972,12 @@
                 <ScalarProperty Name="id_KhuyenMai" ColumnName="id_KhuyenMai" />
                 <ScalarProperty Name="tenKhuyenMai" ColumnName="tenKhuyenMai" />
                 <ScalarProperty Name="doiTuongApDung" ColumnName="doiTuongApDung" />
-                <ScalarProperty Name="giaKhuyenMai" ColumnName="giaKhuyenMai" />
                 <ScalarProperty Name="thoiGianBatDauKM" ColumnName="thoiGianBatDauKM" />
                 <ScalarProperty Name="thoiGianKetThucKM" ColumnName="thoiGianKetThucKM" />
                 <ScalarProperty Name="chiTietKhuyenMai" ColumnName="chiTietKhuyenMai" />
                 <ScalarProperty Name="dieuKienApDung" ColumnName="dieuKienApDung" />
                 <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
+                <ScalarProperty Name="giaKhuyenMai" ColumnName="giaKhuyenMai" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -950,6 +990,7 @@
                 <ScalarProperty Name="thoiGianBatDau" ColumnName="thoiGianBatDau" />
                 <ScalarProperty Name="thoiGianKetThuc" ColumnName="thoiGianKetThuc" />
                 <ScalarProperty Name="ngayChieu" ColumnName="ngayChieu" />
+                <ScalarProperty Name="id_Ghe" ColumnName="id_Ghe" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1043,6 +1084,8 @@
                 <ScalarProperty Name="soTien" ColumnName="soTien" />
                 <ScalarProperty Name="id_BapNuoc" ColumnName="id_BapNuoc" />
                 <ScalarProperty Name="id_KhuyenMai" ColumnName="id_KhuyenMai" />
+                <ScalarProperty Name="chiTietBapNuoc" ColumnName="chiTietBapNuoc" />
+                <ScalarProperty Name="tongTienBapNuoc" ColumnName="tongTienBapNuoc" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

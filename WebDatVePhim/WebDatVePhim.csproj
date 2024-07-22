@@ -61,6 +61,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -2117,12 +2118,15 @@
     <Content Include="Content\Css\animate.css" />
     <Content Include="Content\Css\at.css" />
     <Content Include="Content\Css\BapNuoc.css" />
+    <Content Include="Content\Css\bootstrap.min.css" />
     <Content Include="Content\Css\ChonDiaChiRap.css" />
     <Content Include="Content\Css\ChonGheNgoi.css" />
     <Content Include="Content\Css\ChonViTri.css" />
+    <Content Include="Content\Css\demo.css" />
     <Content Include="Content\Css\DungChung.css" />
     <Content Include="Content\Css\fontawesome.css" />
     <Content Include="Content\Css\LichChieu.css" />
+    <Content Include="Content\Css\light-bootstrap-dashboard.css" />
     <Content Include="Content\Css\NoiDungPhim.css" />
     <Content Include="Content\Css\owl.css" />
     <Content Include="Content\Css\RapPhim.css" />
@@ -2316,6 +2320,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Shared\Admin.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2420,6 +2425,8 @@
     <Content Include="Views\TrangAcount\Profile.cshtml" />
     <Content Include="Views\TrangAcount\Edit.cshtml" />
     <Content Include="Views\TaiKhoan\Edit.cshtml" />
+    <Content Include="Views\NoiDungPhim\AddComment.cshtml" />
+    <Content Include="Views\ChonGheNgoi\ChonKhuyenMai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

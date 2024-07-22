@@ -36,8 +36,13 @@ namespace WebDatVePhim.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userName = User.Identity.Name;
-                var user = db.NguoiDungs.FirstOrDefault(u => u.taiKhoan == userName);
+                var taiKhoan = Session["TaiKhoan"] as string;
+                if (string.IsNullOrEmpty(taiKhoan))
+                {
+                    return RedirectToAction("Login", "TrangAcount");
+                }
+
+                var user = db.NguoiDungs.FirstOrDefault(u => u.taiKhoan == taiKhoan);
                 if (user != null)
                 {
                     var comment = new BinhLuan
@@ -45,14 +50,19 @@ namespace WebDatVePhim.Controllers
                         id_Phim = id_Phim,
                         id_NguoiDung = user.id_NguoiDung,
                         noiDung = noiDung,
-                        soSao = soSao,
+                        soSao = soSao
                     };
+
                     db.BinhLuans.Add(comment);
                     db.SaveChanges();
                     return RedirectToAction("Details", new { id = id_Phim });
                 }
             }
+
             return RedirectToAction("Details", new { id = id_Phim });
         }
+
+
+
     }
 }

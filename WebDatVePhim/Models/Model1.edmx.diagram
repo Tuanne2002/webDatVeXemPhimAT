@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="467ce96929014c09a0b0bca0bba3ec21" Name="Diagram1">
+      <Diagram DiagramId="1fed6ef7a7a240d6934e71445539dba4" Name="Diagram1">
         <EntityTypeShape EntityType="DatVeXemPhimATModel.BapNuoc" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.BinhLuan" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatVeXemPhimATModel.Ghe" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatVeXemPhimATModel.Ghe" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.KhuyenMai" Width="1.5" PointX="6" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatVeXemPhimATModel.LichChieuPhim" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatVeXemPhimATModel.LichChieuPhim" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.LoaiRap" Width="1.5" PointX="1.5" PointY="14.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.NguoiDung" Width="1.5" PointX="10.5" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.Phim" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.PhongChieu" Width="1.5" PointX="3.75" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.Rap" Width="1.5" PointX="1.5" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.ThanhToan" Width="1.5" PointX="10.5" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatVeXemPhimATModel.Ve" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatVeXemPhimATModel.Ve" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DatVeXemPhimATModel.Ve_BapNuoc" Width="1.5" PointX="13.5" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_BapNuoc__3A81B327" ManuallyRouted="false" />
         <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve_BapNuo__id_Ba__3F466844" ManuallyRouted="false" />
@@ -24,6 +24,7 @@
         <AssociationConnector Association="DatVeXemPhimATModel.FK__BinhLuan__id_Phi__46E78A0C" ManuallyRouted="false" />
         <AssociationConnector Association="DatVeXemPhimATModel.FK__Ghe__id_PhongChi__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_Ghe__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="DatVeXemPhimATModel.FK_LichChieuPhim_Ghe" ManuallyRouted="false" />
         <AssociationConnector Association="DatVeXemPhimATModel.FK__Ve__id_KhuyenMai__3B75D760" ManuallyRouted="false" />
         <AssociationConnector Association="DatVeXemPhimATModel.FK__LichChieu__id_Ph__30F848ED" ManuallyRouted="false" />
         <AssociationConnector Association="DatVeXemPhimATModel.FK__LichChieu__id_Ph__31EC6D26" ManuallyRouted="false" />

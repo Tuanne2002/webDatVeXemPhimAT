@@ -1,62 +1,66 @@
-﻿@model WebDatVePhim.Controllers.ChonGheNgoiController.XemLaiVeViewModel
+﻿﻿@model WebDatVePhim.Controllers.ChonGheNgoiController.XemLaiVeViewModel
 
 @{
     ViewBag.Title = "ThongTinVe";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Layout/DungChung.cshtml";
 }
 
 <div class="btnBack">
     <button class="btnBack" style="border:none" onclick="clearBapNuocSelectionsAndGoBack()">
         <img src="~/img/btnBack.png" style="width:20px;height:20px" />
-        <span class="Back" style="font-size: 20px; vertical-align: middle;">Chọn bắp nước</span>
+        <span class="Back" style="font-size: 15px; color: white; vertical-align: middle;">Chọn bắp nước</span>
     </button>
 </div>
-<h2>Thông tin vé</h2>
-<p><b>Tên rạp: </b>@Model.TenRap</p>
-<p><b>Địa chỉ: </b>@Model.DiaChiRap</p>
-<p><b>Phim: </b> @Model.TenPhim</p>
-<p><b>Ngày chiếu: </b> @Model.NgayChieu</p>
-<p><b>Giờ chiếu: </b> @Model.ThoiGianBatDau ~ @Model.ThoiGianKetThuc</p>
-<p><b>Phòng chiếu: </b> @Model.TenPhongChieu</p>
-<p><b>Vị trí ghế: </b> @Model.ViTriGhe</p>
-<p><b>Giá vé: </b> @Model.GiaVe.ToString("#,###.##") VND</p>
 
-@if (Model.BapNuocSelections != null && Model.BapNuocSelections.Any())
-{
-    <h4>Thông Tin Bắp Nước</h4>
+<div class="ticket-container" style="">
+    <h2 class="form-title">Thông tin vé</h2>
 
-    foreach (var bapNuoc in Model.BapNuocSelections)
+    <div class="ticket-info" >
+        <p><b>Tên rạp:</b> @Model.TenRap</p>
+        <p><b>Địa chỉ:</b> @Model.DiaChiRap</p>
+        <p><b>Phim:</b> @Model.TenPhim</p>
+        <p><b>Ngày chiếu:</b> @Model.NgayChieu</p>
+        <p><b>Giờ chiếu:</b> @Model.ThoiGianBatDau ~ @Model.ThoiGianKetThuc</p>
+        <p><b>Phòng chiếu:</b> @Model.TenPhongChieu</p>
+        <p><b>Vị trí ghế:</b> @Model.ViTriGhe</p>
+        <p><b>Giá vé:</b> @Model.GiaVe.ToString("#,###.##") VND</p>
+    </div>
+
+    @if (Model.BapNuocSelections != null && Model.BapNuocSelections.Any())
     {
-        var total = bapNuoc.GiaTien * bapNuoc.SoLuong;
-        <p><b>@bapNuoc.TenBapNuoc</b>  - <b>Số lượng:</b> @bapNuoc.SoLuong - <b>Giá:</b>  @total.ToString("#,###.##") VND</p>
+        <h2 class="form-title">Thông tin Bắp Nước</h2>
+        foreach (var bapNuoc in Model.BapNuocSelections)
+        {
+            var total = bapNuoc.GiaTien * bapNuoc.SoLuong;
+            <div class="bapNuoc-info">
+                <p><b>@bapNuoc.TenBapNuoc</b></p>
+                <p><b>Số lượng:</b> @bapNuoc.SoLuong</p>
+                <p><b>Giá:</b> @total.ToString("#,###.##") VND</p>
+            </div>}
     }
 
-}
+    @if (Model.KhuyenMaiSelections != null && Model.KhuyenMaiSelections.Any())
+    {
+        <h4>Khuyến Mãi</h4>
+        <div id="khuyenMaiList">
+            @foreach (var khuyenMai in Model.KhuyenMaiSelections)
+            {
+                <div class="khuyenMai-item">
+                    <p>
+                        <input type="checkbox" class="khuyenMaiCheckbox" data-discount="@khuyenMai.giaKhuyenMai" checked="checked" />
+                        @khuyenMai.tenKhuyenMai
+                        <button class="removeKhuyenMai" data-id="@khuyenMai.id_KhuyenMai">Xóa</button>
+                    </p>
+                </div>}
+        </div>}
 
-@if (Model.KhuyenMaiSelections != null && Model.KhuyenMaiSelections.Any())
-{
-    <h4>Khuyến Mãi</h4>
-    <div id="khuyenMaiList">
-        @foreach (var khuyenMai in Model.KhuyenMaiSelections)
-        {
-            <div>
-                <p>
-                    <input type="checkbox" class="khuyenMaiCheckbox" data-discount="@khuyenMai.giaKhuyenMai" checked="checked" />
-                    @khuyenMai.tenKhuyenMai
-                    <button class="removeKhuyenMai" data-id="@khuyenMai.id_KhuyenMai">Xóa</button>
-                </p>
-            </div>
-        }
+<h4 class="form-title">Tổng số tiền: <span id="tongSoTien">@Model.TongSoTien.ToString("#,###")</span> VND</h4>
+    
+
+    <div class="action-buttons">
+        <button id="chon-khuyen-mai-btn">Chọn khuyến mãi</button>
+        <button id="thanh-toan-btn">Thanh toán</button>
     </div>
-}
-<h3><strong>Tổng số tiền: </strong><span id="tongSoTien">@Model.TongSoTien.ToString("#,###")</span> VND</h3>
-
-<div>
-    <button id="chon-khuyen-mai-btn">Chọn khuyến mãi</button>
-</div>
-
-<div>
-    <button id="thanh-toan-btn">Thanh toán</button>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -170,15 +174,64 @@
 
 </script>
 <style>
-    td {
-        width: 150px;
+    .form-title {
+        text-align: center;
+        margin-bottom: 20px; /* Khoảng cách giữa tiêu đề và form */
+    }
+    .ticket-container {
+        max-width: 600px;
+        margin: -30px auto;
+        padding: 15px 20px;
     }
 
-    .total {
-        margin-top: 10px;
+    .ticket-info {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
-    input.khuyenMaiCheckbox {
+        .ticket-info p {
+            margin: 0;
+            padding: 5px 0;
+            color: white;
+        }
+
+    .bapNuoc-info, .khuyenMai-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+    }
+
+        .bapNuoc-info p, .khuyenMai-item p {
+            margin: 0;
+            padding: 5px 0;
+            color: white;
+        }
+
+    .action-buttons {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+        .action-buttons button {
+            margin: 0 10px;
+            background: #e75e8d;
+        }
+
+    .btnBack {
+        margin-left: 130px;
+        background: #1f2122;
+    }
+
+        .btnBack img {
+            vertical-align: middle;
+        }
+
+    .khuyenMaiCheckbox {
         width: 17px;
         height: 17px;
         vertical-align: middle;

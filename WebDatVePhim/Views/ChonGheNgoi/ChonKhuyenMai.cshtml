@@ -1,22 +1,64 @@
-﻿@model WebDatVePhim.Controllers.ChonGheNgoiController.ChonKhuyenMaiViewModel
+﻿﻿@model WebDatVePhim.Controllers.ChonGheNgoiController.ChonKhuyenMaiViewModel
 
 @{
     ViewBag.Title = "Chọn Khuyến Mãi";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Layout/DungChung.cshtml";
 }
+
+<style>
+    #khuyenMaiForm {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .khuyenMai-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        width: 250px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+        .khuyenMai-card input {
+            margin-right: 10px;
+        }
+
+    #saveKhuyenMai {
+        background-color: #e75e8d;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+        #saveKhuyenMai:hover {
+            background-color: #e75e8d;
+        }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
 
 <h2>Chọn Khuyến Mãi</h2>
 <form id="khuyenMaiForm">
     @foreach (var khuyenMai in Model.KhuyenMaiSelections)
     {
-        <div>
-            <input type="checkbox" name="khuyenMaiIds" value="@khuyenMai.id_KhuyenMai" />
-            @khuyenMai.tenKhuyenMai 
-        </div>
-    }
-    <button type="button" id="saveKhuyenMai">Lưu Khuyến Mãi</button>
+<div class="khuyenMai-card">
+    <input type="checkbox" name="khuyenMaiIds" value="@khuyenMai.id_KhuyenMai" />
+    <label for="khuyenMai">@khuyenMai.tenKhuyenMai</label>
+</div>}
 </form>
-
+<div style="text-align: center;">
+    <button type="button" id="saveKhuyenMai">Lưu Khuyến Mãi</button>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {

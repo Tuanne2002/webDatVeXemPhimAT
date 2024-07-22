@@ -1,29 +1,31 @@
 ﻿@model IEnumerable<WebDatVePhim.Models.LichChieuPhim>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Layout/DungChung.cshtml";
     var phim = ViewBag.Phim as WebDatVePhim.Models.Phim;
     var rapList = ViewBag.RapList as List<WebDatVePhim.Models.Rap>;
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<div>
-    <button class="btnBack" style="border:none" onclick="clearPhimSelectionsAndGoBack()">
-        <img src="~/img/btnBack.jpg" style="width:20px;height:20px" />
-        <span class="Back" style="font-size: 20px; vertical-align: middle;">Chọn phim</span>
-    </button>
-</div>
-
 
 
 <div class="phim-info">
     <img src="@Url.Content("~/img/" + phim.anhPhim)" alt="@phim.tenPhim" class="phim-image" />
-    <div class="phim-details">
-        <h3>@phim.tenPhim</h3>
-        <p>@phim.tomTatPhim</p>
+    <div class="movie-details">
+        
+        <div class="phim-details">
+            <h3>@phim.tenPhim</h3>
+            <p><strong>Thời lượng:</strong> @phim.thoiLuong phút</p>
+            <p><strong>Thể loại:</strong> @phim.theLoai</p>
+            <p><strong>Tóm tắt phim:</strong> @phim.tomTatPhim</p>
+            <p><strong>Đạo diễn:</strong> @phim.daoDien</p>
+            <p><strong>Đánh giá:</strong> @phim.danhGia</p>
+            <p><strong>Quốc gia:</strong> @phim.quocGia</p>
+            <p><strong>Diễn viên:</strong> @phim.dienVien</p>
+
+        </div>
     </div>
+
 </div>
-    @* Dropdown for selecting cinema *@
-    @*@Html.DropDownList("RapId", new SelectList(rapList, "id_Rap", "tenRap"), "Chọn rạp", new { @class = "form-control", onchange = "filterLichChieuByRap()" })*@
 
 <div class="rap-list-container">
     <button class="arrow-left" onclick="scrollLeft()">&#9664;</button>
@@ -45,6 +47,10 @@
     <button class="arrow-right" onclick="scrollRight()">&#9654;</button>
 </div>
 
+@*<div class="date-picker">
+    <label for="date">Chọn ngày:</label>
+    <input type="date" id="date" name="date" onchange="filterLichChieuByDate(this.value)" />
+</div>*@
 
 <table class="table">
     <thead>
@@ -58,51 +64,24 @@
             <th>Chọn</th>
         </tr>
     </thead>
-
-    @*<tbody id="lichChieuBody">
-        @foreach (var item in Model.OrderBy(i => i.ngayChieu))
-        {
-
-            <tr>
-                <td>@item.ngayChieu.GetValueOrDefault().ToString("dd/MM/yyyy")</td>
-                <td>@item.thoiGianBatDau.GetValueOrDefault().ToString("hh\\:mm") ~ @item.thoiGianKetThuc.GetValueOrDefault().ToString("hh\\:mm") </td>
-                <td>@item.PhongChieu.tenPhongChieu</td>
-                <td>
-                    <a href="@Url.Action("Index", "ChonGheNgoi", new { lichChieuId = item.id_LichChieuPhim })" class="btn btn-primary">Chọn</a>
-                </td>
-            </tr>
-        }
-        
-    </tbody>*@
     <tbody id="lichChieuBody">
-    @Html.Partial("_LichChieuPartial", Model)
+        @Html.Partial("_LichChieuPartial", Model)
     </tbody>
 </table>
-<script>
 
-    function clearPhimSelectionsAndGoBack() {
-         // Make an AJAX call to clear the bap nuoc selections
-        $.ajax({
-            url: '@Url.Action("ClearPhimSelections", "ChonLichChieu")', // Adjust the URL and action as needed
-            type: 'POST',
-            success: function(response) {
-                // After clearing the selections, navigate back
-                window.location.href = '@Url.Action("Index", "ChonPhim")';
-            },
-            error: function() {
-                alert("Có lỗi xảy ra khi xóa lựa chọn lịch chiếu!");
-            }
-        });
-    }
+<script>
+    $(document).ready(function () {
+        filterLichChieuByRap(0, $(".rap-item").first());
+    });
+
     function scrollLeft() {
-        var rapListWrapper = document.querySelector('.rap-list-wrapper');
-        rapListWrapper.scrollBy({ left: 200, behavior: 'smooth' });
+        $('.rap-list-wrapper').scrollLeft($('.rap-list-wrapper').scrollLeft() - 200);
     }
 
     function scrollRight() {
-        var rapListWrapper = document.querySelector('.rap-list-wrapper');
-        rapListWrapper.scrollBy({ left: 200, behavior: 'smooth' });
+        $('.rap-list-wrapper').scrollLeft($('.rap-list-wrapper').scrollLeft() + 200);
     }
+
     function filterLichChieuByRap(rapId, element) {
         var selectedMovieId = '@ViewBag.SelectedMovieId';
         var today = new Date().toISOString().split('T')[0];
@@ -128,42 +107,64 @@
             }
         });
     }
+
+
+
 </script>
+
 <style>
+    .button-container {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn_trailer,
+    .btn_chonPhim {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        background-color: #1f2122; /* Đổi màu nền */
+        color: white; /* Đổi màu chữ */
+        border: none;
+        border-radius: 5px;
+    }
+
+        .btn_trailer:hover,
+        .btn_chonPhim:hover {
+            background-color: #343a40; /* Màu nền khi hover */
+        }
+
     .phim-info {
         display: flex;
         align-items: center;
+        justify-content: center;
         margin-bottom: 20px;
+        border: 2px solid #1f2122;
+        border-radius: 15px;
+        padding: 20px;
+        background-color: #1f2122;
     }
 
     .phim-image {
         width: 150px;
         height: 225px;
+        border-radius: 10px;
         margin-right: 20px;
     }
 
     .phim-details {
         flex-grow: 1;
+        text-align: center;
     }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: left;
-    }
-
-    th {
-        background-color: #f4f4f4;
-    }
     .rap-list-container {
         display: flex;
         align-items: center;
-       /* width:600px;*/
+        margin-bottom: 20px;
     }
 
     .rap-list {
@@ -178,6 +179,135 @@
         border: 2px solid gray;
         border-radius: 10px;
         width: 180px;
+        padding: 10px;
+        margin: 0 5px;
+        background: #d6d2d2;
+    }
+
+    .rap-image {
+        width: 100px;
+        height: 100px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    
+
+    .rap-item.selected {
+        border-color: #007bff;
+    }
+
+    .arrow-left, .arrow-right {
+        background-color: transparent;
+        border: none;
+        font-size: 2em;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .rap-list-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        flex: 1;
+        padding: 10px 0;
+    }
+
+    
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table thead th {
+        color: white;
+        background-color: #1f2122;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    table th {
+        color: white;
+    }
+
+    th {
+        background-color: #1f2122;
+    }
+    .button-container {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn_trailer,
+    .btn_chonPhim {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        background-color: #1f2122; /* Đổi màu nền */
+        color: white; /* Đổi màu chữ */
+        border: none;
+        border-radius: 5px;
+    }
+
+        .btn_trailer:hover,
+        .btn_chonPhim:hover {
+            background-color: #343a40; /* Màu nền khi hover */
+        }
+
+    .phim-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        border: 2px solid #1f2122;
+        border-radius: 15px;
+        padding: 20px;
+        background-color: #1f2122;
+    }
+
+    .phim-image {
+        width: 150px;
+        height: 225px;
+        border-radius: 10px;
+        margin-right: 20px;
+    }
+
+    .phim-details {
+        flex-grow: 1;
+        text-align: center;
+        color: white; /* Đổi màu chữ trong chi tiết phim */
+    }
+
+    .rap-list-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .rap-list {
+        display: flex;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .rap-item {
+        text-align: center;
+        cursor: pointer;
+        display: inline-block;
+        border: 2px solid gray;
+        border-radius: 10px;
+        width: 180px;
+        padding: 10px;
+        margin: 0 5px;
+        color: white; /* Đổi màu chữ trong các item */
     }
 
     .rap-image {
@@ -190,28 +320,81 @@
     .rap-name {
         margin-top: 5px;
         font-size: 14px;
+        color: black; /* Đổi màu chữ trong tên rạp */
     }
+
     .rap-item.selected {
-        border-color: #007bff; /* Màu viền khi được chọn */
+        border-color: #007bff;
     }
-    .arrow-left {
+
+    .arrow-left, .arrow-right {
         background-color: transparent;
         border: none;
         font-size: 2em;
         cursor: pointer;
         user-select: none;
+        color: white; /* Đổi màu chữ của mũi tên */
     }
-    .arrow-right {
-        background-color: transparent;
-        border: none;
-        font-size: 2em;
-        cursor: pointer;
-        user-select: none;
-    }
+
     .rap-list-wrapper {
         overflow-x: auto;
         overflow-y: hidden;
         white-space: nowrap;
         flex: 1;
+        padding: 10px 0;
+    }
+
+    .date-picker {
+        margin-bottom: 20px;
+        text-align: center;
+        position: relative;
+    }
+
+        .date-picker label {
+            font-size: 16px;
+            color: white;
+            margin-bottom: 5px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .date-picker input[type="date"] {
+            padding: 12px;
+            font-size: 16px;
+            color: white; /* Màu chữ */
+            background-color: #1f2122; /* Màu nền */
+            border: 1px solid #333; /* Màu viền */
+            border-radius: 5px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng */
+            max-width: 300px; /* Đặt chiều rộng tối đa */
+            box-sizing: border-box;
+        }
+
+            .date-picker input[type="date"]:focus {
+                background-color: #343a40; /* Màu nền khi focus */
+                border-color: #007bff; /* Màu viền khi focus */
+                outline: none; /* Loại bỏ viền focus mặc định */
+            }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table thead th {
+        color: white;
+        background-color: #1f2122;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+        color: white; /* Đổi màu chữ trong ô bảng */
+    }
+
+    table th {
+        background-color: #1f2122;
     }
 </style>
