@@ -7,5 +7,5 @@ BE: Asp.Net
 Database: SQL Server
 
 # Hiện thực
-Trang chủ # 
+<p style="text-align: center;"><b>Trang Chủ</b></p>
 ![image](https://github.com/user-attachments/assets/50b54761-578b-4336-b57b-a3c6e41c987e)
